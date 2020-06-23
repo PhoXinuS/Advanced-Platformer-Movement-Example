@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Piotr\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Piotr\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_project Noir.-1611480449.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Piotr\Desktop\Noir\project Noir" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Scripts" t="Include">
+          <e p="CharacterController2D.cs" t="Include" />
+          <e p="CharacterMovment.cs" t="Include" />
+          <e p="PlayerFlip.cs" t="Include" />
+          <e p="PlayerMovement.cs" t="Include" />
+        </e>
+        <e p="Tilemap Extras" t="Include">
+          <e p="AnimatedTile" t="Include">
+            <e p="AnimatedTile.cs" t="Include" />
+          </e>
+          <e p="Brushes" t="Include">
+            <e p="TintedTilemap.shader" t="Include" />
+            <e p="TintTextureGenerator.cs" t="Include" />
+          </e>
+          <e p="GridInformation" t="Include">
+            <e p="GridInformation.cs" t="Include" />
+          </e>
+          <e p="PipelineTile" t="Include">
+            <e p="PipelineTile.cs" t="Include" />
+          </e>
+          <e p="RandomTile" t="Include">
+            <e p="RandomTile.cs" t="Include" />
+          </e>
+          <e p="RuleOverrideTile" t="Include">
+            <e p="AdvancedRuleOverrideTile.cs" t="Include" />
+            <e p="RuleOverrideTile.cs" t="Include" />
+          </e>
+          <e p="RuleTile" t="Include">
+            <e p="RuleTile.cs" t="Include" />
+          </e>
+          <e p="TerrainTile" t="Include">
+            <e p="TerrainTile.cs" t="Include" />
+          </e>
+          <e p="WeightedRandomTile" t="Include">
+            <e p="WeightedRandomTile.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="project Noir.sln" t="IncludeFlat" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
