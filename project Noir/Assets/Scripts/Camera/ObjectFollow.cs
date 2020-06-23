@@ -4,32 +4,50 @@ using UnityEngine;
 
 public class ObjectFollow : MonoBehaviour
 {
-    public Transform follower;
-
-    public List<Transform> objectsToFollow = new List<Transform>();
-
-    [SerializeField] private float smooothens = 10f;
-
-    [SerializeField] Vector2 offset = new Vector2(0, 2);
-    [SerializeField] float yDistance = -10;
+    [SerializeField] List<Transform> pointsOfFocus = new List<Transform>();
+    [SerializeField] private float smoothness = 10f;
+    [SerializeField] Vector3 offset = new Vector3(0, 2, -10);
 
     private void LateUpdate()
     {
+        var targetPosition = CalculateMeanPositionFromPointsOfFocus();
+        var lerpedPosition = LerpedPosition(targetPosition);
+        transform.position = new Vector3(lerpedPosition.x, lerpedPosition.y, offset.z);
+    }
+    
+    private Vector2 CalculateMeanPositionFromPointsOfFocus()
+    {
         Vector2 targetPosition = new Vector2();
-        foreach (var _object in objectsToFollow)
+        int focusCount = 0;
+        foreach (var _object in pointsOfFocus)
         {
             if (_object != null)
             {
-                targetPosition += (Vector2)_object.position;
+                targetPosition += (Vector2) _object.position;
+                focusCount++;
             }
             else
             {
                 Debug.LogWarning("You are trying to follow destroyed object, Sir!");
             }
         }
-        targetPosition = targetPosition / objectsToFollow.Count + offset;
 
-        follower.position = Vector2.Lerp(follower.position, targetPosition, smooothens * Time.deltaTime);
-        follower.position = new Vector3(follower.position.x, follower.position.y, yDistance);
+        if (focusCount != 0)
+        {
+            targetPosition = targetPosition / focusCount + (Vector2) offset;
+        }
+        else
+        {
+            Debug.LogWarning("You are trying to 0 objects, Sir!");
+            return transform.position;
+        }
+
+        return targetPosition;
+    }
+    
+    private Vector2 LerpedPosition(Vector2 targetPosition)
+    {
+        Vector2 lerpedPosition = Vector2.Lerp(transform.position, targetPosition, Time.deltaTime / smoothness);
+        return lerpedPosition;
     }
 }
