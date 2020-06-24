@@ -1,30 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-[SerializeField]
 public class PlayerMovement : IMovementInput
 {
-    private PlayerMovementVertical verticalMovement;
+    private readonly PlayerMovementReadInput readInputMovement;
     public PlayerMovement(GameObject playerGameObject)
     {
-        verticalMovement = playerGameObject.AddComponent<PlayerMovementVertical>();
+        readInputMovement = playerGameObject.AddComponent<PlayerMovementReadInput>();
     }
-
-    public Vector2 movementInputNormalized => GetMovementInput();
-
-    private Vector2 GetMovementInput()
-    {
-        var verticalInput = verticalMovement.verticalInput;
-        return new Vector2(verticalInput, 0f);
-    }
+    public Vector2 movementInputNormalized => readInputMovement.movementInput;
 }
 
-public class PlayerMovementVertical : MonoBehaviour
+public class PlayerMovementReadInput : MonoBehaviour
 {
-    internal float verticalInput { get; private set; }
+    internal Vector2 movementInput { get; private set; }
 
     private void OnMovement(InputValue input)
     {
-        verticalInput = input.Get<float>();
+        movementInput = input.Get<Vector2>();
     }
 }
