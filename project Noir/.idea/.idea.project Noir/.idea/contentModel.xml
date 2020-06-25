@@ -52,6 +52,7 @@
             <e p="ToolKit.cs" t="Include" />
           </e>
           <e p="Trash bin" t="Include">
+            <e p="ChangeTimeScale.cs" t="Include" />
             <e p="CharacterController2D.cs" t="Include" />
             <e p="CharacterMovment.cs" t="Include" />
             <e p="PlayerFlip.cs" t="Include" />

@@ -77,9 +77,8 @@ internal class CalculateHorizontalVelocity
         }
 
         if (IsRunningIntoWall(horizontalVelocity))
-        {
             return 0f;
-        }
+        
         return horizontalVelocity;
     }
     
@@ -100,9 +99,7 @@ internal class CalculateHorizontalVelocity
             foreach (var hit in hits)
             {
                 if (hit.collider.gameObject != gameObject)
-                {
                     return true;
-                }
             }
         }        
         return false;
@@ -138,20 +135,33 @@ internal class CalculateVerticalVelocity
     
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask whatIsGround;
+    [SerializeField] float rememberJumpPressTime = 0.2f;
+    [SerializeField] float delayedJumpPressTime = 0.2f;
+    [SerializeField] float fallMultiplier = 2.5f;
+    
+    private float rememberJumpPressCounter;
+    private float delayedJumpPressCounter;
 
     private List<bool> avaibleJumps = new List<bool>();
     private bool grounded;
     private bool alreadyPushedJumpButton;
-    
+
     internal float Calculate()
     {
-        //TODO: remove ground detection from this class to another marked with interface. Leave only input check and maybe Grounded / DoubleJump
+        //TODO: remove ground detection from this class to another marked with interface.
+        //TODO: or just make another class and ScriptableObject with grounded variable
 
+        float verticalVelocity = rigidBody2D.velocity.y;
+        verticalVelocity += BetterFallingVelocity();
+        verticalVelocity += AdjustJumpheight();
+        
         if (!calculateVerticalVelocity)
-            return rigidBody2D.velocity.y;
+            return verticalVelocity;
+        
 
         int jumpsCount = movementData.jumpsNumber;
 
+        bool wasGrounded = grounded;
         grounded = false;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, 0.05f, whatIsGround);
         for (int i = 0; i < colliders.Length; i++)
@@ -168,11 +178,29 @@ internal class CalculateVerticalVelocity
             }
         }
 
-        if (HoldingInputUpButton() && !alreadyPushedJumpButton)
+        if (wasGrounded && !grounded)
+            delayedJumpPressCounter = delayedJumpPressTime;
+        
+        if ( HoldingInputUpButton()
+            && !alreadyPushedJumpButton
+            && !avaibleJumps.Contains(true) )
+        {
+            rememberJumpPressCounter = rememberJumpPressTime;
+        }
+
+        if (delayedJumpPressCounter > 0)
+            delayedJumpPressCounter -= Time.fixedDeltaTime;
+        if (rememberJumpPressCounter > 0)
+            rememberJumpPressCounter -= Time.fixedDeltaTime;
+
+        if ( (HoldingInputUpButton() || rememberJumpPressCounter > 0 )
+            && !alreadyPushedJumpButton)
         {
             alreadyPushedJumpButton = true;
             
-            if (grounded && avaibleJumps.Count > 0)
+            if ((grounded || delayedJumpPressCounter > 0) 
+                && avaibleJumps.Count > 0
+                && avaibleJumps[0])
             {
                 avaibleJumps[0] = false;
                 return movementData.jumpHeight;
@@ -187,12 +215,34 @@ internal class CalculateVerticalVelocity
                 }
             }
         }
-        else if(!HoldingInputUpButton())
+        
+        if(!HoldingInputUpButton())
         {
             alreadyPushedJumpButton = false;
         }
+        
 
-        return rigidBody2D.velocity.y;
+        return verticalVelocity;
+    }
+
+    
+    private float BetterFallingVelocity()
+    {
+        if (rigidBody2D.velocity.y < 0)
+            return Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+        
+        return 0f;
+    }
+    
+    private float AdjustJumpheight()
+    {
+        if (!HoldingInputUpButton() 
+            && rigidBody2D.velocity.y > 0
+            && alreadyPushedJumpButton)
+        {
+            return -(rigidBody2D.velocity.y / 2);
+        }
+        return 0f;
     }
 
     private bool HoldingInputUpButton()
