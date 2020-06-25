@@ -8,4 +8,5 @@ public class MovementDataSO : ScriptableObject
     public float decelerationTime = 1f;
     
     public float jumpHeight = 1f;
+    public int jumpsNumber = 2;
 }

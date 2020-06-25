@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba679296e3e24d87a4a969b5b1d86c86, type: 3}
   m_Name: Movement Data
   m_EditorClassIdentifier: 
-  horizontalSpeed: 1
+  horizontalSpeed: 3
   accelerationTime: 0.2
   decelerationTime: 0.1
   jumpHeight: 7
+  jumpsNumber: 2

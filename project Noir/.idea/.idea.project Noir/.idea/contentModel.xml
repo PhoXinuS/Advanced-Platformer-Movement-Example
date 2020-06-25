@@ -20,6 +20,7 @@
           </e>
           <e p="Character Control" t="Include">
             <e p="Movement" t="Include">
+              <e p="CalculateHorizontalVelocity.cs" t="Include" />
               <e p="IMovementInput.cs" t="Include" />
               <e p="Movement.cs" t="Include" />
               <e p="MovementDataSO.cs" t="Include" />

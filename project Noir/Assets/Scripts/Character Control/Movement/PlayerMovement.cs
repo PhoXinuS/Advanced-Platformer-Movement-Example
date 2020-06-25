@@ -3,11 +3,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : IMovementInput
 {
-    private readonly PlayerMovementReadInput readInputMovement;
     public PlayerMovement(GameObject playerGameObject)
     {
         readInputMovement = playerGameObject.AddComponent<PlayerMovementReadInput>();
     }
+    
+    private readonly PlayerMovementReadInput readInputMovement;
     public Vector2 movementInputNormalized => readInputMovement.movementInput;
 }
 
