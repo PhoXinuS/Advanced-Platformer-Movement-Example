@@ -2,6 +2,8 @@
 
 public interface IMovementInput
 {
-    Vector2 movementInputNormalized { get; }
+    float horizontalInput { get; }
+    float jumpInput { get; }
+    float crouchInput { get; }
 }
     

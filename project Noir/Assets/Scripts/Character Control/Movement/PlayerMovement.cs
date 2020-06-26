@@ -9,15 +9,27 @@ public class PlayerMovement : IMovementInput
     }
     
     private readonly PlayerMovementReadInput readInputMovement;
-    public Vector2 movementInputNormalized => readInputMovement.movementInput;
+    public float horizontalInput => readInputMovement.horizontalInput;
+    public float jumpInput => readInputMovement.jumpInput;
+    public float crouchInput=> readInputMovement.crouchInput;
 }
 
 public class PlayerMovementReadInput : MonoBehaviour
 {
-    internal Vector2 movementInput { get; private set; }
+    internal float horizontalInput { get; private set; }
+    internal float jumpInput { get; private set; }
+    internal float crouchInput { get; private set; }
 
-    private void OnMovement(InputValue input)
+    private void OnHorizontal(InputValue input)
     {
-        movementInput = input.Get<Vector2>();
+        horizontalInput = input.Get<float>();
+    }
+    private void OnJump(InputValue input)
+    {
+        jumpInput = input.Get<float>();
+    }
+    private void OnCrouch(InputValue input)
+    {
+        crouchInput = input.Get<float>();
     }
 }

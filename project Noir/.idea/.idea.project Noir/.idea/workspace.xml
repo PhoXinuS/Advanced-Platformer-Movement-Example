@@ -20,14 +20,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afea5122-9a1a-4e4d-bd62-1d3fd3f40de1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Trash bin/ChangeTimeScale.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Trash bin/ChangeTimeScale.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateVerticalVelocity.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateVerticalVelocity.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/GroundCheck.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/GroundCheck.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Controll/Physic Materials/Deafult Material.physicsMaterial2D" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Controll/Physic Materials/Deafult Material.physicsMaterial2D" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Controll/Input/Controls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Controll/Input/Controls.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Controll/Input/Controls.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Controll/Input/Controls.inputactions" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Playground.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Playground.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/CalculateHorizontalVelocity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateHorizontalVelocity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/CalculateHorizontalVelocity.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateHorizontalVelocity.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/IMovementInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/IMovementInput.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Data.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementDataSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementDataSO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovement.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,25 +48,30 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Toolkit/Smoothers.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Toolkit/ToolKit.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Save System/GameData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Trash bin/CharacterMovment.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../It began long ago/Bounce 2.0/Assets/Scripts/Environment Behavour/SFX/SlowMotion.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Trash bin/CharacterController2D.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Trash bin/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Effects/SlowMotion.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Data.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Controll/Input/Controls.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/CalculateHorizontalVelocity.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Trash bin/ChangeTimeScale.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/IMovementInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/GroundCheck.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Actions/InputActionState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementDataSO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scriptable Objects/Scripts/FloatVariableSO.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Tilemap Extras/RuleTile/RuleTile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Camera/ObjectFollow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Toolkit/Smoothers.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Toolkit/ToolKit.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Save System/GameData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Actions/InputBindingResolver.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Trash bin/CharacterController2D.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Trash bin/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateVerticalVelocity.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Data.asset" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateHorizontalVelocity.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/IMovementInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Tilemap Extras/RuleTile/RuleTile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Utilities/NamedValue.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -70,15 +85,19 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/VerticalPlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovementVertical.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementData.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/IMovementInput.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Toolkit/Smoothers.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Trash bin/CharacterController2D.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/CalculateHorizontalVelocity.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementDataSO.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Trash bin/SlowMotion.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Trash bin/ChangeTimeScale.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateVelocity.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/IMovementInput.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementDataSO.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/GroundCheck.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateVerticalVelocity.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateHorizontalVelocity.cs" />
       </list>
     </option>
   </component>
@@ -135,7 +154,8 @@
       <workItem from="1592978415255" duration="13282000" />
       <workItem from="1593015539377" duration="6154000" />
       <workItem from="1593062861256" duration="14898000" />
-      <workItem from="1593081401223" duration="7083000" />
+      <workItem from="1593081401223" duration="7528000" />
+      <workItem from="1593149873575" duration="10669000" />
     </task>
     <servers />
   </component>
@@ -165,10 +185,10 @@
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
     <state x="1401" y="727" key="#Notifications/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1592888663946" />
-    <state x="1247" y="542" key="RiderGenerateDialog" timestamp="1593070800030">
+    <state x="1247" y="542" key="RiderGenerateDialog" timestamp="1593154820226">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
-    <state x="1247" y="542" key="RiderGenerateDialog/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593070800030" />
+    <state x="1247" y="542" key="RiderGenerateDialog/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593154820226" />
     <state x="1638" y="599" width="981" height="707" key="SettingsEditor" timestamp="1593070932573">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
@@ -185,6 +205,14 @@
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
     <state x="93" y="93" width="2886" height="1542" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593078245769" />
+    <state x="1207" y="597" width="657" height="534" key="find.popup" timestamp="1593151278026">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state x="1207" y="597" width="657" height="534" key="find.popup/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593151278026" />
+    <state x="1178" y="590" width="700" height="530" key="recent.locations.popup" timestamp="1593151285969">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state x="1178" y="590" width="700" height="530" key="recent.locations.popup/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593151285969" />
     <state x="1199" y="397" width="672" height="678" key="search.everywhere.popup" timestamp="1592988023885">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>

@@ -15,5 +15,5 @@ MonoBehaviour:
   horizontalSpeed: 4
   accelerationTime: 0.2
   decelerationTime: 0.1
-  jumpHeight: 7
-  jumpsNumber: 2
+  jumpHeight: 8.5
+  availableJumps: 1
