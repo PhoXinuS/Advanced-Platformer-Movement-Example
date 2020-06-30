@@ -5,6 +5,7 @@
       <Path>../../../AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.inputsystem@1.0.0</Path>
     </attachedFolders>
     <explicitIncludes>
+      <Path>Assets</Path>
       <Path>Library/PackageCache/com.unity.2d.animation@3.2.2</Path>
       <Path>Library/PackageCache/com.unity.2d.common@2.0.2</Path>
       <Path>Library/PackageCache/com.unity.2d.path@2.0.4</Path>
@@ -27,6 +28,7 @@
       <Path>.idea</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
+      <Path>Temp</Path>
       <Path>obj</Path>
     </explicitExcludes>
   </component>

@@ -1,44 +1,21 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public static class GroundCheck
+public class GroundCheck
 {
-    public static bool IsTouchingGround(LayerMask whatIsGround, Vector2 groundCheckPosition, GameObject gameObject)
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPosition, 0.05f, whatIsGround);
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            if (colliders[i].gameObject != gameObject)
-            {
-                return true;
-            }
-        }
-        return false;
-    }  
+    private RaycastHit2D[] hits = new RaycastHit2D[10];
     
-    public static bool IsTouchingGround(LayerMask whatIsGround, Transform[] groundCheckers, GameObject gameObject)
+    public bool IsTouchingGround(LayerMask whatIsGround, Transform[] groundCheckers, GameObject gameObject)
     {
         foreach (var groundCheck in groundCheckers)
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, 0.05f, whatIsGround);
-            for (int i = 0; i < colliders.Length; i++)
+            int hitsNumber = Physics2D.RaycastNonAlloc(groundCheck.position, Vector2.down, hits, 0.05f, whatIsGround);
+            for (int i = 0; i < hitsNumber; i++)
             {
-                if (colliders[i].gameObject != gameObject)
-                {
+                GameObject hitGameObject = hits[i].collider.gameObject;
+                if (hitGameObject != gameObject)
                     return true;
-                }
             }
         }
-        
         return false;
-    }  
-    
-    public static bool IsTouchingGround(LayerMask whatIsGround, Vector2 groundCheckPosition)
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPosition, 0.05f, whatIsGround);
-        if (colliders.Length > 0)
-            return true;
-        
-        return false;
-    } 
+    }
 }

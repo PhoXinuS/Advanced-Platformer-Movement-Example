@@ -26,7 +26,9 @@
               <e p="MovementParts" t="Include">
                 <e p="CalculateHorizontalVelocity.cs" t="Include" />
                 <e p="CalculateVerticalVelocity.cs" t="Include" />
+                <e p="CanStandCheck.cs" t="Include" />
                 <e p="GroundCheck.cs" t="Include" />
+                <e p="SetCrouch.cs" t="Include" />
               </e>
               <e p="PlayerMovement.cs" t="Include" />
             </e>
@@ -36,9 +38,6 @@
             <e p="SlowMotion.cs" t="Include" />
           </e>
           <e p="Save System" t="Include">
-            <e p="Editor" t="Include">
-              <e p="DataButtons.cs" t="Include" />
-            </e>
             <e p="GameData.cs" t="Include" />
             <e p="GameDataSO.cs" t="Include" />
             <e p="SaveSystem.cs" t="Include" />

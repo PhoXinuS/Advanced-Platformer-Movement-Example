@@ -4,6 +4,27 @@ using UnityEngine;
 [System.Serializable]
 internal class CalculateVerticalVelocity
 {
+    [SerializeField] bool calculateVertical = true;
+    [SerializeField] Transform[] groundCheckers;
+    [SerializeField] LayerMask whatIsGround;
+    [SerializeField] float rememberJumpPressTime = 0.15f;
+    [SerializeField] float delayedJumpPressTime = 0.1f;
+    [SerializeField] float fallMultiplier = 2.5f;
+    
+    private float rememberJumpPressCounter;
+    private float delayedJumpPressCounter;
+
+    private List<bool> avaibleJumps = new List<bool>();
+    private bool grounded;
+    private bool isPushingJumpButton = false;
+    private bool wasPushingJumpButton;
+    
+    private GroundCheck groundCheck = new GroundCheck();
+    private MovementDataSO movementData;
+    private Rigidbody2D rigidBody2D;
+    private GameObject gameObject;
+    private IMovementInput movementInput;
+
     internal void Setup( MovementDataSO movementData
         , GameObject gameObject
         , Rigidbody2D rigidBody2D
@@ -20,46 +41,22 @@ internal class CalculateVerticalVelocity
             avaibleJumps.Add(false);
         }
     }
-
     
-    private MovementDataSO movementData;
-    private Rigidbody2D rigidBody2D;
-    private GameObject gameObject;
-    private IMovementInput movementInput;
-    
-    [SerializeField] bool calculateVerticalVelocity = true;
-    [SerializeField] Transform[] groundCheckers;
-    [SerializeField] LayerMask whatIsGround;
-    [SerializeField] float rememberJumpPressTime = 0.15f;
-    [SerializeField] float delayedJumpPressTime = 0.1f;
-    [SerializeField] float fallMultiplier = 2.5f;
-    
-    private float rememberJumpPressCounter;
-    private float delayedJumpPressCounter;
-
-    private List<bool> avaibleJumps = new List<bool>();
-    private bool grounded;
-    private bool isPushingJumpButton = false;
-    private bool wasPushingJumpButton;
-
     internal float Calculate()
     {
-        //TODO: remove ground detection from this class to another marked with interface.
-        //TODO: or just make another class and ScriptableObject with grounded variable
-
+        if (!calculateVertical)
+            return rigidBody2D.velocity.x;
+        
         wasPushingJumpButton = isPushingJumpButton;
         isPushingJumpButton = HoldingInputUpButton();
 
         float verticalVelocity = rigidBody2D.velocity.y;
         verticalVelocity += BetterFallingVelocity();
         verticalVelocity += AdjustJumpHeight();
-        
-        if (!calculateVerticalVelocity)
-            return verticalVelocity;
-        
+
         int jumpsCount = movementData.availableJumps;
         bool wasGrounded = grounded;
-        grounded = GroundCheck.IsTouchingGround(whatIsGround, groundCheckers, gameObject);
+        grounded = groundCheck.IsTouchingGround(whatIsGround, groundCheckers, gameObject);
         if (grounded)
         {
             ResetJumps(jumpsCount);
@@ -68,8 +65,6 @@ internal class CalculateVerticalVelocity
 
         if (ShouldJump() && CanJump())
         {
-            Debug.Log(isPushingJumpButton);
-            
             avaibleJumps[0] = false;
             int availableJump = CalculateAvailableJumpNumber(jumpsCount);
             
@@ -80,8 +75,6 @@ internal class CalculateVerticalVelocity
             return movementData.jumpHeight;
         }
 
-
-        
         return verticalVelocity;
     }
 
