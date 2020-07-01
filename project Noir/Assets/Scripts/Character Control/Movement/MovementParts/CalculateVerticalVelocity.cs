@@ -5,8 +5,6 @@ using UnityEngine;
 internal class CalculateVerticalVelocity
 {
     [SerializeField] bool calculateVertical = true;
-    [SerializeField] Transform[] groundCheckers;
-    [SerializeField] LayerMask whatIsGround;
     [SerializeField] float rememberJumpPressTime = 0.15f;
     [SerializeField] float delayedJumpPressTime = 0.1f;
     [SerializeField] float fallMultiplier = 2.5f;
@@ -15,23 +13,18 @@ internal class CalculateVerticalVelocity
     private float delayedJumpPressCounter;
 
     private List<bool> avaibleJumps = new List<bool>();
-    private bool grounded;
     private bool isPushingJumpButton = false;
     private bool wasPushingJumpButton;
     
-    private GroundCheck groundCheck = new GroundCheck();
     private MovementDataSO movementData;
     private Rigidbody2D rigidBody2D;
-    private GameObject gameObject;
     private IMovementInput movementInput;
 
     internal void Setup( MovementDataSO movementData
-        , GameObject gameObject
         , Rigidbody2D rigidBody2D
         , IMovementInput movementInput )
     {
         this.movementData = movementData;
-        this.gameObject = gameObject;
         this.rigidBody2D = rigidBody2D;
         this.movementInput = movementInput;
 
@@ -42,40 +35,43 @@ internal class CalculateVerticalVelocity
         }
     }
     
-    internal float Calculate()
+    internal void ApplyVelocity(bool isGrounded)
     {
         if (!calculateVertical)
-            return rigidBody2D.velocity.x;
+            return;
         
         wasPushingJumpButton = isPushingJumpButton;
-        isPushingJumpButton = HoldingInputUpButton();
+        isPushingJumpButton = HoldingInputJump();
 
         float verticalVelocity = rigidBody2D.velocity.y;
         verticalVelocity += BetterFallingVelocity();
         verticalVelocity += AdjustJumpHeight();
 
         int jumpsCount = movementData.availableJumps;
-        bool wasGrounded = grounded;
-        grounded = groundCheck.IsTouchingGround(whatIsGround, groundCheckers, gameObject);
-        if (grounded)
+        bool wasGrounded = isGrounded;
+        if (isGrounded)
         {
             ResetJumps(jumpsCount);
         }
-        AdjustTimers(wasGrounded);
+        AdjustTimers(isGrounded, wasGrounded);
 
         if (ShouldJump() && CanJump())
         {
             avaibleJumps[0] = false;
             int availableJump = CalculateAvailableJumpNumber(jumpsCount);
-            
-            if (CanGroundJump(availableJump))
-                return movementData.jumpHeight;
-                
-            avaibleJumps[availableJump] = false;
-            return movementData.jumpHeight;
-        }
 
-        return verticalVelocity;
+            if (CanGroundJump(isGrounded))
+            {
+                verticalVelocity = movementData.jumpHeight;
+            }
+            else
+            {
+                avaibleJumps[availableJump] = false;
+                verticalVelocity = movementData.jumpHeight;
+            }
+        }
+        
+        rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, verticalVelocity);
     }
 
     private float BetterFallingVelocity()
@@ -105,9 +101,9 @@ internal class CalculateVerticalVelocity
         }
     }
     
-    private void AdjustTimers(bool wasGrounded)
+    private void AdjustTimers(bool isGrounded, bool wasGrounded)
     {
-        if (wasGrounded && !grounded)
+        if (wasGrounded && !isGrounded)
             delayedJumpPressCounter = delayedJumpPressTime;
 
         if (isPushingJumpButton
@@ -150,12 +146,12 @@ internal class CalculateVerticalVelocity
         return 0;
     }
     
-    private bool CanGroundJump(int availableJump)
+    private bool CanGroundJump(bool isGrounded)
     {
-        return (grounded || delayedJumpPressCounter > 0);
+        return (isGrounded || delayedJumpPressCounter > 0);
     }
 
-    private bool HoldingInputUpButton()
+    private bool HoldingInputJump()
     {
         return movementInput.jumpInput > 0f;
     }

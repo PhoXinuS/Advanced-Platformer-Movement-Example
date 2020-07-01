@@ -3,30 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SetCrouch
+public class Crouch
 {
-    [SerializeField] bool calculateCrouch = true;
-    [SerializeField] Collider2D[] normalColliders;
-    [SerializeField] Collider2D[] crouchColliders;
-    [SerializeField] Transform[] standingSpaceCheckers;
-    [SerializeField] LayerMask whatPreventsStandingUp;
-    [SerializeField] float standingCheckLength = 0.8f;
+    [HideInInspector] public bool isCrouching;
     
+    [SerializeField] bool calculateCrouch = true;
+    [SerializeField] Collider2D[] normalColliders = new Collider2D[0];
+    [SerializeField] Collider2D[] crouchColliders = new Collider2D[0];
+
     private bool wasStanding = true;
 
-    private CanStandCheck canStandCheck = new CanStandCheck();
     private IMovementInput movementInput;
-    private GameObject gameObject;
 
-    internal void Setup(IMovementInput movementInput, GameObject gameObject)
+    internal void Setup(IMovementInput movementInput)
     {
         this.movementInput = movementInput;
-        this.gameObject = gameObject;
     }
 
-    internal void Set(ref bool isCrouching)
+    internal void Calculate(bool isGrounded, bool canStand)
     {
-        if (CrouchIsTriggered())
+        if (CrouchIsTriggered() && isGrounded)
         {
             isCrouching = true;
             
@@ -35,10 +31,9 @@ public class SetCrouch
             foreach (var crouchCollider in crouchColliders)
                 crouchCollider.enabled = true;
 
-
             wasStanding = false;
         }
-        else if(!wasStanding && CanStandUp())
+        else if(!wasStanding && canStand)
         {
             isCrouching = false;
             
@@ -46,8 +41,7 @@ public class SetCrouch
                 normalCollider.enabled = true;
             foreach (var crouchCollider in crouchColliders)
                 crouchCollider.enabled = false;
-
-
+            
             wasStanding = true;
         }
     }
@@ -57,9 +51,5 @@ public class SetCrouch
         return calculateCrouch
                && movementInput.crouchInput > 0f;
     }
-
-    private bool CanStandUp()
-    {
-        return canStandCheck.CanStand(whatPreventsStandingUp, standingSpaceCheckers, standingCheckLength, gameObject);
-    }
+    
 }  

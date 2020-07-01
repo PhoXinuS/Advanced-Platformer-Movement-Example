@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.UI;
 using UnityEngine;
 
 [System.Serializable]
 internal class CalculateHorizontalVelocity
 {
     [SerializeField] bool calculateHorizontal = true;
-
+    [SerializeField] Crouch crouch = new Crouch();
+    [SerializeField] Slide slide = new Slide();
+    
     private float xVelocity;
     
     private MovementDataSO movementData;
@@ -20,28 +23,35 @@ internal class CalculateHorizontalVelocity
         this.movementData = movementData;
         this.rigidBody2D = rigidBody2D;
         this.movementInput = movementInput;
+        
+        crouch.Setup(movementInput);
+        slide.Setup(movementData, rigidBody2D);
     }
     
-    internal float Calculate(bool isCrouching)
+    internal void ApplyVelocity(bool isGrounded, bool canStand)
     {
         if (!calculateHorizontal)
-            return rigidBody2D.velocity.x;
+            return;
         
-    
+        crouch.Calculate(isGrounded, canStand);
+        slide.Calculate(crouch.isCrouching);
+        
         float horizontalInput = movementInput.horizontalInput;
         float horizontalTargetVelocity = horizontalInput * movementData.horizontalSpeed * TimeMultiplier();
         
-        if (isCrouching)
+        if (crouch.isCrouching)
         {
             horizontalTargetVelocity *= movementData.crouchSpeedMultiplier;
         }
+        if (slide.isSliding)
+        {
+            horizontalTargetVelocity = 0f;
+        }
 
         float horizontalVelocity = ApplyAccelerationToVelocity(horizontalTargetVelocity);
-
-        return horizontalVelocity;
+        rigidBody2D.velocity = new Vector2(horizontalVelocity, rigidBody2D.velocity.y);
     }
     
-     
     private static float TimeMultiplier()
     {
         return Time.fixedDeltaTime * 100f;
@@ -49,10 +59,26 @@ internal class CalculateHorizontalVelocity
 
     private float ApplyAccelerationToVelocity(float horizontalTargetVelocity)
     {
-        if (VelocityIsIncreasing(horizontalTargetVelocity))
-            return AccelerateVelocity(horizontalTargetVelocity, movementData.accelerationTime);
-
-        return AccelerateVelocity(horizontalTargetVelocity, movementData.decelerationTime);
+        float accelerationTime = 0f; 
+        
+        if (slide.isSliding && !InputDirectionIsOppositeToVelocity())
+            accelerationTime = movementData.slideDecelerationTime;
+        else if (VelocityIsIncreasing(horizontalTargetVelocity))
+            accelerationTime = movementData.accelerationTime;
+        else
+            accelerationTime = movementData.decelerationTime;
+        
+        return AccelerateVelocity(horizontalTargetVelocity, accelerationTime);
+    }
+    
+    private bool InputDirectionIsOppositeToVelocity()
+    {
+        if (movementInput.horizontalInput == 0)
+        {
+            return false;
+        }
+        
+        return -Mathf.Sign(movementInput.horizontalInput) == Mathf.Sign(rigidBody2D.velocity.x);
     }
     
     private bool VelocityIsIncreasing(float horizontalTargetVelocity)

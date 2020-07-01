@@ -16,5 +16,7 @@ MonoBehaviour:
   crouchSpeedMultiplier: 0.4
   accelerationTime: 0.2
   decelerationTime: 0.1
+  slideDecelerationTime: 1.2
+  slideDuration: 0.8
   jumpHeight: 8.5
   availableJumps: 3

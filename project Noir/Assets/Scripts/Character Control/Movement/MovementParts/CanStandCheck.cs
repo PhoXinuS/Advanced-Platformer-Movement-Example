@@ -1,14 +1,25 @@
 ﻿using UnityEngine;
 
+[System.Serializable]
 public class CanStandCheck
 {
+    [SerializeField] float checkLength = 0.8f;
+    [SerializeField] LayerMask whatIsCeiling = new LayerMask();
+    [SerializeField] Transform[] ceilingCheckers = new Transform[0];
+
     private RaycastHit2D[] hits = new RaycastHit2D[10];
-    
-    public bool CanStand(LayerMask whatPreventsStandingUp, Transform[] standingSpaceChekers, float checkLength, GameObject gameObject)
+    private GameObject gameObject;
+
+    internal void SetUp(GameObject gameObject)
     {
-        foreach (var standingSpaceCheck in standingSpaceChekers)
+        this.gameObject = gameObject;
+    }
+    
+    public bool CanStand()
+    {
+        foreach (var standingSpaceCheck in ceilingCheckers)
         {
-            int hitsNumber = Physics2D.RaycastNonAlloc(standingSpaceCheck.position, Vector2.up, hits, checkLength, whatPreventsStandingUp);
+            int hitsNumber = Physics2D.RaycastNonAlloc(standingSpaceCheck.position, Vector2.up, hits, checkLength, whatIsCeiling);
             for (int i = 0; i < hitsNumber; i++)
             {
                 GameObject hitGameObject = hits[i].collider.gameObject;

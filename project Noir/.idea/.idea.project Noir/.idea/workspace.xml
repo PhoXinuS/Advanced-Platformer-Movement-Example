@@ -20,12 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afea5122-9a1a-4e4d-bd62-1d3fd3f40de1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Controll/Physic Materials/Slippery.physicsMaterial2D" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Controll/Physic Materials/Slippery.physicsMaterial2D.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CanStandCheck.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CanStandCheck.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/SetCrouch.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/SetCrouch.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/Slide.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/Slide.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/workspace.xml" afterDir="false" />
@@ -35,7 +31,18 @@
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementDataSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementDataSO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateHorizontalVelocity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateHorizontalVelocity.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateVerticalVelocity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateVerticalVelocity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CanStandCheck.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CanStandCheck.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/GroundCheck.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/GroundCheck.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/SetCrouch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/Crouch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/SetCrouch.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/Crouch.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Trash bin/CharacterController2D.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Trash bin/CharacterController2D.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Trash bin/CharacterMovment.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Trash bin/CharacterMovment.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Trash bin/PlayerFlip.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Trash bin/PlayerFlip.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Trash bin/PlayerMovement.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Trash bin/PlayerMovement.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,11 +53,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Trash bin/CharacterMovment.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../It began long ago/Bounce 2.0/Assets/Scripts/Environment Behavour/SFX/SlowMotion.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Effects/SlowMotion.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/SetCrouch.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/Crouch.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Controll/Input/Controls.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Trash bin/ChangeTimeScale.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/GroundCheck.cs" root0="FORCE_HIGHLIGHTING" />
@@ -58,14 +64,13 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementDataSO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scriptable Objects/Scripts/FloatVariableSO.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/Slide.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Camera/ObjectFollow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Toolkit/Smoothers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Toolkit/ToolKit.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CanStandCheck.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Save System/GameData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Actions/InputBindingResolver.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Trash bin/CharacterController2D.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Trash bin/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateVerticalVelocity.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Data.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateHorizontalVelocity.cs" root0="FORCE_HIGHLIGHTING" />
@@ -93,21 +98,23 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateVelocity.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/IMovementInput.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementDataSO.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateCrouch.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/ApplyCrouch.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/SetupCrouch.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CrouchState.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/CalculateVelocity.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/ApplyState.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateHorizontalVelocity.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/StandingCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/CalculateMovement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/GroundCheck.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateVerticalVelocity.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CanStandCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/SetCrouch.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/GroundCheck.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CanStandCheck.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateVerticalVelocity.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/Crouch.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateHorizontalVelocity.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/Slide.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementDataSO.cs" />
       </list>
     </option>
   </component>
@@ -166,7 +173,8 @@
       <workItem from="1593062861256" duration="14898000" />
       <workItem from="1593081401223" duration="7528000" />
       <workItem from="1593149873575" duration="10669000" />
-      <workItem from="1593491854070" duration="12964000" />
+      <workItem from="1593491854070" duration="12996000" />
+      <workItem from="1593584396621" duration="13488000" />
     </task>
     <servers />
   </component>

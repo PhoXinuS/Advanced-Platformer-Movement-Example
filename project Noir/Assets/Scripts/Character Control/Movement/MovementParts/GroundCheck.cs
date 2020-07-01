@@ -1,10 +1,20 @@
 ﻿using UnityEngine;
 
+[System.Serializable]
 public class GroundCheck
 {
+    [SerializeField] LayerMask whatIsGround = new LayerMask();
+    [SerializeField] Transform[] groundCheckers = new Transform[0];
+
     private RaycastHit2D[] hits = new RaycastHit2D[10];
+    private GameObject gameObject;
+
+    internal void SetUp(GameObject gameObject)
+    {
+        this.gameObject = gameObject;
+    }
     
-    public bool IsTouchingGround(LayerMask whatIsGround, Transform[] groundCheckers, GameObject gameObject)
+    internal bool IsTouchingGround()
     {
         foreach (var groundCheck in groundCheckers)
         {
