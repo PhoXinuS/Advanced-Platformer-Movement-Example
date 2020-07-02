@@ -5,7 +5,7 @@ public class Movement : MonoBehaviour
     public MovementDataSO movementData;
     
     [SerializeField] GroundCheck groundCheck = new GroundCheck();
-    [SerializeField] CanStandCheck canStandCheck = new CanStandCheck();
+    [SerializeField] CeilingCheck ceilingCheck = new CeilingCheck();
 
     [SerializeField] CalculateHorizontalVelocity horizontalCalculator = new CalculateHorizontalVelocity();
     [SerializeField] CalculateVerticalVelocity verticalCalculator = new CalculateVerticalVelocity();
@@ -20,8 +20,8 @@ public class Movement : MonoBehaviour
         rigidBody2D = gameObject.GetComponent<Rigidbody2D>();
         movementInput = new PlayerMovement(gameObject); 
         
-        groundCheck.SetUp(gameObject);
-        canStandCheck.SetUp(gameObject);
+        groundCheck.SetUp(new []{gameObject});
+        ceilingCheck.SetUp(new []{gameObject});
         
         horizontalCalculator.Setup(movementData, rigidBody2D, movementInput); 
         verticalCalculator.Setup(movementData, rigidBody2D, movementInput);
@@ -30,7 +30,7 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         isGrounded = groundCheck.IsTouchingGround();
-        canStand = canStandCheck.CanStand();
+        canStand = ceilingCheck.CanStand();
 
         verticalCalculator.ApplyVelocity(isGrounded);
         horizontalCalculator.ApplyVelocity(isGrounded, canStand);

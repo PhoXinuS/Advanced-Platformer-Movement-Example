@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [System.Serializable]
 public class Crouch
 {
-    [HideInInspector] public bool isCrouching;
     
     [SerializeField] bool calculateCrouch = true;
     [SerializeField] Collider2D[] normalColliders = new Collider2D[0];
     [SerializeField] Collider2D[] crouchColliders = new Collider2D[0];
 
+    internal bool isCrouching;
+    
     private bool wasStanding = true;
-
     private IMovementInput movementInput;
 
     internal void Setup(IMovementInput movementInput)
@@ -20,8 +18,14 @@ public class Crouch
         this.movementInput = movementInput;
     }
 
-    internal void Calculate(bool isGrounded, bool canStand)
+    internal void Tick(bool isGrounded, bool canStand)
     {
+        if (!calculateCrouch)
+        {
+            isCrouching = false;
+            return;
+        }
+
         if (CrouchIsTriggered() && isGrounded)
         {
             isCrouching = true;
@@ -48,8 +52,7 @@ public class Crouch
 
     private bool CrouchIsTriggered()
     {
-        return calculateCrouch
-               && movementInput.crouchInput > 0f;
+        return movementInput.crouchInput > 0f;
     }
     
 }  

@@ -26,7 +26,7 @@
               <e p="MovementParts" t="Include">
                 <e p="CalculateHorizontalVelocity.cs" t="Include" />
                 <e p="CalculateVerticalVelocity.cs" t="Include" />
-                <e p="CanStandCheck.cs" t="Include" />
+                <e p="CeilingCheck.cs" t="Include" />
                 <e p="Crouch.cs" t="Include" />
                 <e p="GroundCheck.cs" t="Include" />
                 <e p="Slide.cs" t="Include" />

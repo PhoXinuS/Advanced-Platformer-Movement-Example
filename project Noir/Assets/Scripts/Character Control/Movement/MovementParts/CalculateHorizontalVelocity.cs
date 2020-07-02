@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEditor.UI;
-using UnityEngine;
+﻿using UnityEngine;
 
 [System.Serializable]
 internal class CalculateHorizontalVelocity
@@ -11,6 +8,7 @@ internal class CalculateHorizontalVelocity
     [SerializeField] Slide slide = new Slide();
     
     private float xVelocity;
+    private bool wasSliding;
     
     private MovementDataSO movementData;
     private Rigidbody2D rigidBody2D;
@@ -30,54 +28,78 @@ internal class CalculateHorizontalVelocity
     
     internal void ApplyVelocity(bool isGrounded, bool canStand)
     {
-        if (!calculateHorizontal)
-            return;
+        if (!calculateHorizontal) return;
         
-        crouch.Calculate(isGrounded, canStand);
-        slide.Calculate(crouch.isCrouching);
+        crouch.Tick(isGrounded, canStand);
+        wasSliding = slide.isSliding;
+        slide.Tick(crouch.isCrouching);
         
-        float horizontalInput = movementInput.horizontalInput;
-        float horizontalTargetVelocity = horizontalInput * movementData.horizontalSpeed * TimeMultiplier();
-        
-        if (crouch.isCrouching)
-        {
-            horizontalTargetVelocity *= movementData.crouchSpeedMultiplier;
-        }
-        if (slide.isSliding)
-        {
-            horizontalTargetVelocity = 0f;
-        }
-
-        float horizontalVelocity = ApplyAccelerationToVelocity(horizontalTargetVelocity);
+        float horizontalTargetVelocity = CalculateHorizontalTargetVelocity();
+        float horizontalVelocity = ApplySmoothnessToVelocity(horizontalTargetVelocity);
         rigidBody2D.velocity = new Vector2(horizontalVelocity, rigidBody2D.velocity.y);
     }
-    
-    private static float TimeMultiplier()
+
+    private float TimeMultiplier()
     {
         return Time.fixedDeltaTime * 100f;
     }
 
-    private float ApplyAccelerationToVelocity(float horizontalTargetVelocity)
+    #region Calculate Target Velocity
+    private float CalculateHorizontalTargetVelocity()
     {
-        float accelerationTime = 0f; 
-        
-        if (slide.isSliding && !InputDirectionIsOppositeToVelocity())
-            accelerationTime = movementData.slideDecelerationTime;
-        else if (VelocityIsIncreasing(horizontalTargetVelocity))
-            accelerationTime = movementData.accelerationTime;
-        else
-            accelerationTime = movementData.decelerationTime;
-        
-        return AccelerateVelocity(horizontalTargetVelocity, accelerationTime);
+        float horizontalInput = movementInput.horizontalInput;
+        float horizontalTargetVelocity = horizontalInput * movementData.horizontalSpeed * TimeMultiplier();
+
+        if (crouch.isCrouching)
+        {
+            horizontalTargetVelocity *= movementData.crouchSpeedMultiplier;
+        }
+
+        if (slide.isSliding)
+        {
+            horizontalTargetVelocity = 0f;
+            if (!wasSliding)
+            {
+                xVelocity = 0f;
+            }
+        }
+
+        return horizontalTargetVelocity;
     }
+
+    #endregion
     
+    #region Smoothen Velocity
+    private float ApplySmoothnessToVelocity(float horizontalTargetVelocity)
+    {
+        float smoothingTime = 0f;
+
+        if (ContinueSliding())
+        {
+            smoothingTime = movementData.slideDecelerationTime;
+        }
+        else if (VelocityIsIncreasing(horizontalTargetVelocity))
+        {
+            smoothingTime = movementData.accelerationTime;
+        }
+        else if(VelocityIsDecreasing(horizontalTargetVelocity))
+        {
+            smoothingTime = movementData.decelerationTime;
+        }
+
+        return SmoothedVelocity(horizontalTargetVelocity, smoothingTime);
+    }
+
+    private bool ContinueSliding()
+    {
+        return slide.isSliding && !InputDirectionIsOppositeToVelocity();
+    }
+
     private bool InputDirectionIsOppositeToVelocity()
     {
-        if (movementInput.horizontalInput == 0)
-        {
+        if (movementInput.horizontalInput == 0f)
             return false;
-        }
-        
+
         return -Mathf.Sign(movementInput.horizontalInput) == Mathf.Sign(rigidBody2D.velocity.x);
     }
     
@@ -85,9 +107,17 @@ internal class CalculateHorizontalVelocity
     {
         return Mathf.Abs(horizontalTargetVelocity) > Mathf.Abs(rigidBody2D.velocity.x);
     }
-    
-    private float AccelerateVelocity(float horizontalTargetVelocity, float accelerationTime)
+    private bool VelocityIsDecreasing(float horizontalTargetVelocity)
     {
-        return Mathf.SmoothDamp(rigidBody2D.velocity.x, horizontalTargetVelocity, ref xVelocity, accelerationTime);
+        return Mathf.Abs(horizontalTargetVelocity) < Mathf.Abs(rigidBody2D.velocity.x);
     }
+    
+    private float SmoothedVelocity(float horizontalTargetVelocity, float smoothingTime)
+    {
+        float smoothedVelocity = Mathf.SmoothDamp(rigidBody2D.velocity.x, horizontalTargetVelocity, ref xVelocity, smoothingTime, Mathf.Infinity, Time.fixedDeltaTime);
+        return smoothedVelocity; 
+    }
+    
+    #endregion
+    
 }

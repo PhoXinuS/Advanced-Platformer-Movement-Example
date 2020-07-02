@@ -1,17 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [System.Serializable]
 public class Slide
 {
     [SerializeField] bool calculateSlide = true;
 
-    [HideInInspector] public bool isSliding = false;
+    internal bool isSliding = false;
 
     private bool wasCrouching;
     private float slidingTime;
-
     private MovementDataSO movementData;
     private Rigidbody2D rigidBody2D;
 
@@ -21,11 +18,14 @@ public class Slide
         this.rigidBody2D = rigidBody2D;
     }
 
-    internal void Calculate(bool isCrouching)
+    internal void Tick(bool isCrouching)
     {
         if (!calculateSlide)
+        {
+            isSliding = false;
             return;
-                
+        }
+
         if (isCrouching && !wasCrouching)
         {
             isSliding = true;

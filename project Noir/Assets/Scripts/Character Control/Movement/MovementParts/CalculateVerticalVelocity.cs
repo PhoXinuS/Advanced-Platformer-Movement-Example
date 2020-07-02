@@ -12,7 +12,7 @@ internal class CalculateVerticalVelocity
     private float rememberJumpPressCounter;
     private float delayedJumpPressCounter;
 
-    private List<bool> avaibleJumps = new List<bool>();
+    private List<bool> availableJumps = new List<bool>();
     private bool isPushingJumpButton = false;
     private bool wasPushingJumpButton;
     
@@ -31,47 +31,50 @@ internal class CalculateVerticalVelocity
         int jumpsCount = movementData.availableJumps;
         for (int i = 0; i < jumpsCount; i++)
         {
-            avaibleJumps.Add(false);
+            availableJumps.Add(false);
         }
     }
     
     internal void ApplyVelocity(bool isGrounded)
     {
-        if (!calculateVertical)
-            return;
+        if (!calculateVertical) return;
         
         wasPushingJumpButton = isPushingJumpButton;
         isPushingJumpButton = HoldingInputJump();
 
-        float verticalVelocity = rigidBody2D.velocity.y;
-        verticalVelocity += BetterFallingVelocity();
-        verticalVelocity += AdjustJumpHeight();
-
-        int jumpsCount = movementData.availableJumps;
+        var verticalVelocity = ApplyVerticalAdjusters();
+        
         bool wasGrounded = isGrounded;
         if (isGrounded)
         {
-            ResetJumps(jumpsCount);
+            ResetJumps(movementData.availableJumps);
         }
         AdjustTimers(isGrounded, wasGrounded);
 
         if (ShouldJump() && CanJump())
         {
-            avaibleJumps[0] = false;
-            int availableJump = CalculateAvailableJumpNumber(jumpsCount);
-
-            if (CanGroundJump(isGrounded))
+            UseSingleJump();
+            if (!CanGroundJump(isGrounded))
             {
-                verticalVelocity = movementData.jumpHeight;
+                UseMiltipleJump();
             }
-            else
-            {
-                avaibleJumps[availableJump] = false;
-                verticalVelocity = movementData.jumpHeight;
-            }
+            verticalVelocity = movementData.jumpHeight;
         }
         
         rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, verticalVelocity);
+    }
+
+    private bool HoldingInputJump()
+    {
+        return movementInput.jumpInput > 0f;
+    }
+
+    private float ApplyVerticalAdjusters()
+    {
+        float verticalVelocity = rigidBody2D.velocity.y;
+        verticalVelocity += BetterFallingVelocity();
+        verticalVelocity += AdjustJumpHeight();
+        return verticalVelocity;
     }
 
     private float BetterFallingVelocity()
@@ -97,7 +100,7 @@ internal class CalculateVerticalVelocity
     {
         for (int j = 0; j < jumpsCount; j++)
         {
-            avaibleJumps[j] = true;
+            availableJumps[j] = true;
         }
     }
     
@@ -108,7 +111,7 @@ internal class CalculateVerticalVelocity
 
         if (isPushingJumpButton
             && !wasPushingJumpButton
-            && !avaibleJumps.Contains(true))
+            && !availableJumps.Contains(true))
         {
             rememberJumpPressCounter = rememberJumpPressTime;
         }
@@ -127,32 +130,33 @@ internal class CalculateVerticalVelocity
     }
     private bool CanJump()
     {
-        if (avaibleJumps.Contains(true))
-            return true;
-
+        if (availableJumps.Contains(true)) return true;
+        
         return false;
     }
     
-    private int CalculateAvailableJumpNumber(int jumpsCount)
+    private void UseSingleJump()
     {
-        for (int i = 1; i < jumpsCount; i++)
-        {
-            if (avaibleJumps[i])
-            {
-                return i;
-            }
-        }
-
-        return 0;
+        availableJumps[0] = false; // No matter if object is grounded or not first (ground) jump should be set as used.
     }
     
     private bool CanGroundJump(bool isGrounded)
     {
         return (isGrounded || delayedJumpPressCounter > 0);
     }
-
-    private bool HoldingInputJump()
+    
+    private void UseMiltipleJump()
     {
-        return movementInput.jumpInput > 0f;
+        int availableJump = CalculateAvailableJumpNumber(movementData.availableJumps);
+        availableJumps[availableJump] = false;
+    }
+    
+    private int CalculateAvailableJumpNumber(int jumpsCount)
+    {
+        for (int i = 1; i < jumpsCount; i++)
+        {
+            if (availableJumps[i]) return i;
+        }
+        return 0;
     }
 }
