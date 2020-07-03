@@ -5,10 +5,10 @@ internal class CalculateHorizontalVelocity
 {
     [SerializeField] bool calculateHorizontal = true;
     [SerializeField] Crouch crouch = new Crouch();
-    [SerializeField] Slide slide = new Slide();
     
     private float xVelocity;
     private bool wasSliding;
+    private bool isSliding;
     
     private MovementDataSO movementData;
     private Rigidbody2D rigidBody2D;
@@ -22,8 +22,7 @@ internal class CalculateHorizontalVelocity
         this.rigidBody2D = rigidBody2D;
         this.movementInput = movementInput;
         
-        crouch.Setup(movementInput);
-        slide.Setup(movementData, rigidBody2D);
+        crouch.Setup(movementInput, movementData, rigidBody2D);
     }
     
     internal void ApplyVelocity(bool isGrounded, bool canStand)
@@ -31,31 +30,26 @@ internal class CalculateHorizontalVelocity
         if (!calculateHorizontal) return;
         
         crouch.Tick(isGrounded, canStand);
-        wasSliding = slide.isSliding;
-        slide.Tick(crouch.isCrouching);
-        
+        wasSliding = isSliding;
+        isSliding = crouch.slide.isSliding;
+
         float horizontalTargetVelocity = CalculateHorizontalTargetVelocity();
         float horizontalVelocity = ApplySmoothnessToVelocity(horizontalTargetVelocity);
         rigidBody2D.velocity = new Vector2(horizontalVelocity, rigidBody2D.velocity.y);
     }
-
-    private float TimeMultiplier()
-    {
-        return Time.fixedDeltaTime * 100f;
-    }
-
+    
     #region Calculate Target Velocity
     private float CalculateHorizontalTargetVelocity()
     {
         float horizontalInput = movementInput.horizontalInput;
-        float horizontalTargetVelocity = horizontalInput * movementData.horizontalSpeed * TimeMultiplier();
+        float horizontalTargetVelocity = horizontalInput * movementData.horizontalSpeed;
 
         if (crouch.isCrouching)
         {
             horizontalTargetVelocity *= movementData.crouchSpeedMultiplier;
         }
 
-        if (slide.isSliding)
+        if (isSliding)
         {
             horizontalTargetVelocity = 0f;
             if (!wasSliding)
@@ -92,7 +86,7 @@ internal class CalculateHorizontalVelocity
 
     private bool ContinueSliding()
     {
-        return slide.isSliding && !InputDirectionIsOppositeToVelocity();
+        return isSliding && !InputDirectionIsOppositeToVelocity();
     }
 
     private bool InputDirectionIsOppositeToVelocity()

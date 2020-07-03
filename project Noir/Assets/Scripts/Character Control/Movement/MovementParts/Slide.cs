@@ -3,10 +3,10 @@
 [System.Serializable]
 public class Slide
 {
-    [SerializeField] bool calculateSlide = true;
-
     internal bool isSliding = false;
-
+    
+    [SerializeField] bool calculateSlide = true;
+    
     private bool wasCrouching;
     private float slidingTime;
     private MovementDataSO movementData;

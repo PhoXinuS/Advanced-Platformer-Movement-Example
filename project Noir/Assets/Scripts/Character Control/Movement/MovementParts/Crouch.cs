@@ -3,19 +3,22 @@
 [System.Serializable]
 public class Crouch
 {
+    public Slide slide = new Slide();
+    internal bool isCrouching;
     
     [SerializeField] bool calculateCrouch = true;
     [SerializeField] Collider2D[] normalColliders = new Collider2D[0];
     [SerializeField] Collider2D[] crouchColliders = new Collider2D[0];
-
-    internal bool isCrouching;
     
     private bool wasStanding = true;
     private IMovementInput movementInput;
 
-    internal void Setup(IMovementInput movementInput)
+    internal void Setup(IMovementInput movementInput
+        , MovementDataSO movementData
+        , Rigidbody2D rigidBody2D)
     {
         this.movementInput = movementInput;
+        slide.Setup(movementData, rigidBody2D);
     }
 
     internal void Tick(bool isGrounded, bool canStand)
@@ -48,11 +51,13 @@ public class Crouch
             
             wasStanding = true;
         }
+        
+        slide.Tick(isCrouching);
     }
 
     private bool CrouchIsTriggered()
     {
-        return movementInput.crouchInput > 0f;
+        return movementInput.verticalInput > 0f;
     }
     
 }  

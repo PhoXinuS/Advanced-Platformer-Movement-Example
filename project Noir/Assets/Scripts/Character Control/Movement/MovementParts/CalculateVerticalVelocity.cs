@@ -35,17 +35,24 @@ internal class CalculateVerticalVelocity
         }
     }
     
-    internal void ApplyVelocity(bool isGrounded)
+    internal void ApplyVelocity(bool isGrounded, bool canStand
+        , bool isTouchingWall, bool isTouchingClimbableWall)
     {
-        if (!calculateVertical) return;
+        rigidBody2D.gravityScale = 1f;
+        if (!calculateVertical || !canStand) return;
         
         wasPushingJumpButton = isPushingJumpButton;
         isPushingJumpButton = HoldingInputJump();
 
         var verticalVelocity = ApplyVerticalAdjusters();
+
+        if (isTouchingWall && !isTouchingClimbableWall && rigidBody2D.velocity.y < 0f)
+        {
+            verticalVelocity = -movementData.wallSlideSpeed;
+        }
         
         bool wasGrounded = isGrounded;
-        if (isGrounded)
+        if (isGrounded || isTouchingWall)
         {
             ResetJumps(movementData.availableJumps);
         }
@@ -59,6 +66,12 @@ internal class CalculateVerticalVelocity
                 UseMiltipleJump();
             }
             verticalVelocity = movementData.jumpHeight;
+        }
+        
+        if (isTouchingClimbableWall && rigidBody2D.velocity.y < 0f)
+        {
+            rigidBody2D.gravityScale = 0f;
+            verticalVelocity = movementInput.verticalInput * movementData.wallClimbSpeed;
         }
         
         rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, verticalVelocity);

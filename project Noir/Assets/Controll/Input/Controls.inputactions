@@ -14,17 +14,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Jump",
+                    "name": "Vertical",
                     "type": "Value",
-                    "id": "50cb196b-f3d4-46ad-9fe2-e176ed1a20ca",
-                    "expectedControlType": "",
+                    "id": "7dc5c75d-5621-4785-b82e-42aa069427d1",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "Crouch",
+                    "name": "Jump",
                     "type": "Value",
-                    "id": "7dc5c75d-5621-4785-b82e-42aa069427d1",
+                    "id": "50cb196b-f3d4-46ad-9fe2-e176ed1a20ca",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -33,8 +33,8 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "d679e270-713d-475b-a094-e374a4b8e1ae",
-                    "path": "<Keyboard>/w",
+                    "id": "c8410a10-4708-4071-b9e8-aa6052682894",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -43,18 +43,40 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "8eb60cbc-43a1-49cf-b93e-07461516bf65",
+                    "name": "WS",
+                    "id": "8e0849d1-67d0-4d3c-8d38-1b2f936685d3",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Vertical",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "4c90ded2-606b-4307-b487-485e7b7f36ff",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Crouch",
+                    "action": "Vertical",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "Horizontal",
+                    "name": "positive",
+                    "id": "df74f966-3c00-45ea-bb36-565d7972f660",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Vertical",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "AD",
                     "id": "f993a604-cd60-4951-acbf-99fcd7a55f9d",
                     "path": "1DAxis",
                     "interactions": "",
