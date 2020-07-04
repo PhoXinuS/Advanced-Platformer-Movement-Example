@@ -16,9 +16,12 @@ MonoBehaviour:
   crouchSpeedMultiplier: 0.4
   accelerationTime: 0.2
   decelerationTime: 0.1
+  spaceAccelerationTime: 0.3
+  spaceDecelerationTime: 0.4
   slideDecelerationTime: 1.2
   slideDuration: 0.8
   wallSlideSpeed: 2
   wallClimbSpeed: 6
+  wallJumpHorizontalPower: 6
   jumpHeight: 8.5
   availableJumps: 3

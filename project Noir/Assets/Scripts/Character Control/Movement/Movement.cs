@@ -34,10 +34,11 @@ public class Movement : MonoBehaviour
     {
         bool isGrounded = groundCheck.IsInContactWithTarget();
         bool canStand = !ceilingCheck.IsInContactWithTarget();
-        bool isTouchingWall = leftWallCheck.IsInContactWithTarget() || rightWallCheck.IsInContactWithTarget();
+        bool isTouchingLeftWall = leftWallCheck.IsInContactWithTarget();
+        bool isTouchingRightWall = rightWallCheck.IsInContactWithTarget();
         bool isTouchingClimbableWall = leftWallCheck.IsInContactWithTarget(climbableTag) || rightWallCheck.IsInContactWithTarget(climbableTag);
 
-        verticalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingWall, isTouchingClimbableWall);
+        verticalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingLeftWall, isTouchingRightWall, isTouchingClimbableWall);
         horizontalCalculator.ApplyVelocity(isGrounded, canStand);
     }
 }

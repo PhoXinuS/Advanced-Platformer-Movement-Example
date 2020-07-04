@@ -34,7 +34,7 @@ internal class CalculateHorizontalVelocity
         isSliding = crouch.slide.isSliding;
 
         float horizontalTargetVelocity = CalculateHorizontalTargetVelocity();
-        float horizontalVelocity = ApplySmoothnessToVelocity(horizontalTargetVelocity);
+        float horizontalVelocity = ApplySmoothnessToVelocity(horizontalTargetVelocity, isGrounded);
         rigidBody2D.velocity = new Vector2(horizontalVelocity, rigidBody2D.velocity.y);
     }
     
@@ -58,13 +58,20 @@ internal class CalculateHorizontalVelocity
             }
         }
 
+        // this allows to maintain jump speed even if horizontal input is 0. Alternative to spaceDeceleration.
+        //
+        // if (!isGrounded && horizontalInput == 0)
+        // {
+        //     horizontalTargetVelocity = rigidBody2D.velocity.x;
+        // }
+
         return horizontalTargetVelocity;
     }
 
     #endregion
     
     #region Smoothen Velocity
-    private float ApplySmoothnessToVelocity(float horizontalTargetVelocity)
+    private float ApplySmoothnessToVelocity(float horizontalTargetVelocity, bool isGrounded)
     {
         float smoothingTime = 0f;
 
@@ -74,11 +81,25 @@ internal class CalculateHorizontalVelocity
         }
         else if (VelocityIsIncreasing(horizontalTargetVelocity))
         {
-            smoothingTime = movementData.accelerationTime;
+            if (isGrounded)
+            {
+                smoothingTime = movementData.accelerationTime;
+            }
+            else
+            {
+                smoothingTime = movementData.spaceAccelerationTime;
+            }
         }
         else if(VelocityIsDecreasing(horizontalTargetVelocity))
         {
-            smoothingTime = movementData.decelerationTime;
+            if (isGrounded)
+            {
+                smoothingTime = movementData.decelerationTime;
+            }
+            else
+            {
+                smoothingTime = movementData.spaceDecelerationTime;
+            }
         }
 
         return SmoothedVelocity(horizontalTargetVelocity, smoothingTime);
