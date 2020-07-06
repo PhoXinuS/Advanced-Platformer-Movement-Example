@@ -39,39 +39,18 @@ internal class CalculateHorizontalVelocity
         isSliding = crouch.slide.isSliding;
 
         float horizontalTargetVelocity = CalculateHorizontalTargetVelocity();
-
-        if (wallJumpControlCounter > 0)
-        {
-            wallJumpControlCounter -= Time.fixedDeltaTime;
-            if ((jumpedFromLeftWall && horizontalTargetVelocity < 0)
-                 || (!jumpedFromLeftWall && horizontalTargetVelocity > 0))
-            {
-                horizontalTargetVelocity = 0f;
-            }
-
-        }
-        
         float horizontalVelocity = ApplySmoothnessToVelocity(horizontalTargetVelocity, isGrounded);
-
-        if (jumped && !isGrounded)
-        {
-            if (isTouchingLeftWall)
-            {
-                horizontalVelocity = movementData.wallJumpHorizontalPower;
-                wallJumpControlCounter = wallJumpControlTime;
-                jumpedFromLeftWall = true;
-            }
-            else if (isTouchingRightWall)
-            {
-                horizontalVelocity = -movementData.wallJumpHorizontalPower;
-                wallJumpControlCounter = wallJumpControlTime;
-                jumpedFromLeftWall = false;
-            }
-        }
         
+        if (WallJumped(isGrounded, jumped))
+        {
+            horizontalVelocity = ApplyWallJumpVerticalPower(isTouchingLeftWall, isTouchingRightWall, horizontalVelocity);
+        }
+
         rigidBody2D.velocity = new Vector2(horizontalVelocity, rigidBody2D.velocity.y);
     }
-    
+
+
+
     #region Calculate Target Velocity
     private float CalculateHorizontalTargetVelocity()
     {
@@ -90,6 +69,28 @@ internal class CalculateHorizontalVelocity
             {
                 xVelocity = 0f;
             }
+        }
+        
+        if (AfterWallJumpTimerIsActive())
+        {
+            horizontalTargetVelocity = DisableDirectionTowardsWallAfterWallJump(horizontalTargetVelocity);
+        }
+
+        return horizontalTargetVelocity;
+    }
+
+    private bool AfterWallJumpTimerIsActive()
+    {
+        return wallJumpControlCounter > 0;
+    }
+
+    private float DisableDirectionTowardsWallAfterWallJump(float horizontalTargetVelocity)
+    {
+        wallJumpControlCounter -= Time.fixedDeltaTime;
+        if ((jumpedFromLeftWall && horizontalTargetVelocity < 0)
+            || (!jumpedFromLeftWall && horizontalTargetVelocity > 0))
+        {
+            return 0f;
         }
 
         return horizontalTargetVelocity;
@@ -158,6 +159,35 @@ internal class CalculateHorizontalVelocity
     {
         float smoothedVelocity = Mathf.SmoothDamp(rigidBody2D.velocity.x, horizontalTargetVelocity, ref xVelocity, smoothingTime, Mathf.Infinity, Time.fixedDeltaTime);
         return smoothedVelocity; 
+    }
+    
+    #endregion
+
+    #region Wall Jump Horizontal
+    private static bool WallJumped(bool isGrounded, bool jumped)
+    {
+        return jumped && !isGrounded;
+    }
+
+    private float ApplyWallJumpVerticalPower(bool isTouchingLeftWall,
+        bool isTouchingRightWall, float horizontalVelocity)
+    {
+        
+        if (isTouchingLeftWall)
+        {
+            horizontalVelocity = movementData.wallJumpHorizontalPower;
+            wallJumpControlCounter = wallJumpControlTime;
+            jumpedFromLeftWall = true;
+        }
+        else if (isTouchingRightWall)
+        {
+            horizontalVelocity = -movementData.wallJumpHorizontalPower;
+            wallJumpControlCounter = wallJumpControlTime;
+            jumpedFromLeftWall = false;
+        }
+        
+
+        return horizontalVelocity;
     }
     
     #endregion
