@@ -21,7 +21,8 @@ MonoBehaviour:
   slideDecelerationTime: 1.2
   slideDuration: 0.8
   wallSlideSpeed: 2
-  wallClimbSpeed: 6
-  wallJumpHorizontalPower: 6
+  wallClimbSpeed: 4
+  wallJumpHorizontalPower: 7
+  wallJumpVerticalPower: 6
   jumpHeight: 8.5
   availableJumps: 3

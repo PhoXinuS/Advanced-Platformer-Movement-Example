@@ -10,6 +10,10 @@ internal class CalculateHorizontalVelocity
     private bool wasSliding;
     private bool isSliding;
     
+    [SerializeField] float wallJumpControlTime = 1f;
+    private float wallJumpControlCounter;
+    private bool jumpedFromLeftWall;
+
     private MovementDataSO movementData;
     private Rigidbody2D rigidBody2D;
     private IMovementInput movementInput;
@@ -25,7 +29,8 @@ internal class CalculateHorizontalVelocity
         crouch.Setup(movementInput, movementData, rigidBody2D);
     }
     
-    internal void ApplyVelocity(bool isGrounded, bool canStand)
+    internal void ApplyVelocity(bool isGrounded, bool canStand
+        , bool jumped, bool isTouchingLeftWall, bool isTouchingRightWall)
     {
         if (!calculateHorizontal) return;
         
@@ -34,7 +39,36 @@ internal class CalculateHorizontalVelocity
         isSliding = crouch.slide.isSliding;
 
         float horizontalTargetVelocity = CalculateHorizontalTargetVelocity();
+
+        if (wallJumpControlCounter > 0)
+        {
+            wallJumpControlCounter -= Time.fixedDeltaTime;
+            if ((jumpedFromLeftWall && horizontalTargetVelocity < 0)
+                 || (!jumpedFromLeftWall && horizontalTargetVelocity > 0))
+            {
+                horizontalTargetVelocity = 0f;
+            }
+
+        }
+        
         float horizontalVelocity = ApplySmoothnessToVelocity(horizontalTargetVelocity, isGrounded);
+
+        if (jumped && !isGrounded)
+        {
+            if (isTouchingLeftWall)
+            {
+                horizontalVelocity = movementData.wallJumpHorizontalPower;
+                wallJumpControlCounter = wallJumpControlTime;
+                jumpedFromLeftWall = true;
+            }
+            else if (isTouchingRightWall)
+            {
+                horizontalVelocity = -movementData.wallJumpHorizontalPower;
+                wallJumpControlCounter = wallJumpControlTime;
+                jumpedFromLeftWall = false;
+            }
+        }
+        
         rigidBody2D.velocity = new Vector2(horizontalVelocity, rigidBody2D.velocity.y);
     }
     
@@ -57,13 +91,6 @@ internal class CalculateHorizontalVelocity
                 xVelocity = 0f;
             }
         }
-
-        // this allows to maintain jump speed even if horizontal input is 0. Alternative to spaceDeceleration.
-        //
-        // if (!isGrounded && horizontalInput == 0)
-        // {
-        //     horizontalTargetVelocity = rigidBody2D.velocity.x;
-        // }
 
         return horizontalTargetVelocity;
     }

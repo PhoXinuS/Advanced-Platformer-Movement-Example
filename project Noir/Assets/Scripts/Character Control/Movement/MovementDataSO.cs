@@ -16,6 +16,7 @@ public class MovementDataSO : ScriptableObject
     public float wallClimbSpeed = 6f;
 
     public float wallJumpHorizontalPower = 6f;
+    public float wallJumpVerticalPower = 6f;
     public float jumpHeight = 8f;
     public int availableJumps = 2;
 }

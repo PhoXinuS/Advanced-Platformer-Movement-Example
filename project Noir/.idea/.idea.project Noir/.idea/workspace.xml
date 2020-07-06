@@ -21,12 +21,15 @@
   <component name="ChangeListManager">
     <list default="true" id="afea5122-9a1a-4e4d-bd62-1d3fd3f40de1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Playground.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Playground.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Data.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementDataSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementDataSO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateHorizontalVelocity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateHorizontalVelocity.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateVerticalVelocity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateVerticalVelocity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/Crouch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/Crouch.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,16 +99,16 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/GroundCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CeilingCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/Slide.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/Crouch.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/WallCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/CeilingCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/GroundCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/Checker.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/IMovementInput.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementDataSO.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateHorizontalVelocity.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/Crouch.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateVerticalVelocity.cs" />
       </list>
     </option>
@@ -121,6 +124,8 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34989995" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.2998666" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -169,6 +174,7 @@
       <workItem from="1593584396621" duration="13550000" />
       <workItem from="1593665971666" duration="13192000" />
       <workItem from="1593754755698" duration="10040000" />
+      <workItem from="1594014453040" duration="8489000" />
     </task>
     <servers />
   </component>
@@ -198,6 +204,70 @@
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
     <state x="1401" y="727" key="#Notifications/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1592888663946" />
+    <state width="3029" height="649" key="GridCell.Tab.0.bottom" timestamp="1593851943037">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state width="3029" height="649" key="GridCell.Tab.0.bottom/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593851943037" />
+    <state width="3029" height="649" key="GridCell.Tab.0.center" timestamp="1593851943036">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state width="3029" height="649" key="GridCell.Tab.0.center/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593851943036" />
+    <state width="3029" height="649" key="GridCell.Tab.0.left" timestamp="1593851943036">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state width="3029" height="649" key="GridCell.Tab.0.left/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593851943036" />
+    <state width="3029" height="649" key="GridCell.Tab.0.right" timestamp="1593851943036">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state width="3029" height="649" key="GridCell.Tab.0.right/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593851943036" />
+    <state width="3029" height="649" key="GridCell.Tab.1.bottom" timestamp="1593851943037">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state width="3029" height="649" key="GridCell.Tab.1.bottom/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593851943037" />
+    <state width="3029" height="649" key="GridCell.Tab.1.center" timestamp="1593851943037">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state width="3029" height="649" key="GridCell.Tab.1.center/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593851943037" />
+    <state width="3029" height="649" key="GridCell.Tab.1.left" timestamp="1593851943037">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state width="3029" height="649" key="GridCell.Tab.1.left/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593851943037" />
+    <state width="3029" height="649" key="GridCell.Tab.1.right" timestamp="1593851943037">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state width="3029" height="649" key="GridCell.Tab.1.right/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593851943037" />
+    <state width="3029" height="649" key="GridCell.Tab.2.bottom" timestamp="1593851943037">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state width="3029" height="649" key="GridCell.Tab.2.bottom/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593851943037" />
+    <state width="3029" height="649" key="GridCell.Tab.2.center" timestamp="1593851943037">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state width="3029" height="649" key="GridCell.Tab.2.center/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593851943037" />
+    <state width="3029" height="649" key="GridCell.Tab.2.left" timestamp="1593851943037">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state width="3029" height="649" key="GridCell.Tab.2.left/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593851943037" />
+    <state width="3029" height="649" key="GridCell.Tab.2.right" timestamp="1593851943037">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state width="3029" height="649" key="GridCell.Tab.2.right/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593851943037" />
+    <state width="3029" height="649" key="GridCell.Tab.3.bottom" timestamp="1593851943038">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state width="3029" height="649" key="GridCell.Tab.3.bottom/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593851943038" />
+    <state width="3029" height="649" key="GridCell.Tab.3.center" timestamp="1593851943037">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state width="3029" height="649" key="GridCell.Tab.3.center/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593851943037" />
+    <state width="3029" height="649" key="GridCell.Tab.3.left" timestamp="1593851943037">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state width="3029" height="649" key="GridCell.Tab.3.left/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593851943037" />
+    <state width="3029" height="649" key="GridCell.Tab.3.right" timestamp="1593851943038">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state width="3029" height="649" key="GridCell.Tab.3.right/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593851943038" />
     <state x="1247" y="542" key="RiderGenerateDialog" timestamp="1593154820226">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
@@ -230,9 +300,9 @@
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
     <state x="1178" y="590" width="700" height="530" key="recent.locations.popup/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593151285969" />
-    <state x="1199" y="397" width="672" height="678" key="search.everywhere.popup" timestamp="1593675359022">
+    <state x="1199" y="397" width="672" height="678" key="search.everywhere.popup" timestamp="1594016403352">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
-    <state x="1199" y="397" width="672" height="678" key="search.everywhere.popup/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593675359022" />
+    <state x="1199" y="397" width="672" height="678" key="search.everywhere.popup/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1594016403352" />
   </component>
 </project>

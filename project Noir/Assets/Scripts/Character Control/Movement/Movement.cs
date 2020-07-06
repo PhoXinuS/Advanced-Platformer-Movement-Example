@@ -38,7 +38,8 @@ public class Movement : MonoBehaviour
         bool isTouchingRightWall = rightWallCheck.IsInContactWithTarget();
         bool isTouchingClimbableWall = leftWallCheck.IsInContactWithTarget(climbableTag) || rightWallCheck.IsInContactWithTarget(climbableTag);
 
-        verticalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingLeftWall, isTouchingRightWall, isTouchingClimbableWall);
-        horizontalCalculator.ApplyVelocity(isGrounded, canStand);
+        bool jumped = false;
+        verticalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingLeftWall, isTouchingRightWall, isTouchingClimbableWall, ref jumped);
+        horizontalCalculator.ApplyVelocity(isGrounded, canStand, jumped, isTouchingLeftWall, isTouchingRightWall);
     }
 }

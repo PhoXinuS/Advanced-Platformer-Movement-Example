@@ -28,6 +28,7 @@ public class Crouch
             isCrouching = false;
             return;
         }
+        
 
         if (CrouchIsTriggered() && isGrounded)
         {
@@ -57,7 +58,7 @@ public class Crouch
 
     private bool CrouchIsTriggered()
     {
-        return movementInput.verticalInput > 0f;
+        return movementInput.verticalInput < 0f;
     }
     
 }  
