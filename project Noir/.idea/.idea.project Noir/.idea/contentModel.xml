@@ -24,14 +24,19 @@
                 <e p="Checker.cs" t="Include" />
               </e>
               <e p="IMovementInput.cs" t="Include" />
-              <e p="Movement.cs" t="Include" />
-              <e p="MovementDataSO.cs" t="Include" />
-              <e p="MovementParts" t="Include">
+              <e p="Movement Parts" t="Include">
                 <e p="CalculateHorizontalVelocity.cs" t="Include" />
                 <e p="CalculateVerticalVelocity.cs" t="Include" />
-                <e p="Crouch.cs" t="Include" />
-                <e p="Slide.cs" t="Include" />
+                <e p="Horizontal Parts" t="Include">
+                  <e p="Crouch.cs" t="Include" />
+                  <e p="Slide.cs" t="Include" />
+                </e>
+                <e p="Vertical Parts" t="Include">
+                  <e p="VerticalAdjusters.cs" t="Include" />
+                </e>
               </e>
+              <e p="Movement.cs" t="Include" />
+              <e p="MovementDataSO.cs" t="Include" />
               <e p="PlayerMovement.cs" t="Include" />
             </e>
           </e>

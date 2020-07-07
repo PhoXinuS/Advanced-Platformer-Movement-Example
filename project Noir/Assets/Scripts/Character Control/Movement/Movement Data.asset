@@ -18,10 +18,13 @@ MonoBehaviour:
   decelerationTime: 0.1
   spaceAccelerationTime: 0.3
   spaceDecelerationTime: 0.4
+  climbAccelerationTime: 0.1
+  climbDecelerationTime: 0.1
   slideDecelerationTime: 1.2
   slideDuration: 0.8
   wallSlideSpeed: 2
-  wallClimbSpeed: 4
+  wallClimbSpeed: 3
+  ceilingClimbSpeed: 3
   wallJumpHorizontalPower: 7
   wallJumpVerticalPower: 6
   jumpHeight: 8.5

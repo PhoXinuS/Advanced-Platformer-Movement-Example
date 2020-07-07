@@ -8,12 +8,15 @@ public class MovementDataSO : ScriptableObject
     public float accelerationTime = 0.2f;
     public float decelerationTime = 0.1f;
     public float spaceAccelerationTime = 1f;
-    public float spaceDecelerationTime = 0.8f;
+    public float spaceDecelerationTime = 0.8f;  
+    public float climbAccelerationTime = 0.3f;
+    public float climbDecelerationTime = 0.2f;
 
     public float slideDecelerationTime = 1f;
     public float slideDuration = 0.8f;
     public float wallSlideSpeed = 2f;
     public float wallClimbSpeed = 6f;
+    public float ceilingClimbSpeed = 4f;
 
     public float wallJumpHorizontalPower = 6f;
     public float wallJumpVerticalPower = 6f;

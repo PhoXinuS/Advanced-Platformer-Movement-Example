@@ -29,30 +29,35 @@ internal class CalculateHorizontalVelocity
         crouch.Setup(movementInput, movementData, rigidBody2D);
     }
     
-    internal void ApplyVelocity(bool isGrounded, bool canStand
+    internal void ApplyVelocity(bool isGrounded, bool canStand, bool isTouchingClimbableCeiling
         , bool jumped, bool isTouchingLeftWall, bool isTouchingRightWall)
     {
         if (!calculateHorizontal) return;
         
         crouch.Tick(isGrounded, canStand);
+        bool isCrouching = crouch.isCrouching;
         wasSliding = isSliding;
         isSliding = crouch.slide.isSliding;
 
-        float horizontalTargetVelocity = CalculateHorizontalTargetVelocity();
-        float horizontalVelocity = ApplySmoothnessToVelocity(horizontalTargetVelocity, isGrounded);
+        float horizontalTargetVelocity = CalculateHorizontalTargetVelocity(isTouchingClimbableCeiling);
+        float horizontalVelocity = ApplySmoothnessToVelocity(horizontalTargetVelocity, isGrounded, isTouchingClimbableCeiling);
         
         if (WallJumped(isGrounded, jumped))
         {
             horizontalVelocity = ApplyWallJumpVerticalPower(isTouchingLeftWall, isTouchingRightWall, horizontalVelocity);
         }
+        else if ((isTouchingLeftWall || isTouchingRightWall)
+                 && (!isCrouching || !isSliding) 
+                 && movementInput.horizontalInput == 0)
+        {
+            horizontalVelocity = 0f;    // stop on wall, prevents from bouncing off
+        }
 
         rigidBody2D.velocity = new Vector2(horizontalVelocity, rigidBody2D.velocity.y);
     }
 
-
-
     #region Calculate Target Velocity
-    private float CalculateHorizontalTargetVelocity()
+    private float CalculateHorizontalTargetVelocity(bool isTouchingClimbableCeiling)
     {
         float horizontalInput = movementInput.horizontalInput;
         float horizontalTargetVelocity = horizontalInput * movementData.horizontalSpeed;
@@ -69,6 +74,11 @@ internal class CalculateHorizontalVelocity
             {
                 xVelocity = 0f;
             }
+        }
+
+        if (isTouchingClimbableCeiling)
+        {
+            horizontalTargetVelocity = horizontalInput * movementData.ceilingClimbSpeed;
         }
         
         if (AfterWallJumpTimerIsActive())
@@ -99,7 +109,7 @@ internal class CalculateHorizontalVelocity
     #endregion
     
     #region Smoothen Velocity
-    private float ApplySmoothnessToVelocity(float horizontalTargetVelocity, bool isGrounded)
+    private float ApplySmoothnessToVelocity(float horizontalTargetVelocity, bool isGrounded, bool isClimbing)
     {
         float smoothingTime = 0f;
 
@@ -113,6 +123,10 @@ internal class CalculateHorizontalVelocity
             {
                 smoothingTime = movementData.accelerationTime;
             }
+            else if (isClimbing)
+            {
+                smoothingTime = movementData.climbAccelerationTime;
+            }
             else
             {
                 smoothingTime = movementData.spaceAccelerationTime;
@@ -123,6 +137,10 @@ internal class CalculateHorizontalVelocity
             if (isGrounded)
             {
                 smoothingTime = movementData.decelerationTime;
+            }
+            else if (isClimbing)
+            {
+                smoothingTime = movementData.climbDecelerationTime;
             }
             else
             {

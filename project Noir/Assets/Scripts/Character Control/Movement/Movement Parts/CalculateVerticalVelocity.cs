@@ -7,20 +7,19 @@ internal class CalculateVerticalVelocity
     [SerializeField] bool calculateVertical = true;
     [SerializeField] float rememberJumpPressTime = 0.15f;
     [SerializeField] float delayedJumpPressTime = 0.1f;
-    [SerializeField] float fallMultiplier = 2.5f;
     
     private float rememberJumpPressCounter;
     private float delayedJumpPressCounter;
-    
-    private bool alreadyAdjustedJumpHeight = false;
 
     private List<bool> availableJumps = new List<bool>();
-    private bool isPushingJumpButton = false;
+    private bool isPushingJumpButton;
     private bool wasPushingJumpButton;
     
     private MovementDataSO movementData;
     private Rigidbody2D rigidBody2D;
     private IMovementInput movementInput;
+    
+    private VerticalAdjusters verticalAdjusters = new VerticalAdjusters();
 
     internal void Setup( MovementDataSO movementData
         , Rigidbody2D rigidBody2D
@@ -35,9 +34,11 @@ internal class CalculateVerticalVelocity
         {
             availableJumps.Add(false);
         }
+        
+        verticalAdjusters.SetUp(rigidBody2D, movementInput);
     }
     
-    internal void ApplyVelocity(bool isGrounded, bool canStand
+    internal void ApplyVelocity(bool isGrounded, bool canStand, bool isTouchingClimbableCeiling
         , bool isTouchingLeftWall, bool isTouchingRightWall, bool isTouchingClimbableWall
         , ref bool jumped)
     {
@@ -47,32 +48,30 @@ internal class CalculateVerticalVelocity
         wasPushingJumpButton = isPushingJumpButton;
         isPushingJumpButton = HoldingInputJump();
 
-        float horizontalVelocity = rigidBody2D.velocity.x;
-        float verticalVelocity = ApplyVerticalAdjusters(rigidBody2D.velocity.y);
+        var velocity = rigidBody2D.velocity;
+        float horizontalVelocity = velocity.x;
+        float verticalVelocity = velocity.y;
         bool isTouchingWall = isTouchingRightWall || isTouchingLeftWall;
 
         if (isTouchingWall && !isTouchingClimbableWall && rigidBody2D.velocity.y < 0f)
         {
             verticalVelocity = -movementData.wallSlideSpeed;
         }
-        if (isTouchingClimbableWall)
-        {
-            rigidBody2D.gravityScale = 0f;
-            verticalVelocity = movementInput.verticalInput * movementData.wallClimbSpeed;
-        }
+        verticalVelocity = ApplyWallClimb(isTouchingClimbableWall, verticalVelocity);
         
         bool wasGrounded = isGrounded;
         if (isGrounded || isTouchingClimbableWall)
         {
             ResetJumps(movementData.availableJumps);
         }
-        else if (isTouchingWall)
+        else if (isTouchingWall || isTouchingClimbableCeiling)
         {
             ResetJumps(1);
         }
         AdjustTimers(isGrounded, wasGrounded);
 
-        if (ShouldJump() && CanJump())
+        bool adjustJumpHeight = true;
+        if (ShouldJump() && CanJump() && !isTouchingClimbableCeiling)
         {
             UseSingleJump();
             if (!CanGroundJump(isGrounded))
@@ -83,51 +82,26 @@ internal class CalculateVerticalVelocity
             if (!isTouchingWall)
             {
                 verticalVelocity = movementData.jumpHeight;
-                alreadyAdjustedJumpHeight = false;
             }
             else
             {
-                verticalVelocity = movementData.wallJumpVerticalPower;
-                alreadyAdjustedJumpHeight = true;
+                verticalVelocity = movementData.wallJumpVerticalPower;   
+                adjustJumpHeight = false;
             }
             jumped = true;
         }
-
+        
+        verticalVelocity = verticalAdjusters.ApplyAdjusters(verticalVelocity, jumped, true, adjustJumpHeight);
+        verticalVelocity = ApplyCeilingClimb(isTouchingClimbableCeiling, verticalVelocity);
         rigidBody2D.velocity = new Vector2(horizontalVelocity, verticalVelocity);
     }
-
+    
+    
     private bool HoldingInputJump()
     {
         return movementInput.jumpInput > 0f;
     }
 
-    private float ApplyVerticalAdjusters(float verticalVelocity)
-    {
-        verticalVelocity += BetterFallingVelocity();
-        verticalVelocity += AdjustJumpHeight();
-        return verticalVelocity;
-    }
-
-    private float BetterFallingVelocity()
-    {
-        if (rigidBody2D.velocity.y < 0)
-            return Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
-        
-        return 0f;
-    }
-    
-    private float AdjustJumpHeight()
-    {
-        if ( !alreadyAdjustedJumpHeight 
-             && !isPushingJumpButton && wasPushingJumpButton 
-             && rigidBody2D.velocity.y > 0 )
-        {
-            alreadyAdjustedJumpHeight = true;
-            return -(rigidBody2D.velocity.y / 2);
-        }
-        return 0f;
-    }
-    
     private void ResetJumps(int jumpsCount)
     {
         for (int j = 0; j < jumpsCount; j++)
@@ -158,7 +132,6 @@ internal class CalculateVerticalVelocity
     {
         return isPushingJumpButton && !wasPushingJumpButton
                || rememberJumpPressCounter > 0;
-
     }
     private bool CanJump()
     {
@@ -191,4 +164,27 @@ internal class CalculateVerticalVelocity
         }
         return 0;
     }
+    
+    private float ApplyCeilingClimb(bool isTouchingClimbableCeiling, float verticalVelocity)
+    {
+        if (isTouchingClimbableCeiling && movementInput.verticalInput >= 0)
+        {
+            verticalVelocity = 0f;
+            rigidBody2D.gravityScale = 0f;
+        }
+
+        return verticalVelocity;
+    }
+    
+    private float ApplyWallClimb(bool isTouchingClimbableWall, float verticalVelocity)
+    {
+        if (isTouchingClimbableWall)
+        {
+            rigidBody2D.gravityScale = 0f;
+            verticalVelocity = movementInput.verticalInput * movementData.wallClimbSpeed;
+        }
+
+        return verticalVelocity;
+    }
+
 }
