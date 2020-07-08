@@ -3,10 +3,8 @@
 [System.Serializable]
 internal class CalculateHorizontalVelocity
 {
-    [SerializeField] bool calculateHorizontal = true;
     [SerializeField] Crouch crouch = new Crouch();
     
-    private float xVelocity;
     private bool wasSliding;
     private bool isSliding;
     
@@ -17,6 +15,8 @@ internal class CalculateHorizontalVelocity
     private MovementDataSO movementData;
     private Rigidbody2D rigidBody2D;
     private IMovementInput movementInput;
+    
+    private VelocitySmoother velocitySmoother = new VelocitySmoother();
 
     internal void Setup( MovementDataSO movementData
         , Rigidbody2D rigidBody2D
@@ -32,7 +32,7 @@ internal class CalculateHorizontalVelocity
     internal void ApplyVelocity(bool isGrounded, bool canStand, bool isTouchingClimbableCeiling
         , bool jumped, bool isTouchingLeftWall, bool isTouchingRightWall)
     {
-        if (!calculateHorizontal) return;
+        if (!movementData.calculateHorizontal) return;
         
         crouch.Tick(isGrounded, canStand);
         bool isCrouching = crouch.isCrouching;
@@ -72,7 +72,7 @@ internal class CalculateHorizontalVelocity
             horizontalTargetVelocity = 0f;
             if (!wasSliding)
             {
-                xVelocity = 0f;
+                velocitySmoother.xVelocity = 0f;
             }
         }
 
@@ -111,44 +111,32 @@ internal class CalculateHorizontalVelocity
     #region Smoothen Velocity
     private float ApplySmoothnessToVelocity(float horizontalTargetVelocity, bool isGrounded, bool isClimbing)
     {
-        float smoothingTime = 0f;
+        float accelerationTime = 0f;
+        float decelerationTime = 0f;
 
         if (ContinueSliding())
         {
-            smoothingTime = movementData.slideDecelerationTime;
+            decelerationTime = movementData.slideDecelerationTime;
         }
-        else if (VelocityIsIncreasing(horizontalTargetVelocity))
+        else if (isGrounded)
         {
-            if (isGrounded)
-            {
-                smoothingTime = movementData.accelerationTime;
-            }
-            else if (isClimbing)
-            {
-                smoothingTime = movementData.climbAccelerationTime;
-            }
-            else
-            {
-                smoothingTime = movementData.spaceAccelerationTime;
-            }
-        }
-        else if(VelocityIsDecreasing(horizontalTargetVelocity))
-        {
-            if (isGrounded)
-            {
-                smoothingTime = movementData.decelerationTime;
-            }
-            else if (isClimbing)
-            {
-                smoothingTime = movementData.climbDecelerationTime;
-            }
-            else
-            {
-                smoothingTime = movementData.spaceDecelerationTime;
-            }
-        }
+            accelerationTime = movementData.accelerationTime;     
+            decelerationTime = movementData.decelerationTime;
 
-        return SmoothedVelocity(horizontalTargetVelocity, smoothingTime);
+        }
+        else if (isClimbing)
+        {
+            accelerationTime = movementData.climbAccelerationTime;    
+            decelerationTime = movementData.climbDecelerationTime;
+
+        }
+        else
+        {
+            accelerationTime = movementData.spaceAccelerationTime;
+            decelerationTime = movementData.spaceDecelerationTime;
+        }
+            
+        return velocitySmoother.SmoothedVelocity(horizontalTargetVelocity, rigidBody2D.velocity.x, accelerationTime, decelerationTime);
     }
 
     private bool ContinueSliding()
@@ -163,22 +151,7 @@ internal class CalculateHorizontalVelocity
 
         return -Mathf.Sign(movementInput.horizontalInput) == Mathf.Sign(rigidBody2D.velocity.x);
     }
-    
-    private bool VelocityIsIncreasing(float horizontalTargetVelocity)
-    {
-        return Mathf.Abs(horizontalTargetVelocity) > Mathf.Abs(rigidBody2D.velocity.x);
-    }
-    private bool VelocityIsDecreasing(float horizontalTargetVelocity)
-    {
-        return Mathf.Abs(horizontalTargetVelocity) < Mathf.Abs(rigidBody2D.velocity.x);
-    }
-    
-    private float SmoothedVelocity(float horizontalTargetVelocity, float smoothingTime)
-    {
-        float smoothedVelocity = Mathf.SmoothDamp(rigidBody2D.velocity.x, horizontalTargetVelocity, ref xVelocity, smoothingTime, Mathf.Infinity, Time.fixedDeltaTime);
-        return smoothedVelocity; 
-    }
-    
+
     #endregion
 
     #region Wall Jump Horizontal

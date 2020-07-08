@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba679296e3e24d87a4a969b5b1d86c86, type: 3}
   m_Name: Movement Data
   m_EditorClassIdentifier: 
+  calculateVertical: 1
+  calculateHorizontal: 1
+  calculateClimb: 1
+  calculateSlide: 1
+  calculateCrouch: 1
   horizontalSpeed: 8
   crouchSpeedMultiplier: 0.4
   accelerationTime: 0.2

@@ -5,25 +5,26 @@ public class Crouch
 {
     public Slide slide = new Slide();
     internal bool isCrouching;
-    
-    [SerializeField] bool calculateCrouch = true;
+
     [SerializeField] Collider2D[] normalColliders = new Collider2D[0];
     [SerializeField] Collider2D[] crouchColliders = new Collider2D[0];
     
     private bool wasStanding = true;
     private IMovementInput movementInput;
+    private MovementDataSO movementData;
 
     internal void Setup(IMovementInput movementInput
         , MovementDataSO movementData
         , Rigidbody2D rigidBody2D)
     {
         this.movementInput = movementInput;
+        this.movementData = movementData;
         slide.Setup(movementData, rigidBody2D);
     }
 
     internal void Tick(bool isGrounded, bool canStand)
     {
-        if (!calculateCrouch)
+        if (!movementData.calculateCrouch)
         {
             isCrouching = false;
             return;

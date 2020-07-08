@@ -4,9 +4,7 @@
 public class Slide
 {
     internal bool isSliding = false;
-    
-    [SerializeField] bool calculateSlide = true;
-    
+
     private bool wasCrouching;
     private float slidingTime;
     private MovementDataSO movementData;
@@ -20,7 +18,7 @@ public class Slide
 
     internal void Tick(bool isCrouching)
     {
-        if (!calculateSlide)
+        if (!movementData.calculateSlide)
         {
             isSliding = false;
             return;

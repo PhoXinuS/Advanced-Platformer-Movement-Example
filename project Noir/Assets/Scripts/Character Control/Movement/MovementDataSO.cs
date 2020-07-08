@@ -3,6 +3,12 @@
 [CreateAssetMenu(fileName = "Movement Data", menuName = "Movement Data", order = 0)]
 public class MovementDataSO : ScriptableObject
 {
+    public bool calculateVertical = true;
+    public bool calculateHorizontal = true;
+    public bool calculateClimb = true;
+    public bool calculateSlide = true;
+    public bool calculateCrouch = true;
+    
     public float horizontalSpeed = 8f;
     public float crouchSpeedMultiplier = 0.4f;
     public float accelerationTime = 0.2f;

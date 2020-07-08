@@ -32,5 +32,4 @@ public class PlayerMovementReadInput : MonoBehaviour
     {
         jumpInput = input.Get<float>();
     }
-
 }
