@@ -20,13 +20,14 @@ internal class CalculateHorizontalVelocity
 
     internal void Setup( MovementDataSO movementData
         , Rigidbody2D rigidBody2D
+        , Animator animator
         , IMovementInput movementInput )
     {       
         this.movementData = movementData;
         this.rigidBody2D = rigidBody2D;
         this.movementInput = movementInput;
         
-        crouch.Setup(movementInput, movementData, rigidBody2D);
+        crouch.Setup(movementInput, movementData, rigidBody2D, animator);
     }
     
     internal void ApplyVelocity(bool isGrounded, bool canStand, bool isTouchingClimbableCeiling

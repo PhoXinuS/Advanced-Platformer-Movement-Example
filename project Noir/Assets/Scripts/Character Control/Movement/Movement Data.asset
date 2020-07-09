@@ -17,7 +17,7 @@ MonoBehaviour:
   calculateClimb: 1
   calculateSlide: 1
   calculateCrouch: 1
-  horizontalSpeed: 8
+  horizontalSpeed: 7
   crouchSpeedMultiplier: 0.4
   accelerationTime: 0.2
   decelerationTime: 0.1
@@ -25,8 +25,8 @@ MonoBehaviour:
   spaceDecelerationTime: 0.4
   climbAccelerationTime: 0.1
   climbDecelerationTime: 0.1
-  slideDecelerationTime: 1.2
-  slideDuration: 0.8
+  slideDecelerationTime: 1.5
+  slideDuration: 1
   wallSlideSpeed: 2
   wallClimbSpeed: 3
   ceilingClimbSpeed: 3

@@ -29,6 +29,7 @@
                 <e p="CalculateVerticalVelocity.cs" t="Include" />
                 <e p="Horizontal Parts" t="Include">
                   <e p="Crouch.cs" t="Include" />
+                  <e p="Flipper.cs" t="Include" />
                   <e p="Slide.cs" t="Include" />
                 </e>
                 <e p="VelocitySmoother.cs" t="Include" />
@@ -68,6 +69,10 @@
           <e p="Trash bin" t="Include">
             <e p="ChangeTimeScale.cs" t="Include" />
           </e>
+        </e>
+        <e p="Sepiroth" t="Include">
+          <e p="LICENSE.txt" t="Include" />
+          <e p="README.txt" t="Include" />
         </e>
         <e p="Tilemap Extras" t="Include">
           <e p="AnimatedTile" t="Include">

@@ -10,7 +10,7 @@ public class Checker
     private RaycastHit2D[] hits = new RaycastHit2D[10];
     private Vector2 direction;
 
-    internal void SetUp(Vector2 direction)
+    internal void Setup(Vector2 direction)
     {
         this.direction = direction;
     }

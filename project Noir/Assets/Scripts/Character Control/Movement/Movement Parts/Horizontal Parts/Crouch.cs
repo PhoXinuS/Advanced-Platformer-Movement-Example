@@ -6,20 +6,27 @@ public class Crouch
     public Slide slide = new Slide();
     internal bool isCrouching;
 
+    [SerializeField] string animCrouch = "isCrouching";
     [SerializeField] Collider2D[] normalColliders = new Collider2D[0];
     [SerializeField] Collider2D[] crouchColliders = new Collider2D[0];
     
+    private int animCrouchHashed;
     private bool wasStanding = true;
     private IMovementInput movementInput;
     private MovementDataSO movementData;
+    private Animator animator;
 
     internal void Setup(IMovementInput movementInput
         , MovementDataSO movementData
-        , Rigidbody2D rigidBody2D)
+        , Rigidbody2D rigidBody2D
+        , Animator animator)
     {
         this.movementInput = movementInput;
         this.movementData = movementData;
-        slide.Setup(movementData, rigidBody2D);
+        this.animator = animator;
+        slide.Setup(movementData, rigidBody2D, animator);
+        
+        animCrouchHashed = Animator.StringToHash(animCrouch);
     }
 
     internal void Tick(bool isGrounded, bool canStand)
@@ -29,7 +36,6 @@ public class Crouch
             isCrouching = false;
             return;
         }
-        
 
         if (CrouchIsTriggered() && isGrounded)
         {
@@ -41,6 +47,8 @@ public class Crouch
                 crouchCollider.enabled = true;
 
             wasStanding = false;
+            
+            animator.SetBool(animCrouchHashed, true);
         }
         else if(!wasStanding && canStand)
         {
@@ -52,7 +60,10 @@ public class Crouch
                 crouchCollider.enabled = false;
             
             wasStanding = true;
+            
+            animator.SetBool(animCrouchHashed, false);
         }
+        
         
         slide.Tick(isCrouching);
     }

@@ -5,9 +5,11 @@ using UnityEngine.Timeline;
 [System.Serializable]
 internal class CalculateVerticalVelocity
 {
+    [SerializeField] string animJump = "isJumping";
     [SerializeField] float rememberJumpPressTime = 0.15f;
     [SerializeField] float delayedJumpPressTime = 0.1f;
     
+    private int animJumpHashed;
     private float rememberJumpPressCounter;
     private float delayedJumpPressCounter;
 
@@ -17,6 +19,7 @@ internal class CalculateVerticalVelocity
     
     private MovementDataSO movementData;
     private Rigidbody2D rigidBody2D;
+    private Animator animator;
     private IMovementInput movementInput;
     
     private VerticalAdjusters verticalAdjusters = new VerticalAdjusters();
@@ -24,10 +27,12 @@ internal class CalculateVerticalVelocity
 
     internal void Setup( MovementDataSO movementData
         , Rigidbody2D rigidBody2D
+        , Animator animator
         , IMovementInput movementInput )
     {
         this.movementData = movementData;
         this.rigidBody2D = rigidBody2D;
+        this.animator = animator;
         this.movementInput = movementInput;
 
         int jumpsCount = movementData.availableJumps;
@@ -37,6 +42,8 @@ internal class CalculateVerticalVelocity
         }
         
         verticalAdjusters.SetUp(rigidBody2D, movementInput);
+        
+        animJumpHashed = Animator.StringToHash(animJump);
     }
     
     internal void ApplyVelocity(bool isGrounded, bool canStand, bool isTouchingClimbableCeiling
@@ -65,10 +72,12 @@ internal class CalculateVerticalVelocity
         if (isGrounded || isTouchingClimbableWall || isTouchingClimbableCeiling)
         {
             ResetJumps(movementData.availableJumps);
+            animator.SetBool(animJumpHashed, false);
         }
         else if (isTouchingWall)
         {
             ResetJumps(1);
+            animator.SetBool(animJumpHashed, false);
         }
         AdjustTimers(isGrounded, wasGrounded);
 
@@ -91,6 +100,7 @@ internal class CalculateVerticalVelocity
                 adjustJumpHeight = false;
             }
             jumped = true;
+            animator.SetBool(animJumpHashed, true);
         }
 
         if (!IsSliding(isTouchingWall, isGrounded)
