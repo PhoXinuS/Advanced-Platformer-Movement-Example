@@ -23,9 +23,13 @@ public class Movement : MonoBehaviour
     private Animator animator;
     private IMovementInput movementInput;
     
-    [SerializeField] string animSpeed = "xSpeed";
+    [SerializeField] string animInAir = "isInAir";
+    [SerializeField] string animHorizontalSpeed = "xSpeedAbsolute";
+    [SerializeField] string animVerticalSpeed = "ySpeed";
 
-    private int animSpeedHashed;
+    private int animInAirHashed;
+    private int animHorizontalSpeedHashed;
+    private int animVerticalSpeedHashed;
 
     private void Start()
     {
@@ -43,8 +47,10 @@ public class Movement : MonoBehaviour
         horizontalCalculator.Setup(movementData, rigidBody2D, animator, movementInput); 
         verticalCalculator.Setup(movementData, rigidBody2D, animator, movementInput);
         flipper.Setup(rigidBody2D, transform);
-
-        animSpeedHashed = Animator.StringToHash(animSpeed);
+        
+        animInAirHashed = Animator.StringToHash(animInAir);
+        animHorizontalSpeedHashed = Animator.StringToHash(animHorizontalSpeed);
+        animVerticalSpeedHashed = Animator.StringToHash(animVerticalSpeed);
     }
 
     private void FixedUpdate()
@@ -61,6 +67,15 @@ public class Movement : MonoBehaviour
         horizontalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingClimbableCeiling, jumped, isTouchingLeftWall, isTouchingRightWall);
         flipper.ApplyFlip();
         
-        animator.SetFloat(animSpeedHashed, Mathf.Abs(rigidBody2D.velocity.x));
+        animator.SetFloat(animHorizontalSpeedHashed, Mathf.Abs(rigidBody2D.velocity.x));
+        animator.SetFloat(animVerticalSpeedHashed, rigidBody2D.velocity.y);
+        if (!isTouchingLeftWall  && !isTouchingRightWall && canStand && !isGrounded)
+        {
+            animator.SetBool(animInAirHashed, true);
+        }
+        else
+        {
+            animator.SetBool(animInAirHashed, false);
+        }
     }
 }

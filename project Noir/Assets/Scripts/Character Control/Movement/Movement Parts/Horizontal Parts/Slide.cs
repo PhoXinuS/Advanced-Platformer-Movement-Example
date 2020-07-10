@@ -5,9 +5,9 @@ public class Slide
 {
     internal bool isSliding = false;
 
-    [SerializeField] string animSlide = "isSliding";
+    [SerializeField] string animGroundSlide = "isSlidingGround";
 
-    private int animSlideHashed;
+    private int animGroundSlideHashed;
     private bool wasCrouching;
     private float slidingTime;
     private MovementDataSO movementData;
@@ -20,7 +20,7 @@ public class Slide
         this.rigidBody2D = rigidBody2D;
         this.animator = animator;
         
-        animSlideHashed = Animator.StringToHash(animSlide);
+        animGroundSlideHashed = Animator.StringToHash(animGroundSlide);
     }
 
     internal void Tick(bool isCrouching)
@@ -52,7 +52,7 @@ public class Slide
             }
         }
         
-        animator.SetBool(animSlideHashed, isSliding);
+        animator.SetBool(animGroundSlideHashed, isSliding);
 
         wasCrouching = isCrouching;
     }

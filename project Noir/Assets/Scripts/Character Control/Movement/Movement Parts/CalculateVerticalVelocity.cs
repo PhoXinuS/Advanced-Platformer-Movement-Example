@@ -5,11 +5,17 @@ using UnityEngine.Timeline;
 [System.Serializable]
 internal class CalculateVerticalVelocity
 {
-    [SerializeField] string animJump = "isJumping";
+    [SerializeField] string animJump = "isJumpingUp";
+    [SerializeField] string animWallClimb = "isClimbingWall";
+    [SerializeField] string animCeilingClimb = "isClimbingCeiling";
+    [SerializeField] string animWallSlide = "isSlidingWall";
     [SerializeField] float rememberJumpPressTime = 0.15f;
     [SerializeField] float delayedJumpPressTime = 0.1f;
     
     private int animJumpHashed;
+    private int animWallClimbHashed;
+    private int animCeilingClimbHashed;
+    private int animWallSlideHashed;
     private float rememberJumpPressCounter;
     private float delayedJumpPressCounter;
 
@@ -44,6 +50,9 @@ internal class CalculateVerticalVelocity
         verticalAdjusters.SetUp(rigidBody2D, movementInput);
         
         animJumpHashed = Animator.StringToHash(animJump);
+        animWallClimbHashed = Animator.StringToHash(animWallClimb);
+        animCeilingClimbHashed = Animator.StringToHash(animCeilingClimb);
+        animWallSlideHashed = Animator.StringToHash(animWallSlide);
     }
     
     internal void ApplyVelocity(bool isGrounded, bool canStand, bool isTouchingClimbableCeiling
@@ -61,10 +70,7 @@ internal class CalculateVerticalVelocity
         float verticalVelocity = velocity.y;
         bool isTouchingWall = isTouchingRightWall || isTouchingLeftWall;
 
-        if (isTouchingWall && !isTouchingClimbableWall && rigidBody2D.velocity.y < 0f)
-        {
-            verticalVelocity = -movementData.wallSlideSpeed;
-        }
+        verticalVelocity = ApplyWallSlide(isTouchingClimbableWall, isTouchingWall, verticalVelocity);
         verticalVelocity = ApplyWallClimb(isTouchingClimbableWall, verticalVelocity);
 
         
@@ -111,8 +117,9 @@ internal class CalculateVerticalVelocity
         verticalVelocity = ApplyCeilingClimb(isTouchingClimbableCeiling, verticalVelocity);
         rigidBody2D.velocity = new Vector2(horizontalVelocity, verticalVelocity);
     }
-    
-    
+
+
+
     private bool HoldingInputJump()
     {
         return movementInput.jumpInput > 0f;
@@ -197,7 +204,21 @@ internal class CalculateVerticalVelocity
         return 0;
     }
 
+    private float ApplyWallSlide(bool isTouchingClimbableWall, bool isTouchingWall, float verticalVelocity)
+    {
+        if (isTouchingWall && !isTouchingClimbableWall && rigidBody2D.velocity.y < 0f)
+        {
+            verticalVelocity = -movementData.wallSlideSpeed;
+            animator.SetBool(animWallSlideHashed, true);
+        }
+        else
+        {
+            animator.SetBool(animWallSlideHashed, false);
+        }
 
+        return verticalVelocity;
+    }
+    
     private float ApplyWallClimb(bool isTouchingClimbableWall, float verticalVelocity)
     {
         if (isTouchingClimbableWall)
@@ -209,6 +230,12 @@ internal class CalculateVerticalVelocity
             float decelerationTime = movementData.climbDecelerationTime;
             
             verticalVelocity = velocitySmoother.SmoothedVelocity(targetVelocity, currentVelocity, accelerationTime, decelerationTime);
+            
+            animator.SetBool(animWallClimbHashed, true);
+        }
+        else
+        {
+            animator.SetBool(animWallClimbHashed, false);
         }
         
         return verticalVelocity;
@@ -220,7 +247,14 @@ internal class CalculateVerticalVelocity
         {
             verticalVelocity = 0f;
             rigidBody2D.gravityScale = 0f;
+            
+            animator.SetBool(animCeilingClimbHashed, true);
         }
+        else
+        {
+            animator.SetBool(animCeilingClimbHashed, false);
+        }
+        
 
         return verticalVelocity;
     }
