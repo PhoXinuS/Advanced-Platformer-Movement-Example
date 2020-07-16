@@ -29,7 +29,7 @@ public class Checker
         foreach (var raycastOrigin in raycastOrigins)
         {
             int hitsNumber = CastRaycast(raycastOrigin);
-            if (HittedObjectsContainsTag(hitsNumber, tag)) return true;
+            if (HitObjectsContainsTag(hitsNumber, tag)) return true;
         }
         return false;
     }
@@ -39,7 +39,7 @@ public class Checker
         return Physics2D.RaycastNonAlloc(groundCheck.position, direction, hits, checkDistance, targetLayerMask);
     }
     
-    private bool HittedObjectsContainsTag(int hitsNumber, string tag)
+    private bool HitObjectsContainsTag(int hitsNumber, string tag)
     {
         for (int i = 0; i < hitsNumber; i++)
         {

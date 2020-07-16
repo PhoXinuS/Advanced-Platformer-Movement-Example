@@ -66,7 +66,6 @@ internal class CalculateVerticalVelocity
         isPushingJumpButton = HoldingInputJump();
 
         var velocity = rigidBody2D.velocity;
-        float horizontalVelocity = velocity.x;
         float verticalVelocity = velocity.y;
         bool isTouchingWall = isTouchingRightWall || isTouchingLeftWall;
 
@@ -115,7 +114,7 @@ internal class CalculateVerticalVelocity
             verticalVelocity = verticalAdjusters.ApplyAdjusters(verticalVelocity, jumped, true, adjustJumpHeight);
         }
         verticalVelocity = ApplyCeilingClimb(isTouchingClimbableCeiling, verticalVelocity);
-        rigidBody2D.velocity = new Vector2(horizontalVelocity, verticalVelocity);
+        rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, verticalVelocity);
     }
 
 

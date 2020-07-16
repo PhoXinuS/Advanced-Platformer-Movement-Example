@@ -20,25 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afea5122-9a1a-4e4d-bd62-1d3fd3f40de1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Ceiling Climb.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Ceiling Climb.anim.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Jump Down.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Jump Down.anim.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Jump Up.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Jump Up.anim.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Wall Climb.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Wall Climb.anim.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Wall Slide.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Wall Slide.anim.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Playground.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Playground.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/Checker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/Checker.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateVerticalVelocity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateVerticalVelocity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Slide.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Slide.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Flipper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Flipper.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Demo.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Demo.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Jump.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Jump.anim.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,12 +116,12 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Sepiroth/Demo/Scripts/SepirothMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Flip.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/Checker.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Flipper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Crouch.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Slide.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateVerticalVelocity.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateHorizontalVelocity.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateVerticalVelocity.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/Checker.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Flipper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" />
       </list>
     </option>
@@ -206,6 +195,7 @@
       <workItem from="1594272442334" duration="1408000" />
       <workItem from="1594278846682" duration="4769000" />
       <workItem from="1594352899831" duration="5419000" />
+      <workItem from="1594878184593" duration="5956000" />
     </task>
     <servers />
   </component>
@@ -311,10 +301,10 @@
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
     <state x="1354" y="553" key="VCS.ChangeListViewerDialog/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593070817900" />
-    <state x="93" y="93" width="2886" height="1542" key="VCS.FileHistoryDialog" timestamp="1594192867607">
+    <state x="93" y="93" width="2886" height="1542" key="VCS.FileHistoryDialog" timestamp="1594878886053">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
-    <state x="93" y="93" width="2886" height="1542" key="VCS.FileHistoryDialog/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1594192867607" />
+    <state x="93" y="93" width="2886" height="1542" key="VCS.FileHistoryDialog/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1594878886053" />
     <state x="93" y="93" width="2886" height="1542" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1593078245769">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>

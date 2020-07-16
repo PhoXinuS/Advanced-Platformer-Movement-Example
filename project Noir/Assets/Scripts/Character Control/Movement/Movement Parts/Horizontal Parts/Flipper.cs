@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 
+[System.Serializable]
 public class Flipper
 {
-    private bool facingRight = true;
+    internal bool flipped = false;
+
     private Rigidbody2D rigidBody2D;
     private Transform transform;
-    
+
     internal void Setup(Rigidbody2D rigidBody2D, Transform transform)
     {
         this.rigidBody2D = rigidBody2D;
@@ -16,16 +18,16 @@ public class Flipper
     {
         if (MovingInDifferentDirectionToTheFacing())
         {
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
-            facingRight = !facingRight;
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+            flipped = !flipped;
         }
     }
 
     private bool MovingInDifferentDirectionToTheFacing()
     {
         var horizontalVelocity = rigidBody2D.velocity.x;
-        return facingRight && horizontalVelocity < 0 || !facingRight && horizontalVelocity > 0;
+        return !flipped && horizontalVelocity < 0 || flipped && horizontalVelocity > 0;
     }
 }
