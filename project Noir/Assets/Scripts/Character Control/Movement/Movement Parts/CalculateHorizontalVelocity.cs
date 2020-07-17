@@ -13,21 +13,21 @@ internal class CalculateHorizontalVelocity
     private bool jumpedFromLeftWall;
 
     private MovementDataSO movementData;
-    private Rigidbody2D rigidBody2D;
+    private Rigidbody2D rb2D;
     private IMovementInput movementInput;
     
     private VelocitySmoother velocitySmoother = new VelocitySmoother();
 
     internal void Setup( MovementDataSO movementData
-        , Rigidbody2D rigidBody2D
+        , Rigidbody2D rb2D
         , Animator animator
         , IMovementInput movementInput )
     {       
         this.movementData = movementData;
-        this.rigidBody2D = rigidBody2D;
+        this.rb2D = rb2D;
         this.movementInput = movementInput;
         
-        crouch.Setup(movementInput, movementData, rigidBody2D, animator);
+        crouch.Setup(movementInput, movementData, rb2D, animator);
     }
     
     internal void ApplyVelocity(bool isGrounded, bool canStand, bool isTouchingClimbableCeiling
@@ -54,7 +54,7 @@ internal class CalculateHorizontalVelocity
             horizontalVelocity = 0f;    // stop on wall, prevents from bouncing off
         }
 
-        rigidBody2D.velocity = new Vector2(horizontalVelocity, rigidBody2D.velocity.y);
+        rb2D.velocity = new Vector2(horizontalVelocity, rb2D.velocity.y);
     }
 
     #region Calculate Target Velocity
@@ -137,7 +137,7 @@ internal class CalculateHorizontalVelocity
             decelerationTime = movementData.spaceDecelerationTime;
         }
             
-        return velocitySmoother.SmoothedVelocity(horizontalTargetVelocity, rigidBody2D.velocity.x, accelerationTime, decelerationTime);
+        return velocitySmoother.SmoothedVelocity(horizontalTargetVelocity, rb2D.velocity.x, accelerationTime, decelerationTime);
     }
 
     private bool ContinueSliding()
@@ -150,7 +150,7 @@ internal class CalculateHorizontalVelocity
         if (movementInput.horizontalInput == 0f)
             return false;
 
-        return -Mathf.Sign(movementInput.horizontalInput) == Mathf.Sign(rigidBody2D.velocity.x);
+        return -Mathf.Sign(movementInput.horizontalInput) == Mathf.Sign(rb2D.velocity.x);
     }
 
     #endregion

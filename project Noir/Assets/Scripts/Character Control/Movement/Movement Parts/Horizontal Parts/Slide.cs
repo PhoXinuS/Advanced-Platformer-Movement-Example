@@ -11,13 +11,13 @@ public class Slide
     private bool wasCrouching;
     private float slidingTime;
     private MovementDataSO movementData;
-    private Rigidbody2D rigidBody2D;
+    private Rigidbody2D rb2D;
     private Animator animator;
 
-    internal void Setup(MovementDataSO movementData, Rigidbody2D rigidBody2D, Animator animator)
+    internal void Setup(MovementDataSO movementData, Rigidbody2D rb2D, Animator animator)
     {
         this.movementData = movementData;
-        this.rigidBody2D = rigidBody2D;
+        this.rb2D = rb2D;
         this.animator = animator;
         
         animGroundSlideHashed = Animator.StringToHash(animGroundSlide);
@@ -46,7 +46,7 @@ public class Slide
             slidingTime -= Time.fixedDeltaTime;
 
             if ( slidingTime <= 0f 
-                || Mathf.Abs(rigidBody2D.velocity.x) < 0.05f )
+                || Mathf.Abs(rb2D.velocity.x) < 0.05f )
             {
                 isSliding = false;
             }

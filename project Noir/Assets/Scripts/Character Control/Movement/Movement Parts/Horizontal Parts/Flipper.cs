@@ -5,29 +5,44 @@ public class Flipper
 {
     internal bool flipped = false;
 
-    private Rigidbody2D rigidBody2D;
+    private Rigidbody2D rb2D;
     private Transform transform;
 
-    internal void Setup(Rigidbody2D rigidBody2D, Transform transform)
+    internal void Setup(Rigidbody2D rb2D, Transform transform)
     {
-        this.rigidBody2D = rigidBody2D;
+        this.rb2D = rb2D;
         this.transform = transform;
     }
     
-    internal void ApplyFlip()
+    internal void ApplyFlip(bool isGrounded, bool isTouchingLeftWall, bool isTouchingRightWall)
     {
-        if (MovingInDifferentDirectionToTheFacing())
+        if (!flipped
+            && isTouchingLeftWall && !isGrounded)
         {
-            Vector3 scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;
-            flipped = !flipped;
+            Flip();
+        }
+        else if (flipped
+                 && isTouchingRightWall && !isGrounded)
+        {
+            Flip();
+        }
+        else if (MovingInDifferentDirectionToTheFacing()
+                 && !isTouchingLeftWall && !isTouchingRightWall)
+        {
+            Flip();
         }
     }
-
+    
     private bool MovingInDifferentDirectionToTheFacing()
     {
-        var horizontalVelocity = rigidBody2D.velocity.x;
-        return !flipped && horizontalVelocity < 0 || flipped && horizontalVelocity > 0;
+        var horizontalVelocity = rb2D.velocity.x;
+        return !flipped && horizontalVelocity < -0.1f || flipped && horizontalVelocity > 0.1f;
+    }
+    private void Flip()
+    {
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+        flipped = !flipped;
     }
 }

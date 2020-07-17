@@ -121,6 +121,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &78168308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 78168309}
+  m_Layer: 11
+  m_Name: left wall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &78168309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78168308}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.4, y: 0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1664546726}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &146683663
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,6 +210,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1694237853}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &431251509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 431251510}
+  m_Layer: 11
+  m_Name: left ledge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &431251510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431251509}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.4, y: 0.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1664546726}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &434376152
 GameObject:
@@ -693,6 +753,35 @@ MonoBehaviour:
     animWallSlide: isSlidingWall
     rememberJumpPressTime: 0.15
     delayedJumpPressTime: 0.1
+  ledgeCalculator:
+    leftLedgeCheckTop:
+      raycastOrigin: {fileID: 431251510}
+      checkDistance: 0.4
+      targetLayerMask:
+        serializedVersion: 2
+        m_Bits: 8192
+    rightLedgeCheckTop:
+      raycastOrigin: {fileID: 1560447975}
+      checkDistance: 0.4
+      targetLayerMask:
+        serializedVersion: 2
+        m_Bits: 8192
+    leftLedgeCheckBottom:
+      raycastOrigin: {fileID: 78168309}
+      checkDistance: 0.05
+      targetLayerMask:
+        serializedVersion: 2
+        m_Bits: 8192
+    rightLedgeCheckBottom:
+      raycastOrigin: {fileID: 1650617655}
+      checkDistance: 0.05
+      targetLayerMask:
+        serializedVersion: 2
+        m_Bits: 8192
+    ledgeDidNotClimbOffset: {x: 0.3, y: 0}
+    ledgeClimbedOffset: {x: -1, y: 2}
+    animClimbingLedge: isClimbingLedge
+  animGrounded: isGrounded
   animInAir: isInAir
   animHorizontalSpeed: xSpeedAbsolute
   animVerticalSpeed: ySpeed
@@ -726,6 +815,7 @@ Transform:
   - {fileID: 492320423}
   - {fileID: 1310781570}
   - {fileID: 1694237853}
+  - {fileID: 1664546726}
   m_Father: {fileID: 4116794265752517685}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3388,6 +3478,15 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
+  - first: {x: 21, y: -2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
   - first: {x: 33, y: -2, z: 0}
     second:
       serializedVersion: 2
@@ -4920,13 +5019,13 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 452
+  - m_RefCount: 453
     m_Data: {fileID: 11400000, guid: 591f78fd4b53b324783531a643c1684d, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 452
+  - m_RefCount: 453
     m_Data: {fileID: 21300000, guid: 344ffdea80b588844a56bccbb618c9ba, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 452
+  - m_RefCount: 453
     m_Data:
       e00: 1
       e01: 0
@@ -4945,7 +5044,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 452
+  - m_RefCount: 453
     m_Data: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
   - m_RefCount: 0
     m_Data: {r: 0, g: 0, b: 0, a: 0}
@@ -5324,6 +5423,20 @@ CompositeCollider2D:
       - X: 230000000
         Y: -40000000
       - X: 230000000
+        Y: -20000100
+      - X: 219999959
+        Y: -20000100
+      - X: 219999900
+        Y: -20000041
+      - X: 219999900
+        Y: -9999959
+      - X: 219999959
+        Y: -9999900
+      - X: 209999959
+        Y: -9999900
+      - X: 209999900
+        Y: -9999959
+      - X: 209999900
         Y: -20000000
       - X: 190000000
         Y: -20000000
@@ -5524,7 +5637,11 @@ CompositeCollider2D:
       - {x: 12, y: -5.999971}
       - {x: 12.00003, y: -4}
       - {x: 23, y: -3.999971}
-      - {x: 22.999971, y: -2}
+      - {x: 22.999971, y: -2.00001}
+      - {x: 21.99999, y: -1.9999748}
+      - {x: 21.999968, y: -0.99999}
+      - {x: 20.99999, y: -1.0000252}
+      - {x: 20.99996, y: -2}
       - {x: 19, y: -1.9999707}
       - {x: 18.999971, y: 2}
       - {x: 17, y: 1.9999708}
@@ -6028,6 +6145,35 @@ MonoBehaviour:
     animWallSlide: isWallSliding
     rememberJumpPressTime: 0.15
     delayedJumpPressTime: 0.1
+  ledgeCalculator:
+    leftLedgeCheckTop:
+      raycastOrigin: {fileID: 0}
+      checkDistance: 0.05
+      targetLayerMask:
+        serializedVersion: 2
+        m_Bits: 0
+    rightLedgeCheckTop:
+      raycastOrigin: {fileID: 0}
+      checkDistance: 0.05
+      targetLayerMask:
+        serializedVersion: 2
+        m_Bits: 0
+    leftLedgeCheckBottom:
+      raycastOrigin: {fileID: 0}
+      checkDistance: 0.05
+      targetLayerMask:
+        serializedVersion: 2
+        m_Bits: 0
+    rightLedgeCheckBottom:
+      raycastOrigin: {fileID: 0}
+      checkDistance: 0.05
+      targetLayerMask:
+        serializedVersion: 2
+        m_Bits: 0
+    ledgeDidNotClimbOffset: {x: 0, y: 0}
+    ledgeClimbedOffset: {x: 0, y: 0}
+    animClimbingLedge: ySpeed
+  animGrounded: isGrounded
   animInAir: isInAir
   animHorizontalSpeed: xSpeed
   animVerticalSpeed: ySpeed
@@ -6165,6 +6311,100 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1310781570}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1560447974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1560447975}
+  m_Layer: 11
+  m_Name: right ledge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1560447975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560447974}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.4, y: 0.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1664546726}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1650617654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1650617655}
+  m_Layer: 11
+  m_Name: right wall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1650617655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650617654}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.4, y: 0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1664546726}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1664546725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1664546726}
+  m_Layer: 11
+  m_Name: ledge checkers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1664546726
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664546725}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 431251510}
+  - {fileID: 1560447975}
+  - {fileID: 78168309}
+  - {fileID: 1650617655}
+  m_Father: {fileID: 1055420932}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1677621475
 GameObject:
@@ -7898,8 +8138,8 @@ MonoBehaviour:
   - {fileID: 5201961392644526378}
   - {fileID: 6591346874324143294}
   m_Bounds:
-    m_Center: {x: -0.0015875846, y: -0.0016100407, z: 0}
-    m_Extent: {x: 0.2284177, y: 0.80339026, z: 0}
+    m_Center: {x: -0.0015797317, y: -0.0016138554, z: 0}
+    m_Extent: {x: 0.2284101, y: 0.80338645, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &1429199482209644769
@@ -7996,8 +8236,8 @@ MonoBehaviour:
   - {fileID: 4847449396960669032}
   - {fileID: 7584393748206040323}
   m_Bounds:
-    m_Center: {x: -0.025304884, y: -0.009642124, z: 0}
-    m_Extent: {x: 0.30568483, y: 1.1630424, z: 0}
+    m_Center: {x: -0.025304884, y: -0.009643674, z: 0}
+    m_Extent: {x: 0.3056853, y: 1.163044, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!212 &2050110664904748793
@@ -8132,8 +8372,8 @@ MonoBehaviour:
   - {fileID: 4378251381308517528}
   - {fileID: 4107819267597143706}
   m_Bounds:
-    m_Center: {x: -0.0019752234, y: -0.0014398098, z: 0}
-    m_Extent: {x: 0.11804004, y: 0.7439096, z: 0}
+    m_Center: {x: -0.0019599646, y: -0.0014400482, z: 0}
+    m_Extent: {x: 0.11804003, y: 0.7439101, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &2233326246619353573
@@ -8429,7 +8669,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8350225303235510757}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -51.6, y: 1.2, z: 0}
+  m_LocalPosition: {x: 1.587, y: 27.48, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children:
   - {fileID: 4310712904050292160}
@@ -8496,7 +8736,7 @@ MonoBehaviour:
   - {fileID: 4668554670720419472}
   - {fileID: 2441955856995237205}
   m_Bounds:
-    m_Center: {x: 0.005294472, y: 0.0013331771, z: 0}
+    m_Center: {x: 0.005303532, y: 0.0013336539, z: 0}
     m_Extent: {x: 0.27579877, y: 0.60647154, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -8562,7 +8802,7 @@ MonoBehaviour:
   - {fileID: 5938726259876898498}
   - {fileID: 1441952014246921041}
   m_Bounds:
-    m_Center: {x: -0.0013596714, y: -0.055470884, z: 0}
+    m_Center: {x: -0.0013513267, y: -0.055473506, z: 0}
     m_Extent: {x: 0.22853613, y: 0.5745244, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -8599,8 +8839,8 @@ MonoBehaviour:
   - {fileID: 6186803167768774156}
   - {fileID: 7676734756671429431}
   m_Bounds:
-    m_Center: {x: 0.000000059604645, y: 0.02641046, z: 0}
-    m_Extent: {x: 0.5199901, y: 0.9025301, z: 0}
+    m_Center: {x: 0.00000035762787, y: 0.026410043, z: 0}
+    m_Extent: {x: 0.51999, y: 0.9025301, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!4 &5201961392644526378
@@ -8651,7 +8891,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 6186803167768774156}
   m_Bounds:
-    m_Center: {x: 0.074564934, y: 0.0023454428, z: 0}
+    m_Center: {x: 0.07456517, y: 0.002344966, z: 0}
     m_Extent: {x: 0.74055505, y: 0.9476551, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -8755,7 +8995,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 7676734756671429431}
   m_Bounds:
-    m_Center: {x: 0.000015258789, y: -0.003395021, z: 0}
+    m_Center: {x: 0.00000023841858, y: -0.003395021, z: 0}
     m_Extent: {x: 0.915, y: 0.66167504, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -8842,7 +9082,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 440320311073437188}
   m_Bounds:
-    m_Center: {x: 0.0029750764, y: 0.0014648438, z: 0}
+    m_Center: {x: 0.0029753149, y: 0.0014727116, z: 0}
     m_Extent: {x: 0.48118514, y: 0.9785354, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -8879,7 +9119,7 @@ MonoBehaviour:
   - {fileID: 4631054213967886021}
   - {fileID: 4668554670720419472}
   m_Bounds:
-    m_Center: {x: 0.0034321845, y: -0.10269505, z: 0}
+    m_Center: {x: 0.003430754, y: -0.10268968, z: 0}
     m_Extent: {x: 0.18556398, y: 0.54266906, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -9119,7 +9359,7 @@ MonoBehaviour:
   - {fileID: 5938726259876898498}
   - {fileID: 1441952014246921041}
   m_Bounds:
-    m_Center: {x: 0.0000014901161, y: 0.0014659166, z: 0}
+    m_Center: {x: -0.000005185604, y: 0.0014654398, z: 0}
     m_Extent: {x: 0.27500346, y: 0.66353595, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -9236,7 +9476,7 @@ MonoBehaviour:
   - {fileID: 4668554670720419472}
   - {fileID: 1441952014246921041}
   m_Bounds:
-    m_Center: {x: 0, y: 0.06870523, z: 0}
+    m_Center: {x: 0.00000023841858, y: 0.06871262, z: 0}
     m_Extent: {x: 0.695, y: 0.49865493, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1

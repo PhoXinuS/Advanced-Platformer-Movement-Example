@@ -18,13 +18,13 @@ public class Crouch
 
     internal void Setup(IMovementInput movementInput
         , MovementDataSO movementData
-        , Rigidbody2D rigidBody2D
+        , Rigidbody2D rb2D
         , Animator animator)
     {
         this.movementInput = movementInput;
         this.movementData = movementData;
         this.animator = animator;
-        slide.Setup(movementData, rigidBody2D, animator);
+        slide.Setup(movementData, rb2D, animator);
         
         animCrouchHashed = Animator.StringToHash(animCrouch);
     }

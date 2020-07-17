@@ -20,14 +20,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afea5122-9a1a-4e4d-bd62-1d3fd3f40de1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/OverlapCircleChecker.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/OverlapCircleChecker.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/SingleRaycast2DChecker.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/SingleRaycast2DChecker.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateLedge.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateLedge.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Ledge Climb.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Ledge Climb.anim.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Playground.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Playground.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/Checker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/Checker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/Checker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/Raycast2DChecker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/Checker.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/Raycast2DChecker.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateHorizontalVelocity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateHorizontalVelocity.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateVerticalVelocity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateVerticalVelocity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Crouch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Crouch.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Flipper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Flipper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Slide.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Slide.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Vertical Parts/VerticalAdjusters.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Vertical Parts/VerticalAdjusters.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Demo.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Demo.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Wall Slide.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Wall Slide.anim" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +54,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../It began long ago/Bounce 2.0/Assets/Scripts/Game Control/Touch Input/TouchClassData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/764892F0-14B1-4A92-90A4-FD0DC7BD1B9B/0a/7ada5128/02000008pdb.il" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/OverlapCircleChecker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../It began long ago/Bounce 2.0/Assets/Scripts/Environment Behavour/SFX/SlowMotion.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../It began long ago/Bounce 2.0/Assets/Scripts/Game Control/Touch Input/TouchInputMaster.cs" root0="SKIP_HIGHLIGHTING" />
@@ -53,13 +68,14 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementDataSO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scriptable Objects/Scripts/FloatVariableSO.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/Checker.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/Raycast2DChecker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Camera/ObjectFollow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Toolkit/Smoothers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/VelocitySmoother.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Toolkit/ToolKit.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Save System/GameData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Actions/InputBindingResolver.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/SingleRaycast2DChecker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/764892F0-14B1-4A92-90A4-FD0DC7BD1B9B/43/1e2aebd4/0200000Bpdb.il" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateVerticalVelocity.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateHorizontalVelocity.cs" root0="FORCE_HIGHLIGHTING" />
@@ -68,16 +84,11 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/IMovementInput.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Tilemap Extras/RuleTile/RuleTile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Utilities/NamedValue.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateLedge.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/CharacterMovment.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/CharacterReaction.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Save System/GameData.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Camera/ObjectFollow.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Trash bin/PlayerMovement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/kk.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/VerticalPlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovementVertical.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementData.cs" />
@@ -110,19 +121,25 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/VerticalVelocityAdjusters.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateJump.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateVerticalVelocity.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Vertical Parts/VerticalAdjusters.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementDataSO.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/VelocitySmoother.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Sepiroth/Demo/Scripts/SepirothMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Flip.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Crouch.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Slide.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateHorizontalVelocity.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateVerticalVelocity.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/Checker.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/RaycastChecker.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/OverlapChecker.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Vertical Parts/VerticalAdjusters.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Slide.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Flipper.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Crouch.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateVerticalVelocity.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateHorizontalVelocity.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/OverlapCircleChecker.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/Raycast2DChecker.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/SingleRaycast2DChecker.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateLedge.cs" />
       </list>
     </option>
   </component>
@@ -151,7 +168,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
@@ -195,7 +212,8 @@
       <workItem from="1594272442334" duration="1408000" />
       <workItem from="1594278846682" duration="4769000" />
       <workItem from="1594352899831" duration="5419000" />
-      <workItem from="1594878184593" duration="5956000" />
+      <workItem from="1594878184593" duration="6848000" />
+      <workItem from="1594962798277" duration="8968000" />
     </task>
     <servers />
   </component>
@@ -293,10 +311,10 @@
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
     <state x="1247" y="542" key="RiderGenerateDialog/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593154820226" />
-    <state x="1638" y="599" width="981" height="707" key="SettingsEditor" timestamp="1593755960383">
+    <state x="1638" y="599" width="981" height="707" key="SettingsEditor" timestamp="1594988802342">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
-    <state x="1638" y="599" width="981" height="707" key="SettingsEditor/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593755960383" />
+    <state x="1638" y="599" width="981" height="707" key="SettingsEditor/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1594988802342" />
     <state x="1354" y="553" key="VCS.ChangeListViewerDialog" timestamp="1593070817900">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
@@ -321,6 +339,10 @@
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
     <state x="1178" y="590" width="700" height="530" key="recent.locations.popup/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1593151285969" />
+    <state x="1193" y="413" key="run.anything.popup" timestamp="1594966287406">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state x="1193" y="413" key="run.anything.popup/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1594966287406" />
     <state x="1199" y="397" width="672" height="678" key="search.everywhere.popup" timestamp="1594191331369">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>

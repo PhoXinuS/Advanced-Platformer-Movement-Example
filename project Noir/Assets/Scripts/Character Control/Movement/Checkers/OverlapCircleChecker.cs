@@ -1,25 +1,19 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class Checker
+public class OverlapCircleChecker
 {
     [SerializeField] LayerMask targetLayerMask = new LayerMask();
     [SerializeField] Transform[] raycastOrigins = new Transform[0];
-    [SerializeField] float checkDistance = 0.05f;
+    [SerializeField] float checkDistance = 0.4f;
 
-    private RaycastHit2D[] hits = new RaycastHit2D[10];
-    private Vector2 direction;
+    private Collider2D[] hits = new Collider2D[10];
 
-    internal void Setup(Vector2 direction)
-    {
-        this.direction = direction;
-    }
-    
     internal bool IsInContactWithTarget()
     {
         foreach (var raycastOrigin in raycastOrigins)
         {
-            int hitsNumber = CastRaycast(raycastOrigin);
+            int hitsNumber = CastOverlapCircle(raycastOrigin);
             if (hitsNumber > 0) return true;
         }
         return false;
@@ -28,22 +22,22 @@ public class Checker
     {
         foreach (var raycastOrigin in raycastOrigins)
         {
-            int hitsNumber = CastRaycast(raycastOrigin);
+            int hitsNumber = CastOverlapCircle(raycastOrigin);
             if (HitObjectsContainsTag(hitsNumber, tag)) return true;
         }
         return false;
     }
     
-    private int CastRaycast(Transform groundCheck)
+    private int CastOverlapCircle(Transform groundCheck)
     {
-        return Physics2D.RaycastNonAlloc(groundCheck.position, direction, hits, checkDistance, targetLayerMask);
+        return Physics2D.OverlapCircleNonAlloc(groundCheck.position, checkDistance, hits, targetLayerMask);
     }
     
     private bool HitObjectsContainsTag(int hitsNumber, string tag)
     {
         for (int i = 0; i < hitsNumber; i++)
         {
-            var hitGameObject = hits[i].collider.gameObject;
+            var hitGameObject = hits[i].gameObject;
             if (hitGameObject.CompareTag(tag)) return true;
         }
         return false;

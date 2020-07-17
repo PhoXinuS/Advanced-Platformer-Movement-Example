@@ -24,7 +24,7 @@ internal class CalculateVerticalVelocity
     private bool wasPushingJumpButton;
     
     private MovementDataSO movementData;
-    private Rigidbody2D rigidBody2D;
+    private Rigidbody2D rb2D;
     private Animator animator;
     private IMovementInput movementInput;
     
@@ -32,12 +32,12 @@ internal class CalculateVerticalVelocity
     private VelocitySmoother velocitySmoother = new VelocitySmoother();
 
     internal void Setup( MovementDataSO movementData
-        , Rigidbody2D rigidBody2D
+        , Rigidbody2D rb2D
         , Animator animator
         , IMovementInput movementInput )
     {
         this.movementData = movementData;
-        this.rigidBody2D = rigidBody2D;
+        this.rb2D = rb2D;
         this.animator = animator;
         this.movementInput = movementInput;
 
@@ -47,7 +47,7 @@ internal class CalculateVerticalVelocity
             availableJumps.Add(false);
         }
         
-        verticalAdjusters.SetUp(rigidBody2D, movementInput);
+        verticalAdjusters.SetUp(rb2D, movementInput);
         
         animJumpHashed = Animator.StringToHash(animJump);
         animWallClimbHashed = Animator.StringToHash(animWallClimb);
@@ -59,13 +59,13 @@ internal class CalculateVerticalVelocity
         , bool isTouchingLeftWall, bool isTouchingRightWall, bool isTouchingClimbableWall
         , ref bool jumped)
     {
-        rigidBody2D.gravityScale = 1f;
+        rb2D.gravityScale = 1f;
         if (!movementData.calculateVertical || !canStand) return;
         
         wasPushingJumpButton = isPushingJumpButton;
         isPushingJumpButton = HoldingInputJump();
 
-        var velocity = rigidBody2D.velocity;
+        var velocity = rb2D.velocity;
         float verticalVelocity = velocity.y;
         bool isTouchingWall = isTouchingRightWall || isTouchingLeftWall;
 
@@ -114,7 +114,7 @@ internal class CalculateVerticalVelocity
             verticalVelocity = verticalAdjusters.ApplyAdjusters(verticalVelocity, jumped, true, adjustJumpHeight);
         }
         verticalVelocity = ApplyCeilingClimb(isTouchingClimbableCeiling, verticalVelocity);
-        rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, verticalVelocity);
+        rb2D.velocity = new Vector2(rb2D.velocity.x, verticalVelocity);
     }
 
 
@@ -205,7 +205,7 @@ internal class CalculateVerticalVelocity
 
     private float ApplyWallSlide(bool isTouchingClimbableWall, bool isTouchingWall, float verticalVelocity)
     {
-        if (isTouchingWall && !isTouchingClimbableWall && rigidBody2D.velocity.y < 0f)
+        if (isTouchingWall && !isTouchingClimbableWall && rb2D.velocity.y < 0f)
         {
             verticalVelocity = -movementData.wallSlideSpeed;
             animator.SetBool(animWallSlideHashed, true);
@@ -222,9 +222,9 @@ internal class CalculateVerticalVelocity
     {
         if (isTouchingClimbableWall)
         {
-            rigidBody2D.gravityScale = 0f;
+            rb2D.gravityScale = 0f;
             float targetVelocity = movementInput.verticalInput * movementData.wallClimbSpeed;
-            float currentVelocity = rigidBody2D.velocity.y;
+            float currentVelocity = rb2D.velocity.y;
             float accelerationTime = movementData.climbAccelerationTime;
             float decelerationTime = movementData.climbDecelerationTime;
             
@@ -245,7 +245,7 @@ internal class CalculateVerticalVelocity
         if (isTouchingClimbableCeiling && movementInput.verticalInput >= 0)
         {
             verticalVelocity = 0f;
-            rigidBody2D.gravityScale = 0f;
+            rb2D.gravityScale = 0f;
             
             animator.SetBool(animCeilingClimbHashed, true);
         }

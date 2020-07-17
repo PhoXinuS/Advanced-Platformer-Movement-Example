@@ -8,18 +8,19 @@ public class Movement : MonoBehaviour
     [Space] [Header("Checkers")] [Space]
     [SerializeField] string climbableTag = "Climbable";
     [Space]
-    [SerializeField] Checker groundCheck = new Checker();
-    [SerializeField] Checker ceilingCheck = new Checker();
-    [SerializeField] Checker ceilingCrouchCheck = new Checker();
-    [SerializeField] Checker leftWallCheck = new Checker();
-    [SerializeField] Checker rightWallCheck = new Checker();
+    [SerializeField] Raycast2DChecker groundCheck = new Raycast2DChecker();
+    [SerializeField] Raycast2DChecker ceilingCheck = new Raycast2DChecker();
+    [SerializeField] Raycast2DChecker ceilingCrouchCheck = new Raycast2DChecker();
+    [SerializeField] Raycast2DChecker leftWallCheck = new Raycast2DChecker();
+    [SerializeField] Raycast2DChecker rightWallCheck = new Raycast2DChecker();
     
     [Space] [Header("Velocity Calculators")] [Space]
     [SerializeField] CalculateHorizontalVelocity horizontalCalculator = new CalculateHorizontalVelocity();
     [SerializeField] CalculateVerticalVelocity verticalCalculator = new CalculateVerticalVelocity();
+    [SerializeField] CalculateLedge ledgeCalculator = new CalculateLedge();
     [SerializeField] Flipper flipper = new Flipper();
 
-    private Rigidbody2D rigidBody2D;
+    private Rigidbody2D rb2D;
     private Animator animator;
     private IMovementInput movementInput;
     
@@ -28,7 +29,7 @@ public class Movement : MonoBehaviour
     [SerializeField] string animHorizontalSpeed = "xSpeedAbsolute";
     [SerializeField] string animVerticalSpeed = "ySpeed";
 
-    private int animInGroundedHashed;
+    private int animGroundedHashed;
     private int animInAirHashed;
     private int animHorizontalSpeedHashed;
     private int animVerticalSpeedHashed;
@@ -43,7 +44,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         GameObject characterGameObject = gameObject;
-        rigidBody2D = characterGameObject.GetComponent<Rigidbody2D>();
+        rb2D = characterGameObject.GetComponent<Rigidbody2D>();
         animator = characterGameObject.GetComponent<Animator>();
         movementInput = new PlayerMovement(characterGameObject); 
         
@@ -54,11 +55,12 @@ public class Movement : MonoBehaviour
         rightWallCheck.Setup(Vector2.right);
 
         
-        horizontalCalculator.Setup(movementData, rigidBody2D, animator, movementInput); 
-        verticalCalculator.Setup(movementData, rigidBody2D, animator, movementInput);
-        flipper.Setup(rigidBody2D, transform);
+        horizontalCalculator.Setup(movementData, rb2D, animator, movementInput); 
+        verticalCalculator.Setup(movementData, rb2D, animator, movementInput);
+        ledgeCalculator.SetUp(rb2D, animator);
+        flipper.Setup(rb2D, transform);
         
-        animInGroundedHashed = Animator.StringToHash(animGrounded);
+        animGroundedHashed = Animator.StringToHash(animGrounded);
         animInAirHashed = Animator.StringToHash(animInAir);
         animHorizontalSpeedHashed = Animator.StringToHash(animHorizontalSpeed);
         animVerticalSpeedHashed = Animator.StringToHash(animVerticalSpeed);
@@ -91,22 +93,23 @@ public class Movement : MonoBehaviour
         bool jumped = false;
         verticalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingClimbableCeiling, isTouchingLeftWall, isTouchingRightWall, isTouchingClimbableWall,  ref jumped);
         horizontalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingClimbableCeiling, jumped, isTouchingLeftWall, isTouchingRightWall);
-        flipper.ApplyFlip();
+        ledgeCalculator.ApplyLedge(flipper.flipped);
+        flipper.ApplyFlip(isGrounded, isTouchingLeftWall, isTouchingRightWall);
         
         SetAnimator();
     }
 
     private void SetAnimator()
     {
-        animator.SetFloat(animHorizontalSpeedHashed, Mathf.Abs(rigidBody2D.velocity.x));
-        animator.SetFloat(animVerticalSpeedHashed, rigidBody2D.velocity.y);
+        animator.SetFloat(animHorizontalSpeedHashed, Mathf.Abs(rb2D.velocity.x));
+        animator.SetFloat(animVerticalSpeedHashed, rb2D.velocity.y);
         if (isGrounded)
         {
-            animator.SetBool(animInGroundedHashed, true);
+            animator.SetBool(animGroundedHashed, true);
         }
         else
         {
-            animator.SetBool(animInGroundedHashed, false);
+            animator.SetBool(animGroundedHashed, false);
         }
 
         if (!isTouchingLeftWall && !isTouchingRightWall && canStand && !isGrounded)
@@ -117,5 +120,10 @@ public class Movement : MonoBehaviour
         {
             animator.SetBool(animInAirHashed, false);
         }
+    }
+
+    public void ClimbedLedge()
+    {
+        ledgeCalculator.Climbed();
     }
 }

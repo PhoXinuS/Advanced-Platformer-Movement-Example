@@ -21,11 +21,14 @@
           <e p="Character Control" t="Include">
             <e p="Movement" t="Include">
               <e p="Checkers" t="Include">
-                <e p="Checker.cs" t="Include" />
+                <e p="OverlapCircleChecker.cs" t="Include" />
+                <e p="Raycast2DChecker.cs" t="Include" />
+                <e p="SingleRaycast2DChecker.cs" t="Include" />
               </e>
               <e p="IMovementInput.cs" t="Include" />
               <e p="Movement Parts" t="Include">
                 <e p="CalculateHorizontalVelocity.cs" t="Include" />
+                <e p="CalculateLedge.cs" t="Include" />
                 <e p="CalculateVerticalVelocity.cs" t="Include" />
                 <e p="Horizontal Parts" t="Include">
                   <e p="Crouch.cs" t="Include" />

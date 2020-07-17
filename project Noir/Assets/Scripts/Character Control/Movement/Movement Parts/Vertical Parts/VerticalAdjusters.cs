@@ -9,13 +9,13 @@ public class VerticalAdjusters
     private bool isPushingJumpButton;
     private bool alreadyAdjustedJumpHeight;
     
-    private Rigidbody2D rigidBody2D;
+    private Rigidbody2D rb2D;
     private IMovementInput movementInput;
 
-    internal void SetUp(Rigidbody2D rigidBody2D, IMovementInput movementInput)
+    internal void SetUp(Rigidbody2D rb2D, IMovementInput movementInput)
     {
 
-        this.rigidBody2D = rigidBody2D;
+        this.rb2D = rb2D;
         this.movementInput = movementInput;
     }
 
@@ -38,7 +38,7 @@ public class VerticalAdjusters
 
     private float BetterFallingVelocity()
     {
-        if (rigidBody2D.velocity.y < 0)
+        if (rb2D.velocity.y < 0)
             return Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         
         return 0f;
@@ -51,10 +51,10 @@ public class VerticalAdjusters
         
         if ( !alreadyAdjustedJumpHeight 
              && !isPushingJumpButton && wasPushingJumpButton 
-             && rigidBody2D.velocity.y > 0 )
+             && rb2D.velocity.y > 0 )
         {
             alreadyAdjustedJumpHeight = true;
-            return -(rigidBody2D.velocity.y / 2);
+            return -(rb2D.velocity.y / 2);
         }
         return 0f;
     }
