@@ -22,6 +22,7 @@ internal class CalculateVerticalVelocity
     private List<bool> availableJumps = new List<bool>();
     private bool isPushingJumpButton;
     private bool wasPushingJumpButton;
+    private bool jumped;
     
     private MovementDataSO movementData;
     private Rigidbody2D rb2D;
@@ -54,11 +55,16 @@ internal class CalculateVerticalVelocity
         animCeilingClimbHashed = Animator.StringToHash(animCeilingClimb);
         animWallSlideHashed = Animator.StringToHash(animWallSlide);
     }
+
+    internal bool Jumped()
+    {
+        return jumped;
+    }
     
     internal void ApplyVelocity(bool isGrounded, bool canStand, bool isTouchingClimbableCeiling
-        , bool isTouchingLeftWall, bool isTouchingRightWall, bool isTouchingClimbableWall
-        , ref bool jumped)
+        , bool isTouchingLeftWall, bool isTouchingRightWall, bool isTouchingClimbableWall)
     {
+        jumped = false;
         rb2D.gravityScale = 1f;
         if (!movementData.calculateVertical || !canStand) return;
         

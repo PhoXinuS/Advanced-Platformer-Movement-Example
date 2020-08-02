@@ -1,120 +1,90 @@
-﻿using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEngine;
+﻿using UnityEngine;
 
 [System.Serializable]
 public class CalculateLedge
 {
+    public LedgeDangle ledgeDangle = new LedgeDangle();
+    public LedgeClimb ledgeClimb = new LedgeClimb();
+    
+    [SerializeField] Vector2 ledgeDangleOffset = Vector2.zero;
+    [SerializeField] Vector2 ledgeClimbedOffset = Vector2.zero;
+    private Vector2 ledgeDanglePosition;
+    private Vector2 ledgeClimbedPosition;
+    
     [SerializeField] SingleRaycast2DChecker leftLedgeCheckTop = new SingleRaycast2DChecker();
     [SerializeField] SingleRaycast2DChecker rightLedgeCheckTop = new SingleRaycast2DChecker();  
     [SerializeField] SingleRaycast2DChecker leftLedgeCheckBottom = new SingleRaycast2DChecker();
     [SerializeField] SingleRaycast2DChecker rightLedgeCheckBottom = new SingleRaycast2DChecker();
-    [SerializeField] Vector2 ledgeDidNotClimbOffset = Vector2.zero;
-    [SerializeField] Vector2 ledgeClimbedOffset = Vector2.zero;
-    [SerializeField] string animClimbingLedge = "isClimbingLedge";
+    private Transform leftLedgeCheckTopTransform;
+    private Transform leftLedgeCheckBottomTransform;  
+    private Transform rightLedgeCheckTopTransform;
+    private Transform rightLedgeCheckBottomTransform;
 
-    private Transform leftLedgeCheckTransform;
-    private Transform leftWallCheckTransform;  
-    private Transform rightLedgeCheckTransform;
-    private Transform rightWallCheckTransform;
-    
-    private int animClimbingLedgeHashed;
-    private bool climbingLedge = false;
-    private Vector2 ledgeDidNotClimbPosition;
-    private Vector2 ledgeClimbedPosition;
-    private RigidbodyConstraints2D normalConstraints;
-    
-    private Rigidbody2D rb2D;
-    private Animator animator;
-
-    internal void SetUp(Rigidbody2D rb2D, Animator animator)
+    internal void Setup(Rigidbody2D rb2D, Animator animator, IMovementInput movementInput)
     {
-        this.rb2D = rb2D;
-        this.animator = animator;
-
-        animClimbingLedgeHashed = Animator.StringToHash(animClimbingLedge);
-        
         leftLedgeCheckTop.Setup(Vector2.left);
         rightLedgeCheckTop.Setup(Vector2.right);
         leftLedgeCheckBottom.Setup(Vector2.left);
         rightLedgeCheckBottom.Setup(Vector2.right);
 
-        leftLedgeCheckTransform = leftLedgeCheckTop.raycastOrigin;
-        rightLedgeCheckTransform = rightLedgeCheckTop.raycastOrigin;    
-        leftWallCheckTransform = leftLedgeCheckBottom.raycastOrigin;
-        rightWallCheckTransform = rightLedgeCheckBottom.raycastOrigin;
+        leftLedgeCheckTopTransform = leftLedgeCheckTop.raycastOrigin;
+        rightLedgeCheckTopTransform = rightLedgeCheckTop.raycastOrigin;    
+        leftLedgeCheckBottomTransform = leftLedgeCheckBottom.raycastOrigin;
+        rightLedgeCheckBottomTransform = rightLedgeCheckBottom.raycastOrigin;
+        
+        ledgeDangle.Setup(rb2D, animator, movementInput);
+        ledgeClimb.Setup(rb2D, animator, movementInput);
     }
 
     internal void ApplyLedge(bool flipped)
     {
         if (!flipped)
         {
-            leftLedgeCheckTop.raycastOrigin = leftLedgeCheckTransform;
-            leftLedgeCheckBottom.raycastOrigin = leftWallCheckTransform;
+            leftLedgeCheckTop.raycastOrigin = leftLedgeCheckTopTransform;
+            leftLedgeCheckBottom.raycastOrigin = leftLedgeCheckBottomTransform;
             
-            rightLedgeCheckTop.raycastOrigin = rightLedgeCheckTransform;
-            rightLedgeCheckBottom.raycastOrigin = rightWallCheckTransform;
+            rightLedgeCheckTop.raycastOrigin = rightLedgeCheckTopTransform;
+            rightLedgeCheckBottom.raycastOrigin = rightLedgeCheckBottomTransform;
         }
         else
         {
-            leftLedgeCheckTop.raycastOrigin = rightLedgeCheckTransform;
-            leftLedgeCheckBottom.raycastOrigin = rightWallCheckTransform;
+            leftLedgeCheckTop.raycastOrigin = rightLedgeCheckTopTransform;
+            leftLedgeCheckBottom.raycastOrigin = rightLedgeCheckBottomTransform;
             
-            rightLedgeCheckTop.raycastOrigin = leftLedgeCheckTransform;
-            rightLedgeCheckBottom.raycastOrigin = leftWallCheckTransform;
+            rightLedgeCheckTop.raycastOrigin = leftLedgeCheckTopTransform;
+            rightLedgeCheckBottom.raycastOrigin = leftLedgeCheckBottomTransform;
         }
         
         bool shouldClimbLeftLedge = !leftLedgeCheckTop.IsInContactWithTarget() && leftLedgeCheckBottom.IsInContactWithTarget();
         bool shouldClimbRightLedge = !rightLedgeCheckTop.IsInContactWithTarget() && rightLedgeCheckBottom.IsInContactWithTarget();
-        if (!climbingLedge && (shouldClimbLeftLedge || shouldClimbRightLedge))
+        if (shouldClimbRightLedge)
         {
-            normalConstraints = rb2D.constraints;
-            if (shouldClimbRightLedge)
-            {
-                var ledgeBottomRaycastTransform = rightLedgeCheckBottom.raycastOrigin.position;
-                ledgeDidNotClimbPosition = new Vector2(
-                    Mathf.Floor(ledgeBottomRaycastTransform.x + rightLedgeCheckBottom.checkDistance) +
-                    ledgeDidNotClimbOffset.x,
-                    Mathf.Floor(ledgeBottomRaycastTransform.y) + ledgeDidNotClimbOffset.y);
+            var ledgeBottomRaycastTransform = rightLedgeCheckBottom.raycastOrigin.position;
+            ledgeDanglePosition = new Vector2(
+                Mathf.Floor(ledgeBottomRaycastTransform.x + rightLedgeCheckBottom.checkDistance) +
+                ledgeDangleOffset.x,
+                Mathf.Floor(ledgeBottomRaycastTransform.y) + ledgeDangleOffset.y);
 
-                ledgeClimbedPosition = new Vector2(
-                    Mathf.Floor(ledgeBottomRaycastTransform.x + rightLedgeCheckBottom.checkDistance) +
-                    ledgeClimbedOffset.x,
-                    Mathf.Floor(ledgeBottomRaycastTransform.y) + ledgeClimbedOffset.y);
-            }
-            else if (shouldClimbLeftLedge)
-            {
-                var ledgeBottomRaycastTransform = leftLedgeCheckBottom.raycastOrigin.position;
-                ledgeDidNotClimbPosition = new Vector2(
-                    Mathf.Ceil(ledgeBottomRaycastTransform.x - leftLedgeCheckBottom.checkDistance) -
-                    ledgeDidNotClimbOffset.x,
-                    Mathf.Floor(ledgeBottomRaycastTransform.y) + ledgeDidNotClimbOffset.y);
-
-                ledgeClimbedPosition = new Vector2(
-                    Mathf.Ceil(ledgeBottomRaycastTransform.x - leftLedgeCheckBottom.checkDistance) -
-                    ledgeClimbedOffset.x,
-                    Mathf.Floor(ledgeBottomRaycastTransform.y) + ledgeClimbedOffset.y);
-            }
-
-            StartLedgeClimbing();
+            ledgeClimbedPosition = new Vector2(
+                Mathf.Floor(ledgeBottomRaycastTransform.x + rightLedgeCheckBottom.checkDistance) +
+                ledgeClimbedOffset.x,
+                Mathf.Floor(ledgeBottomRaycastTransform.y) + ledgeClimbedOffset.y);
         }
-    }
+        else if (shouldClimbLeftLedge)
+        {
+            var ledgeBottomRaycastTransform = leftLedgeCheckBottom.raycastOrigin.position;
+            ledgeDanglePosition = new Vector2(
+                Mathf.Ceil(ledgeBottomRaycastTransform.x - leftLedgeCheckBottom.checkDistance) -
+                ledgeDangleOffset.x,
+                Mathf.Floor(ledgeBottomRaycastTransform.y) + ledgeDangleOffset.y);
 
-    private void StartLedgeClimbing()
-    {
-        rb2D.transform.position = ledgeDidNotClimbPosition;
-        rb2D.constraints = RigidbodyConstraints2D.FreezeAll;
-        animator.SetBool(animClimbingLedgeHashed, true);
-        climbingLedge = true;
-    }
-
-    internal void Climbed()
-    {
-        rb2D.constraints = normalConstraints;
-        rb2D.transform.position = ledgeClimbedPosition;
-        animator.SetBool(animClimbingLedgeHashed, false);
-        climbingLedge = false;
+            ledgeClimbedPosition = new Vector2(
+                Mathf.Ceil(ledgeBottomRaycastTransform.x - leftLedgeCheckBottom.checkDistance) -
+                ledgeClimbedOffset.x,
+                Mathf.Floor(ledgeBottomRaycastTransform.y) + ledgeClimbedOffset.y);
+        }
+        
+        ledgeDangle.ApplyDangle(shouldClimbLeftLedge, shouldClimbRightLedge, ledgeDanglePosition);
+        ledgeClimb.ApplyClimb(ledgeDangle.IsDangling(), shouldClimbLeftLedge, shouldClimbRightLedge, ledgeClimbedPosition);
     }
 }
-
-

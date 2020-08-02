@@ -37,7 +37,7 @@ public class Crouch
             return;
         }
 
-        if (CrouchIsTriggered() && isGrounded)
+        if (CrouchIsTriggered(canStand) && isGrounded)
         {
             isCrouching = true;
             
@@ -68,9 +68,9 @@ public class Crouch
         slide.Tick(isCrouching);
     }
 
-    private bool CrouchIsTriggered()
+    private bool CrouchIsTriggered(bool canStand)
     {
-        return movementInput.verticalInput < 0f;
+        return movementInput.verticalInput < 0f || !canStand;
     }
     
 }  

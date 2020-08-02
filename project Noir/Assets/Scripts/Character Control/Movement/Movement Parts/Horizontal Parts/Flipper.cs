@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[System.Serializable]
 public class Flipper
 {
     internal bool flipped = false;

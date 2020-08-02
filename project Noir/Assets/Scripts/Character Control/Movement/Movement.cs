@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
     [SerializeField] Raycast2DChecker ceilingCrouchCheck = new Raycast2DChecker();
     [SerializeField] Raycast2DChecker leftWallCheck = new Raycast2DChecker();
     [SerializeField] Raycast2DChecker rightWallCheck = new Raycast2DChecker();
-    
+
     [Space] [Header("Velocity Calculators")] [Space]
     [SerializeField] CalculateHorizontalVelocity horizontalCalculator = new CalculateHorizontalVelocity();
     [SerializeField] CalculateVerticalVelocity verticalCalculator = new CalculateVerticalVelocity();
@@ -24,6 +24,7 @@ public class Movement : MonoBehaviour
     private Animator animator;
     private IMovementInput movementInput;
     
+    [Space] [Header("Animator Variables")] [Space]
     [SerializeField] string animGrounded = "isGrounded";
     [SerializeField] string animInAir = "isInAir";
     [SerializeField] string animHorizontalSpeed = "xSpeedAbsolute";
@@ -53,11 +54,10 @@ public class Movement : MonoBehaviour
         ceilingCheck.Setup(Vector2.up);
         leftWallCheck.Setup(Vector2.left);
         rightWallCheck.Setup(Vector2.right);
-
         
         horizontalCalculator.Setup(movementData, rb2D, animator, movementInput); 
         verticalCalculator.Setup(movementData, rb2D, animator, movementInput);
-        ledgeCalculator.SetUp(rb2D, animator);
+        ledgeCalculator.Setup(rb2D, animator, movementInput);
         flipper.Setup(rb2D, transform);
         
         animGroundedHashed = Animator.StringToHash(animGrounded);
@@ -89,10 +89,9 @@ public class Movement : MonoBehaviour
             isTouchingLeftWall = leftWallCheck.IsInContactWithTarget();
             isTouchingRightWall = rightWallCheck.IsInContactWithTarget();
         }
-
-        bool jumped = false;
-        verticalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingClimbableCeiling, isTouchingLeftWall, isTouchingRightWall, isTouchingClimbableWall,  ref jumped);
-        horizontalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingClimbableCeiling, jumped, isTouchingLeftWall, isTouchingRightWall);
+        
+        verticalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingClimbableCeiling, isTouchingLeftWall, isTouchingRightWall, isTouchingClimbableWall);
+        horizontalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingClimbableCeiling, verticalCalculator.Jumped(), isTouchingLeftWall, isTouchingRightWall);
         ledgeCalculator.ApplyLedge(flipper.flipped);
         flipper.ApplyFlip(isGrounded, isTouchingLeftWall, isTouchingRightWall);
         
@@ -124,6 +123,7 @@ public class Movement : MonoBehaviour
 
     public void ClimbedLedge()
     {
-        ledgeCalculator.Climbed();
+        ledgeCalculator.ledgeClimb.Climbed();
+        ledgeCalculator.ledgeDangle.CancelDangle();
     }
 }
