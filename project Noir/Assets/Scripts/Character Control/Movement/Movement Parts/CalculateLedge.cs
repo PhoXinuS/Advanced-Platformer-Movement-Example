@@ -61,30 +61,26 @@ public class CalculateLedge
         {
             var ledgeBottomRaycastTransform = rightLedgeCheckBottom.raycastOrigin.position;
             ledgeDanglePosition = new Vector2(
-                Mathf.Floor(ledgeBottomRaycastTransform.x + rightLedgeCheckBottom.checkDistance) +
-                ledgeDangleOffset.x,
+                Mathf.Floor(ledgeBottomRaycastTransform.x + rightLedgeCheckBottom.checkDistance) + ledgeDangleOffset.x,
                 Mathf.Floor(ledgeBottomRaycastTransform.y) + ledgeDangleOffset.y);
 
             ledgeClimbedPosition = new Vector2(
-                Mathf.Floor(ledgeBottomRaycastTransform.x + rightLedgeCheckBottom.checkDistance) +
-                ledgeClimbedOffset.x,
+                Mathf.Floor(ledgeBottomRaycastTransform.x + rightLedgeCheckBottom.checkDistance) + ledgeClimbedOffset.x,
                 Mathf.Floor(ledgeBottomRaycastTransform.y) + ledgeClimbedOffset.y);
         }
         else if (shouldClimbLeftLedge)
         {
             var ledgeBottomRaycastTransform = leftLedgeCheckBottom.raycastOrigin.position;
             ledgeDanglePosition = new Vector2(
-                Mathf.Ceil(ledgeBottomRaycastTransform.x - leftLedgeCheckBottom.checkDistance) -
-                ledgeDangleOffset.x,
+                Mathf.Ceil(ledgeBottomRaycastTransform.x - leftLedgeCheckBottom.checkDistance) - ledgeDangleOffset.x,
                 Mathf.Floor(ledgeBottomRaycastTransform.y) + ledgeDangleOffset.y);
 
             ledgeClimbedPosition = new Vector2(
-                Mathf.Ceil(ledgeBottomRaycastTransform.x - leftLedgeCheckBottom.checkDistance) -
-                ledgeClimbedOffset.x,
+                Mathf.Ceil(ledgeBottomRaycastTransform.x - leftLedgeCheckBottom.checkDistance) - ledgeClimbedOffset.x,
                 Mathf.Floor(ledgeBottomRaycastTransform.y) + ledgeClimbedOffset.y);
         }
         
         ledgeDangle.ApplyDangle(shouldClimbLeftLedge, shouldClimbRightLedge, ledgeDanglePosition);
-        ledgeClimb.ApplyClimb(ledgeDangle.IsDangling(), shouldClimbLeftLedge, shouldClimbRightLedge, ledgeClimbedPosition);
+        ledgeClimb.ApplyClimb(ledgeDangle.isDangling, shouldClimbLeftLedge, shouldClimbRightLedge, ledgeClimbedPosition);
     }
 }

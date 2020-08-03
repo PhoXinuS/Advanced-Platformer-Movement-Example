@@ -7,9 +7,9 @@ public class LedgeClimb
     
     private int animClimbingLedgeHashed;
     private bool isClimbingLedge = false;
-    private bool wasMovingUpwards = false;
-    private bool wasMovingLeft = false;
-    private bool wasMovingRight = false;
+    private bool wasPushingUpInput = false;
+    private bool wasPushingLeftInput = false;
+    private bool wasPushingRightInput = false;
     private Vector2 ledgeClimbedPosition;
     
     private Rigidbody2D rb2D;
@@ -39,18 +39,18 @@ public class LedgeClimb
             rb2D.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
-        wasMovingUpwards = movementInput.verticalInput > 0;
-        wasMovingRight = movementInput.horizontalInput > 0;
-        wasMovingLeft = movementInput.horizontalInput < 0;
+        wasPushingUpInput = movementInput.verticalInput > 0;
+        wasPushingRightInput = movementInput.horizontalInput > 0;
+        wasPushingLeftInput = movementInput.horizontalInput < 0;
     }
 
     private bool ShouldClimb(bool isDangling, bool shouldClimbLeftLedge, bool shouldClimbRightLedge)
     {
         return isDangling 
                && !isClimbingLedge 
-               && ((movementInput.verticalInput > 0 && !wasMovingUpwards)
-                   || (movementInput.horizontalInput < 0 && !wasMovingLeft && shouldClimbLeftLedge)
-                   || (movementInput.horizontalInput > 0 && !wasMovingRight && shouldClimbRightLedge));
+               && ((movementInput.verticalInput > 0 && !wasPushingUpInput)
+                   || (movementInput.horizontalInput < 0 && !wasPushingLeftInput && shouldClimbLeftLedge)
+                   || (movementInput.horizontalInput > 0 && !wasPushingRightInput && shouldClimbRightLedge));
     }
 
     private void StartLedgeClimbing()

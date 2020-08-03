@@ -29,6 +29,7 @@
               <e p="Movement Parts" t="Include">
                 <e p="CalculateHorizontalVelocity.cs" t="Include" />
                 <e p="CalculateLedge.cs" t="Include" />
+                <e p="CalculateLedgeSlip.cs" t="Include" />
                 <e p="CalculateVerticalVelocity.cs" t="Include" />
                 <e p="Horizontal Parts" t="Include">
                   <e p="Crouch.cs" t="Include" />
@@ -38,6 +39,7 @@
                 <e p="Ledge Parts" t="Include">
                   <e p="LedgeClimb.cs" t="Include" />
                   <e p="LedgeDangle.cs" t="Include" />
+                  <e p="LedgeSlip.cs" t="Include" />
                 </e>
                 <e p="VelocitySmoother.cs" t="Include" />
                 <e p="Vertical Parts" t="Include">

@@ -4,13 +4,15 @@ using UnityEngine;
 [System.Serializable]
 public class LedgeDangle
 {
+    internal bool isDangling = false;
+    
     [SerializeField] string animDanglingLedge = "isDanglingLedge";
     [SerializeField] string animLeaningLedge = "isLeaningLedge";
 
     private int animDanglingLedgeHashed;
     private int animLeaningLedgeHashed;
-    private bool isDangling = false;
-    private bool wasJumping = false;
+    private bool wasPushingJumpInput = false;
+    private bool wasPushingDownInput = false;
     private RigidbodyConstraints2D normalConstraints;
 
     private Rigidbody2D rb2D;
@@ -25,11 +27,6 @@ public class LedgeDangle
 
         animDanglingLedgeHashed = Animator.StringToHash(animDanglingLedge);
         animLeaningLedgeHashed = Animator.StringToHash(animLeaningLedge);
-    }
-
-    internal bool IsDangling()
-    {
-        return isDangling;
     }
 
     internal void ApplyDangle(bool shouldDangleLeftLedge, bool shouldDangleRightLedge, Vector2 ledgeDanglePosition)
@@ -61,7 +58,8 @@ public class LedgeDangle
             isDangling = false;
         }
 
-        wasJumping = movementInput.jumpInput > 0;
+        wasPushingJumpInput = movementInput.jumpInput > 0;
+        wasPushingDownInput = movementInput.verticalInput < 0;
     }
 
     private void StartDangling(Vector2 ledgeDanglePosition)
@@ -89,7 +87,8 @@ public class LedgeDangle
     
     private bool ShouldCancelDangle()
     {
-        return movementInput.verticalInput < 0 || !wasJumping && movementInput.jumpInput > 0;
+        return (!wasPushingDownInput && movementInput.verticalInput < 0)
+               || (!wasPushingJumpInput && movementInput.jumpInput > 0);
     }
 
     internal void CancelDangle()

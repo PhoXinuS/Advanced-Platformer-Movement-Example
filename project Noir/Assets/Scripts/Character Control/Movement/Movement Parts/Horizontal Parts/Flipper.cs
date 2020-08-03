@@ -26,7 +26,7 @@ public class Flipper
             Flip();
         }
         else if (MovingInDifferentDirectionToTheFacing()
-                 && !isTouchingLeftWall && !isTouchingRightWall)
+                 && (!isTouchingLeftWall && !isTouchingRightWall || isGrounded))
         {
             Flip();
         }

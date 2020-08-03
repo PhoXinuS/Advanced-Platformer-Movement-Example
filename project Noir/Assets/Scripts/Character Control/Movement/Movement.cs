@@ -18,6 +18,7 @@ public class Movement : MonoBehaviour
     [SerializeField] CalculateHorizontalVelocity horizontalCalculator = new CalculateHorizontalVelocity();
     [SerializeField] CalculateVerticalVelocity verticalCalculator = new CalculateVerticalVelocity();
     [SerializeField] CalculateLedge ledgeCalculator = new CalculateLedge();
+    [SerializeField] CalculateLedgeSlip ledgeSlipCalculator = new CalculateLedgeSlip();
     [SerializeField] Flipper flipper = new Flipper();
 
     private Rigidbody2D rb2D;
@@ -58,6 +59,7 @@ public class Movement : MonoBehaviour
         horizontalCalculator.Setup(movementData, rb2D, animator, movementInput); 
         verticalCalculator.Setup(movementData, rb2D, animator, movementInput);
         ledgeCalculator.Setup(rb2D, animator, movementInput);
+        ledgeSlipCalculator.Setup(rb2D, animator, movementInput);
         flipper.Setup(rb2D, transform);
         
         animGroundedHashed = Animator.StringToHash(animGrounded);
@@ -91,8 +93,9 @@ public class Movement : MonoBehaviour
         }
         
         verticalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingClimbableCeiling, isTouchingLeftWall, isTouchingRightWall, isTouchingClimbableWall);
-        horizontalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingClimbableCeiling, verticalCalculator.Jumped(), isTouchingLeftWall, isTouchingRightWall);
+        horizontalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingClimbableCeiling, verticalCalculator.jumped, isTouchingLeftWall, isTouchingRightWall);
         ledgeCalculator.ApplyLedge(flipper.flipped);
+        ledgeSlipCalculator.ApplyLedgeSlip(flipper.flipped, verticalCalculator.isClimbingWalls);
         flipper.ApplyFlip(isGrounded, isTouchingLeftWall, isTouchingRightWall);
         
         SetAnimator();
@@ -121,9 +124,18 @@ public class Movement : MonoBehaviour
         }
     }
 
+
+    #region Called from AnimationEvents
+    
     public void ClimbedLedge()
     {
         ledgeCalculator.ledgeClimb.Climbed();
         ledgeCalculator.ledgeDangle.CancelDangle();
     }
+    public void SlippedLedge()
+    {
+        ledgeSlipCalculator.ledgeSlip.Slipped();
+    }
+    #endregion
+    
 }

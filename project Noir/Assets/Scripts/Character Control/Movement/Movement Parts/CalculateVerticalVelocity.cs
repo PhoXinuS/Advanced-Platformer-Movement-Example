@@ -5,6 +5,9 @@ using UnityEngine.Timeline;
 [System.Serializable]
 internal class CalculateVerticalVelocity
 {
+    internal bool isClimbingWalls;
+    internal bool jumped;
+
     [SerializeField] string animJump = "isJumpingUp";
     [SerializeField] string animWallClimb = "isClimbingWall";
     [SerializeField] string animCeilingClimb = "isClimbingCeiling";
@@ -22,7 +25,6 @@ internal class CalculateVerticalVelocity
     private List<bool> availableJumps = new List<bool>();
     private bool isPushingJumpButton;
     private bool wasPushingJumpButton;
-    private bool jumped;
     
     private MovementDataSO movementData;
     private Rigidbody2D rb2D;
@@ -56,11 +58,6 @@ internal class CalculateVerticalVelocity
         animWallSlideHashed = Animator.StringToHash(animWallSlide);
     }
 
-    internal bool Jumped()
-    {
-        return jumped;
-    }
-    
     internal void ApplyVelocity(bool isGrounded, bool canStand, bool isTouchingClimbableCeiling
         , bool isTouchingLeftWall, bool isTouchingRightWall, bool isTouchingClimbableWall)
     {
@@ -237,10 +234,12 @@ internal class CalculateVerticalVelocity
             verticalVelocity = velocitySmoother.SmoothedVelocity(targetVelocity, currentVelocity, accelerationTime, decelerationTime);
             
             animator.SetBool(animWallClimbHashed, true);
+            isClimbingWalls = true;
         }
         else
         {
             animator.SetBool(animWallClimbHashed, false);
+            isClimbingWalls = false;
         }
         
         return verticalVelocity;
