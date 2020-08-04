@@ -3,10 +3,11 @@
 [System.Serializable]
 public class LedgeSlip
 {
+    internal bool isSlippingLedge = false;
+    
     [SerializeField] string animSlippingLedge = "isSlippingLedge";
     
     private int aimSlippingLedgeHashed;
-    private bool isSlippingLedge = false;
     private Vector2 ledgeBottomPosition;
     private Vector2 ledgeTopPosition;
     private RigidbodyConstraints2D normalConstraints;
@@ -24,13 +25,13 @@ public class LedgeSlip
         aimSlippingLedgeHashed = Animator.StringToHash(animSlippingLedge);
     }
 
-    internal void ApplySlip(bool isClimbing, bool shouldSlipLeftLedge, bool shouldSlipRightLedge, Vector2 ledgeBottomPosition, Vector2 ledgeTopPosition)
+    internal void ApplySlip(bool isClimbing, bool isCrouching, bool shouldSlipLeftLedge, bool shouldSlipRightLedge, Vector2 ledgeBottomPosition, Vector2 ledgeTopPosition)
     {
         this.ledgeBottomPosition = ledgeBottomPosition;
         this.ledgeTopPosition = ledgeTopPosition;
 
         bool shouldSlipLedge = shouldSlipLeftLedge || shouldSlipRightLedge;
-        if (ShouldSlip(isClimbing, shouldSlipLedge))
+        if (ShouldSlip(isClimbing, isCrouching, shouldSlipLedge))
         {
             StartSlipping();
         }
@@ -41,9 +42,9 @@ public class LedgeSlip
         }
     }
 
-    private bool ShouldSlip(bool isClimbing, bool shouldSlipLedge)
+    private bool ShouldSlip(bool isClimbing, bool isCrouching, bool shouldSlipLedge)
     {
-        return !isClimbing && shouldSlipLedge && !isSlippingLedge && movementInput.verticalInput < 0;
+        return !isClimbing && shouldSlipLedge && !isSlippingLedge && (movementInput.verticalInput < 0 || isCrouching);
     }
 
     private void StartSlipping()

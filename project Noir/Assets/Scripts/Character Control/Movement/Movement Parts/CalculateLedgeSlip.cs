@@ -30,7 +30,7 @@ public class CalculateLedgeSlip
         ledgeSlip.Setup(rb2D, animator, movementInput);
     }
 
-    internal void ApplyLedgeSlip(bool flipped, bool isClimbing)
+    internal void ApplyLedgeSlip(bool flipped, bool isClimbing, bool isCrouching)
     {
         if (!flipped)
         {
@@ -78,6 +78,6 @@ public class CalculateLedgeSlip
                 ledgeTilePosition.y + ledgeTopOffset.y);
         }
         
-        ledgeSlip.ApplySlip(isClimbing, shouldSlipLeftLedge, shouldSlipRightLedge, ledgeBottomPosition, ledgeTopPosition);
+        ledgeSlip.ApplySlip(isClimbing, isCrouching, shouldSlipLeftLedge, shouldSlipRightLedge, ledgeBottomPosition, ledgeTopPosition);
     }
 }

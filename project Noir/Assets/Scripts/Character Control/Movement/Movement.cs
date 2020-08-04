@@ -70,7 +70,6 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
         isGrounded = groundCheck.IsInContactWithTarget();
         canStand = !ceilingCrouchCheck.IsInContactWithTarget();
         isTouchingClimbableWall = leftWallCheck.IsInContactWithTarget(climbableTag) || rightWallCheck.IsInContactWithTarget(climbableTag);
@@ -95,8 +94,11 @@ public class Movement : MonoBehaviour
         verticalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingClimbableCeiling, isTouchingLeftWall, isTouchingRightWall, isTouchingClimbableWall);
         horizontalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingClimbableCeiling, verticalCalculator.jumped, isTouchingLeftWall, isTouchingRightWall);
         ledgeCalculator.ApplyLedge(flipper.flipped);
-        ledgeSlipCalculator.ApplyLedgeSlip(flipper.flipped, verticalCalculator.isClimbingWalls);
-        flipper.ApplyFlip(isGrounded, isTouchingLeftWall, isTouchingRightWall);
+        ledgeSlipCalculator.ApplyLedgeSlip(flipper.flipped, verticalCalculator.isClimbingWalls, horizontalCalculator.IsCrouching());
+        
+        bool isOnLedge = ledgeCalculator.ledgeClimb.isClimbingLedge || ledgeCalculator.ledgeDangle.isDangling ||
+                         ledgeSlipCalculator.ledgeSlip.isSlippingLedge;
+        flipper.ApplyFlip(isGrounded, isOnLedge, isTouchingLeftWall, isTouchingRightWall);
         
         SetAnimator();
     }

@@ -29,6 +29,11 @@ internal class CalculateHorizontalVelocity
         
         crouch.Setup(movementInput, movementData, rb2D, animator);
     }
+
+    internal bool IsCrouching()
+    {
+        return crouch.isCrouching;
+    }
     
     internal void ApplyVelocity(bool isGrounded, bool canStand, bool isTouchingClimbableCeiling
         , bool jumped, bool isTouchingLeftWall, bool isTouchingRightWall)

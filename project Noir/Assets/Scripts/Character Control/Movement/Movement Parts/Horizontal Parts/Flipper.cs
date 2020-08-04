@@ -13,7 +13,7 @@ public class Flipper
         this.transform = transform;
     }
     
-    internal void ApplyFlip(bool isGrounded, bool isTouchingLeftWall, bool isTouchingRightWall)
+    internal void ApplyFlip(bool isGrounded, bool isOnLedge, bool isTouchingLeftWall, bool isTouchingRightWall)
     {
         if (!flipped
             && isTouchingLeftWall && !isGrounded)
@@ -26,7 +26,7 @@ public class Flipper
             Flip();
         }
         else if (MovingInDifferentDirectionToTheFacing()
-                 && (!isTouchingLeftWall && !isTouchingRightWall || isGrounded))
+                 && (!isTouchingLeftWall && !isTouchingRightWall || isGrounded) && !isOnLedge )
         {
             Flip();
         }

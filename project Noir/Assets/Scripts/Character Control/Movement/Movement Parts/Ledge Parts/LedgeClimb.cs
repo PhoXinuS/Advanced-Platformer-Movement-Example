@@ -3,10 +3,11 @@
 [System.Serializable]
 public class LedgeClimb
 {
+    internal bool isClimbingLedge = false;
+    
     [SerializeField] string animClimbingLedge = "isClimbingLedge";
     
     private int animClimbingLedgeHashed;
-    private bool isClimbingLedge = false;
     private bool wasPushingUpInput = false;
     private bool wasPushingLeftInput = false;
     private bool wasPushingRightInput = false;
