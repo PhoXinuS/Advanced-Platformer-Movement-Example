@@ -80,7 +80,7 @@ public class CalculateLedge
                 Mathf.Floor(ledgeBottomRaycastTransform.y) + ledgeClimbedOffset.y);
         }
         
-        ledgeDangle.ApplyDangle(shouldClimbLeftLedge, shouldClimbRightLedge, ledgeDanglePosition);
+        ledgeDangle.ApplyDangle(ledgeClimb.isClimbingLedge, shouldClimbLeftLedge, shouldClimbRightLedge, ledgeDanglePosition);
         ledgeClimb.ApplyClimb(ledgeDangle.isDangling, shouldClimbLeftLedge, shouldClimbRightLedge, ledgeClimbedPosition);
     }
 }

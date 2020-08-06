@@ -22,14 +22,13 @@
     <list default="true" id="afea5122-9a1a-4e4d-bd62-1d3fd3f40de1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Playground.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Playground.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Data.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateHorizontalVelocity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateHorizontalVelocity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateLedgeSlip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateLedgeSlip.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Flipper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Flipper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Ledge Parts/LedgeClimb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Ledge Parts/LedgeClimb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Ledge Parts/LedgeSlip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Ledge Parts/LedgeSlip.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/VelocitySmoother.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/VelocitySmoother.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateLedge.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateLedge.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Ledge Parts/LedgeDangle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Ledge Parts/LedgeDangle.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Demo.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/Sepiroth Demo.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +80,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateVelocity.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateCrouch.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/ApplyCrouch.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/SetupCrouch.cs" />
@@ -122,16 +120,17 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateLedgeClimb.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateLedgeDangle.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Crouch.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateVerticalVelocity.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Ledge Parts/LedgeDangle.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateLedge.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateLedgeSlip.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateHorizontalVelocity.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Ledge Parts/LedgeSlip.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Ledge Parts/LedgeClimb.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Flipper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/VelocitySmoother.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Trash bin/Tastyyy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Ledge Parts/LedgeDangle.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateLedge.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateVerticalVelocity.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateHorizontalVelocity.cs" />
       </list>
     </option>
   </component>
@@ -211,6 +210,8 @@
       <workItem from="1596340542869" duration="8157000" />
       <workItem from="1596431914822" duration="7496000" />
       <workItem from="1596519550238" duration="5418000" />
+      <workItem from="1596577125393" duration="2479000" />
+      <workItem from="1596693368359" duration="4970000" />
     </task>
     <servers />
   </component>

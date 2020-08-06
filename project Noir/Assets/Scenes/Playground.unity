@@ -728,7 +728,7 @@ MonoBehaviour:
     raycastOrigins:
     - {fileID: 1734087217}
     - {fileID: 1284465126}
-    checkDistance: 0.05
+    checkDistance: 0.1
   rightWallCheck:
     targetLayerMask:
       serializedVersion: 2
@@ -736,7 +736,21 @@ MonoBehaviour:
     raycastOrigins:
     - {fileID: 301030689}
     - {fileID: 486058825}
-    checkDistance: 0.05
+    checkDistance: 0.1
+  leftWallClimbCheck:
+    targetLayerMask:
+      serializedVersion: 2
+      m_Bits: 8192
+    raycastOrigins:
+    - {fileID: 1284465126}
+    checkDistance: 0.1
+  rightWallClimbCheck:
+    targetLayerMask:
+      serializedVersion: 2
+      m_Bits: 8192
+    raycastOrigins:
+    - {fileID: 486058825}
+    checkDistance: 0.1
   horizontalCalculator:
     crouch:
       slide:
@@ -6181,6 +6195,18 @@ MonoBehaviour:
     - {fileID: 942695928}
     - {fileID: 434376153}
     checkDistance: 0.02
+  leftWallClimbCheck:
+    targetLayerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    raycastOrigins: []
+    checkDistance: 0.05
+  rightWallClimbCheck:
+    targetLayerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    raycastOrigins: []
+    checkDistance: 0.05
   horizontalCalculator:
     crouch:
       slide:
@@ -9686,6 +9712,7 @@ GameObject:
   - component: {fileID: 1328423648034788069}
   - component: {fileID: 8350225303235510758}
   - component: {fileID: 1019243952}
+  - component: {fileID: 8350225303235510760}
   m_Layer: 0
   m_Name: Sepiroth Model
   m_TagString: Untagged
@@ -9744,11 +9771,24 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: e47d379faff745346bd1fb3cfc865be1, type: 2}
+  m_Material: {fileID: 6200000, guid: ce949bfc68228254083f915668a92450, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &8350225303235510760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8350225303235510757}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f5e29f711c425e9026a10fa5019c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeScale: 0.3
 --- !u!4 &8429839274211109287
 Transform:
   m_ObjectHideFlags: 0

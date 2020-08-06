@@ -166,8 +166,7 @@ internal class CalculateHorizontalVelocity
         return jumped && !isGrounded;
     }
 
-    private float ApplyWallJumpVerticalPower(bool isTouchingLeftWall,
-        bool isTouchingRightWall, float horizontalVelocity)
+    private float ApplyWallJumpVerticalPower(bool isTouchingLeftWall, bool isTouchingRightWall, float horizontalVelocity)
     {
         
         if (isTouchingLeftWall)

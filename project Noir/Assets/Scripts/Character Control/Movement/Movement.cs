@@ -13,6 +13,8 @@ public class Movement : MonoBehaviour
     [SerializeField] Raycast2DChecker ceilingCrouchCheck = new Raycast2DChecker();
     [SerializeField] Raycast2DChecker leftWallCheck = new Raycast2DChecker();
     [SerializeField] Raycast2DChecker rightWallCheck = new Raycast2DChecker();
+    [SerializeField] Raycast2DChecker leftWallClimbCheck = new Raycast2DChecker();
+    [SerializeField] Raycast2DChecker rightWallClimbCheck = new Raycast2DChecker();
 
     [Space] [Header("Velocity Calculators")] [Space]
     [SerializeField] CalculateHorizontalVelocity horizontalCalculator = new CalculateHorizontalVelocity();
@@ -54,7 +56,9 @@ public class Movement : MonoBehaviour
         ceilingCrouchCheck.Setup(Vector2.up);
         ceilingCheck.Setup(Vector2.up);
         leftWallCheck.Setup(Vector2.left);
-        rightWallCheck.Setup(Vector2.right);
+        rightWallCheck.Setup(Vector2.right);     
+        leftWallClimbCheck.Setup(Vector2.left);
+        rightWallClimbCheck.Setup(Vector2.right);
         
         horizontalCalculator.Setup(movementData, rb2D, animator, movementInput); 
         verticalCalculator.Setup(movementData, rb2D, animator, movementInput);
@@ -70,26 +74,30 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        isGrounded = groundCheck.IsInContactWithTarget();
-        canStand = !ceilingCrouchCheck.IsInContactWithTarget();
-        isTouchingClimbableWall = leftWallCheck.IsInContactWithTarget(climbableTag) || rightWallCheck.IsInContactWithTarget(climbableTag);
-        isTouchingClimbableCeiling = ceilingCheck.IsInContactWithTarget(climbableTag);
         isTouchingLeftWall = false;
         isTouchingRightWall = false;
         if (flipper.flipped)
         {
+            leftWallClimbCheck.Setup(Vector2.right);
+            rightWallClimbCheck.Setup(Vector2.left);
             leftWallCheck.Setup(Vector2.right);
-            rightWallCheck.Setup(Vector2.left);
+            rightWallCheck.Setup(Vector2.left);       
             isTouchingLeftWall = rightWallCheck.IsInContactWithTarget();
             isTouchingRightWall = leftWallCheck.IsInContactWithTarget();
         }
         else
         {
+            leftWallClimbCheck.Setup(Vector2.left);
+            rightWallClimbCheck.Setup(Vector2.right);
             leftWallCheck.Setup(Vector2.left);
             rightWallCheck.Setup(Vector2.right);
             isTouchingLeftWall = leftWallCheck.IsInContactWithTarget();
             isTouchingRightWall = rightWallCheck.IsInContactWithTarget();
         }
+        isGrounded = groundCheck.IsInContactWithTarget();
+        canStand = !ceilingCrouchCheck.IsInContactWithTarget();
+        isTouchingClimbableWall = leftWallClimbCheck.IsInContactWithTarget(climbableTag) || rightWallClimbCheck.IsInContactWithTarget(climbableTag);
+        isTouchingClimbableCeiling = ceilingCheck.IsInContactWithTarget(climbableTag);
         
         verticalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingClimbableCeiling, isTouchingLeftWall, isTouchingRightWall, isTouchingClimbableWall);
         horizontalCalculator.ApplyVelocity(isGrounded, canStand, isTouchingClimbableCeiling, verticalCalculator.jumped, isTouchingLeftWall, isTouchingRightWall);

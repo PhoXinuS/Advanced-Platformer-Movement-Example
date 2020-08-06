@@ -29,7 +29,7 @@ public class LedgeDangle
         animLeaningLedgeHashed = Animator.StringToHash(animLeaningLedge);
     }
 
-    internal void ApplyDangle(bool shouldDangleLeftLedge, bool shouldDangleRightLedge, Vector2 ledgeDanglePosition)
+    internal void ApplyDangle(bool isClimbing, bool shouldDangleLeftLedge, bool shouldDangleRightLedge, Vector2 ledgeDanglePosition)
     {
         bool shouldDangleLedge = shouldDangleLeftLedge || shouldDangleRightLedge;
 
@@ -39,7 +39,7 @@ public class LedgeDangle
             StartDangling(ledgeDanglePosition);
         }
 
-        if (ShouldLeanOut(shouldDangleLeftLedge, shouldDangleRightLedge))
+        if (!isClimbing && ShouldLeanOut(shouldDangleLeftLedge, shouldDangleRightLedge))
         {
             LeanOut();
         }
