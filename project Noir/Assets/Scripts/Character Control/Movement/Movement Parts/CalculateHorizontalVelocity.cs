@@ -8,8 +8,7 @@ internal class CalculateHorizontalVelocity
     private bool wasSliding;
     private bool isSliding;
     
-    [SerializeField] float wallJumpControlTime = 1f;
-    private float wallJumpControlCounter;
+    private float wallJumpOffControlCounter;
     private bool jumpedFromLeftWall;
 
     private MovementDataSO movementData;
@@ -47,20 +46,20 @@ internal class CalculateHorizontalVelocity
 
         float horizontalTargetVelocity = CalculateHorizontalTargetVelocity(isTouchingClimbableCeiling);
         float horizontalVelocity = ApplySmoothnessToVelocity(horizontalTargetVelocity, isGrounded, isTouchingClimbableCeiling);
-        
-        if (WallJumped(isGrounded, jumped))
+
+        if (WallJumped(isGrounded, jumped, isTouchingLeftWall || isTouchingRightWall))
         {
             horizontalVelocity = ApplyWallJumpVerticalPower(isTouchingLeftWall, isTouchingRightWall, horizontalVelocity);
         }
-        else if ((isTouchingLeftWall || isTouchingRightWall)
-                 && (!isCrouching || !isSliding) 
-                 && movementInput.horizontalInput == 0)
+        else if (IsOnWall(isTouchingLeftWall, isTouchingRightWall, isCrouching) && movementInput.horizontalInput == 0)
         {
             horizontalVelocity = 0f;    // stop on wall, prevents from bouncing off
         }
 
         rb2D.velocity = new Vector2(horizontalVelocity, rb2D.velocity.y);
     }
+
+
 
     #region Calculate Target Velocity
     private float CalculateHorizontalTargetVelocity(bool isTouchingClimbableCeiling)
@@ -97,12 +96,12 @@ internal class CalculateHorizontalVelocity
 
     private bool AfterWallJumpTimerIsActive()
     {
-        return wallJumpControlCounter > 0;
+        return wallJumpOffControlCounter > 0;
     }
 
     private float DisableDirectionTowardsWallAfterWallJump(float horizontalTargetVelocity)
     {
-        wallJumpControlCounter -= Time.fixedDeltaTime;
+        wallJumpOffControlCounter -= Time.fixedDeltaTime;
         if ((jumpedFromLeftWall && horizontalTargetVelocity < 0)
             || (!jumpedFromLeftWall && horizontalTargetVelocity > 0))
         {
@@ -160,25 +159,30 @@ internal class CalculateHorizontalVelocity
 
     #endregion
 
-    #region Wall Jump Horizontal
-    private static bool WallJumped(bool isGrounded, bool jumped)
+    #region Wall
+    private bool IsOnWall(bool isTouchingLeftWall, bool isTouchingRightWall, bool isCrouching)
     {
-        return jumped && !isGrounded;
+        return (isTouchingLeftWall && !jumpedFromLeftWall || isTouchingRightWall && jumpedFromLeftWall)
+               && (!isCrouching || !isSliding);
+    }
+    
+    private static bool WallJumped(bool isGrounded, bool jumped, bool isTouchingWall)
+    {
+        return jumped && isTouchingWall && !isGrounded;
     }
 
     private float ApplyWallJumpVerticalPower(bool isTouchingLeftWall, bool isTouchingRightWall, float horizontalVelocity)
     {
-        
         if (isTouchingLeftWall)
         {
             horizontalVelocity = movementData.wallJumpHorizontalPower;
-            wallJumpControlCounter = wallJumpControlTime;
+            wallJumpOffControlCounter = movementData.wallJumpOffControlTime;
             jumpedFromLeftWall = true;
         }
         else if (isTouchingRightWall)
         {
             horizontalVelocity = -movementData.wallJumpHorizontalPower;
-            wallJumpControlCounter = wallJumpControlTime;
+            wallJumpOffControlCounter = movementData.wallJumpOffControlTime;
             jumpedFromLeftWall = false;
         }
         

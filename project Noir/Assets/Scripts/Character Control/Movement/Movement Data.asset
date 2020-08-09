@@ -32,5 +32,6 @@ MonoBehaviour:
   ceilingClimbSpeed: 3
   wallJumpHorizontalPower: 7
   wallJumpVerticalPower: 6
+  wallJumpOffControlTime: 0.35
   jumpHeight: 7
   availableJumps: 3

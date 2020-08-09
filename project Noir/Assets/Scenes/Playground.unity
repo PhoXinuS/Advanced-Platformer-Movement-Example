@@ -728,7 +728,7 @@ MonoBehaviour:
     raycastOrigins:
     - {fileID: 1734087217}
     - {fileID: 1284465126}
-    checkDistance: 0.1
+    checkDistance: 0.05
   rightWallCheck:
     targetLayerMask:
       serializedVersion: 2
@@ -736,7 +736,7 @@ MonoBehaviour:
     raycastOrigins:
     - {fileID: 301030689}
     - {fileID: 486058825}
-    checkDistance: 0.1
+    checkDistance: 0.05
   leftWallClimbCheck:
     targetLayerMask:
       serializedVersion: 2
@@ -760,7 +760,7 @@ MonoBehaviour:
       - {fileID: 1019243951}
       crouchColliders:
       - {fileID: 1019243950}
-    wallJumpControlTime: 0.4
+    wallJumpOffControlTime: 1
   verticalCalculator:
     animJump: isJumping
     animWallClimb: isClimbingWall
@@ -6216,7 +6216,7 @@ MonoBehaviour:
       - {fileID: 1417342413}
       crouchColliders:
       - {fileID: 1417342418}
-    wallJumpControlTime: 0.4
+    wallJumpOffControlTime: 1
   verticalCalculator:
     animJump: isJumping
     animWallClimb: isClimbingWalls
