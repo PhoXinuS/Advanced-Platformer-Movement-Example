@@ -20,6 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afea5122-9a1a-4e4d-bd62-1d3fd3f40de1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Trash bin/ForceME.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Trash bin/ForceME.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Playground.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Playground.unity" afterDir="false" />
@@ -67,6 +70,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Data.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Horizontal Parts/Flipper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/IMovementInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Trash bin/ForceME.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Tilemap Extras/RuleTile/RuleTile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Utilities/NamedValue.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Ledge Parts/LedgeClimb.cs" root0="FORCE_HIGHLIGHTING" />
@@ -74,7 +78,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CalculateCrouch.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/ApplyCrouch.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/SetupCrouch.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/CrouchState.cs" />
@@ -125,6 +128,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementDataSO.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/CalculateHorizontalVelocity.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Trash bin/ForceME.cs" />
       </list>
     </option>
   </component>
@@ -207,7 +211,8 @@
       <workItem from="1596577125393" duration="2479000" />
       <workItem from="1596693368359" duration="4970000" />
       <workItem from="1596947322525" duration="5767000" />
-      <workItem from="1597041479822" duration="1772000" />
+      <workItem from="1597041479822" duration="1814000" />
+      <workItem from="1597128377689" duration="1021000" />
     </task>
     <servers />
   </component>
