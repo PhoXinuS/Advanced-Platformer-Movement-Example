@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public interface IMovementInput
+﻿public interface IMovementInput
 {
     float horizontalInput { get; }
     float verticalInput { get; }

@@ -2,8 +2,8 @@
 
 public class ForceME : MonoBehaviour
 {
-    [SerializeField] private Vector2 force;
-    [SerializeField] bool apply;
+    [SerializeField] Vector2 force = Vector2.zero;
+    [SerializeField] bool apply = false;
     private Rigidbody2D rb2D;
 
     private void Start()

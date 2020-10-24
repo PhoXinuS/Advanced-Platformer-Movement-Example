@@ -48,7 +48,7 @@
               </e>
               <e p="Movement.cs" t="Include" />
               <e p="MovementDataSO.cs" t="Include" />
-              <e p="PlayerMovement.cs" t="Include" />
+              <e p="PlayerMovementInput.cs" t="Include" />
             </e>
           </e>
           <e p="Effects" t="Include">
@@ -78,6 +78,12 @@
           <e p="Trash bin" t="Include">
             <e p="ChangeTimeScale.cs" t="Include" />
             <e p="ForceME.cs" t="Include" />
+          </e>
+          <e p="Vespper-grappling-hook" t="Include">
+            <e p="GrapplingHook.cs" t="Include" />
+            <e p="GrapplingRope.cs" t="Include" />
+            <e p="IGrapplingHookInput.cs" t="Include" />
+            <e p="PlayerGrapplingHookInput.cs" t="Include" />
           </e>
         </e>
         <e p="Sepiroth" t="Include">
@@ -117,7 +123,7 @@
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />
-      <e p="Packages" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
       <e p="project Noir.sln" t="IncludeFlat" />
       <e p="Temp\bin" t="ExcludeRecursive" />
     </e>

@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : IMovementInput
+public class PlayerMovementInput : IMovementInput
 {
-    public PlayerMovement(GameObject playerGameObject)
+    public PlayerMovementInput(GameObject playerGameObject)
     {
         readInputMovement = playerGameObject.AddComponent<PlayerMovementReadInput>();
     }

@@ -49,7 +49,7 @@ public class Movement : MonoBehaviour
         GameObject characterGameObject = gameObject;
         rb2D = characterGameObject.GetComponent<Rigidbody2D>();
         animator = characterGameObject.GetComponent<Animator>();
-        movementInput = new PlayerMovement(characterGameObject); 
+        movementInput = new PlayerMovementInput(characterGameObject); 
         
         groundCheck.Setup(Vector2.down);
         ceilingCrouchCheck.Setup(Vector2.up);
