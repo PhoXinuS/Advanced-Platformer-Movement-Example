@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class GrapplingRope : MonoBehaviour
 {
-    [Header("General Refernces:")]
+    [Header("General References:")]
     public GrapplingHook grapplingHook;
-    public LineRenderer m_lineRenderer;
+    public LineRenderer lineRenderer;
 
     [Header("General Settings:")]
     [SerializeField] private int ropePolygons = 40;
@@ -25,27 +25,27 @@ public class GrapplingRope : MonoBehaviour
 
     [HideInInspector] public bool isGrappling = true;
    
-    bool strightLine = true;
+    bool straightLine = true;
 
     private void OnEnable()
     {
         moveTime = 0;
-        m_lineRenderer.positionCount = ropePolygons;
+        lineRenderer.positionCount = ropePolygons;
         waveSize = startWaveSize;
-        float distanceToPass = Vector2.Distance(grapplingHook.firePoint.transform.position, grapplingHook.grapplePoint);
+        float distanceToPass = grapplingHook.grappleDistanceVector.magnitude;
         waveSize *= waveSizeWithDistance.Evaluate(distanceToPass / grapplingHook.maxDistnace);
-        strightLine = false;
+        straightLine = false;
 
         LinePointsToFirePoint();
 
-        m_lineRenderer.enabled = true;
+        lineRenderer.enabled = true;
     }
 
     private void LinePointsToFirePoint()
     {
         for (int i = 0; i < ropePolygons; i++)
         {
-            m_lineRenderer.SetPosition(i, grapplingHook.firePoint.position);
+            lineRenderer.SetPosition(i, grapplingHook.firePoint.position);
         }
     }
     
@@ -57,12 +57,11 @@ public class GrapplingRope : MonoBehaviour
     
     private void DrawRope()
     {
-        if (!strightLine)
+        if (!straightLine)
         {
-            
             if (RopeReachedGrapplePoint())
             {
-                strightLine = true;
+                straightLine = true;
             }
             else
             {
@@ -76,6 +75,7 @@ public class GrapplingRope : MonoBehaviour
                 grapplingHook.Grapple();
                 isGrappling = true;
             }
+
             if (waveSize > 0)
             {
                 waveSize -= Time.deltaTime * straightenLineSpeed;
@@ -88,11 +88,10 @@ public class GrapplingRope : MonoBehaviour
         }
     }
 
-
     private bool RopeReachedGrapplePoint()
     {
         float lineRendererTolerance = 0.1f;
-        return Math.Abs(m_lineRenderer.GetPosition(ropePolygons - 1).x - grapplingHook.grapplePoint.x) < lineRendererTolerance;
+        return Math.Abs(lineRenderer.GetPosition(ropePolygons - 1).x - grapplingHook.connectedToPoint.x) < lineRendererTolerance;
     }
 
     private void DrawRopeWaves()
@@ -102,10 +101,10 @@ public class GrapplingRope : MonoBehaviour
             float delta = i / (ropePolygons - 1f);
             Vector2 offset = Vector2.Perpendicular(grapplingHook.grappleDistanceVector).normalized * (ropeAnimationCurve.Evaluate(delta) * waveSize);
             Vector2 firePointPosition = grapplingHook.firePoint.position;
-            Vector2 targetPosition = Vector2.Lerp(firePointPosition, grapplingHook.grapplePoint, delta) + offset;
+            Vector2 targetPosition = Vector2.Lerp(firePointPosition, grapplingHook.connectedToPoint, delta) + offset;
             Vector2 currentPosition = Vector2.Lerp(firePointPosition, targetPosition, ropeProgressionCurve.Evaluate(moveTime) * ropeProgressionSpeed);
 
-            m_lineRenderer.SetPosition(i, currentPosition);
+            lineRenderer.SetPosition(i, currentPosition);
         }
     }
 
@@ -113,9 +112,9 @@ public class GrapplingRope : MonoBehaviour
     {
         waveSize = 0;
 
-        if (m_lineRenderer.positionCount != 2)
+        if (lineRenderer.positionCount != 2)
         {
-            m_lineRenderer.positionCount = 2;
+            lineRenderer.positionCount = 2;
         }
 
         DrawRopeNoWaves();
@@ -123,13 +122,13 @@ public class GrapplingRope : MonoBehaviour
 
     private void DrawRopeNoWaves()
     {
-        m_lineRenderer.SetPosition(0, grapplingHook.firePoint.position);
-        m_lineRenderer.SetPosition(1, grapplingHook.grapplePoint);
+        lineRenderer.SetPosition(0, grapplingHook.firePoint.position);
+        lineRenderer.SetPosition(1, grapplingHook.connectedToPoint);
     }
     
     private void OnDisable()
     {
-        m_lineRenderer.enabled = false;
+        lineRenderer.enabled = false;
         isGrappling = false;
     }
 }

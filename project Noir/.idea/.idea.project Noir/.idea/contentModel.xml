@@ -80,6 +80,7 @@
             <e p="ForceME.cs" t="Include" />
           </e>
           <e p="Vespper-grappling-hook" t="Include">
+            <e p="Grappable.cs" t="Include" />
             <e p="GrapplingHook.cs" t="Include" />
             <e p="GrapplingRope.cs" t="Include" />
             <e p="IGrapplingHookInput.cs" t="Include" />

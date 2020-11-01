@@ -20,50 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afea5122-9a1a-4e4d-bd62-1d3fd3f40de1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/discord.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/2D Renderer Data.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/2D Renderer Data.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/Playground.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/Playground/Post Processing Profile.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/Playground/Post Processing Profile.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/GrapplingHook.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/GrapplingHook.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/GrapplingRope.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/GrapplingRope.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/IGrapplingHookInput.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/IGrapplingHookInput.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/PlayerGrapplingHookInput.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/PlayerGrapplingHookInput.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/README.md.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/sprite skin issues.data" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sepiroth/2.Animation/sprite skin issues.data.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/UniversalRenderPipelineAsset.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/UniversalRenderPipelineAsset.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/UniversalRenderPipelineAsset_Renderer.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/UniversalRenderPipelineAsset_Renderer.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Controll/Physic Materials/Zero Material.physicsMaterial2D" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Controll/Physic Materials/Zero Material.physicsMaterial2D.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/Grappable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/Grappable.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.project Noir/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project Noir/riderModule.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Controll/Input/Controls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Controll/Input/Controls.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Controll/Input/Controls.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Controll/Input/Controls.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Controll/Physic Materials/Deafult Material.physicsMaterial2D" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Controll/Physic Materials/Deafult Material.physicsMaterial2D" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Playground.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Playground.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/IMovementInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/IMovementInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovementInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovement.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovementInput.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Trash bin/ForceME.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Trash bin/ForceME.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sepiroth/3.Prefab/Sepiroth Model.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sepiroth/3.Prefab/Sepiroth Model.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap Assets/Playgroind palette.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap Assets/Playgroind palette.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemap Assets/Square.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemap Assets/Square.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/GrapplingHook.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/GrapplingHook.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/GrapplingRope.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/GrapplingRope.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,14 +47,12 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Effects/SlowMotion.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Toolkit/Smoothers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Toolkit/ToolKit.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Actions/InputBindingResolver.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Trash bin/ForceME.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Trash bin/ChangeTimeScale.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Save System/GameData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Data.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/IMovementInput.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementDataSO.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Utilities/NamedValue.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/PlayerMovementInput.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/OverlapCircleChecker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/Raycast2DChecker.cs" root0="FORCE_HIGHLIGHTING" />
@@ -115,13 +83,13 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scriptable Objects/Scripts/FloatVariableSO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collections@0.1.1-preview/Unity.Collections/NativeSort.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collections@0.1.1-preview/Unity.Collections/NativeArraySOA.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/Grappable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collections@0.1.1-preview/Unity.Collections/NativeArrayExtensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Plugins/HID/HID.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collections@0.1.1-preview/Unity.Collections/CollectionHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework.performance@1.2.3-preview/Runtime/Utils.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement Parts/Vertical Parts/VerticalAdjusters.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collections@0.1.1-preview/Unity.Collections/UnsafeList.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Controll/Input/Controls.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Controll/Input/Controls.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collections@0.1.1-preview/Unity.Collections/AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Controll/Input/Controls.inputactions" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collections@0.1.1-preview/Unity.Collections/DebugView.cs" root0="SKIP_HIGHLIGHTING" />
@@ -136,13 +104,10 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Movement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.animation@3.2.4/Runtime/SpriteSkinManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Camera/ObjectFollow.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Actions/InputActionState.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/WallCheck.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/CeilingCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/Checkers/GroundCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character Control/Movement/MovementParts/Crouch.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Trash bin/bananas.cs" />
@@ -190,6 +155,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/GrapplingGun.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/IGrapplingHookInput.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/PlayerGrapplingHookInput.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/Grappable.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/AbleToGrapple.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/GrapplingHook.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Vespper-grappling-hook/GrapplingRope.cs" />
       </list>
@@ -286,6 +253,12 @@
       <workItem from="1603347963741" duration="266000" />
       <workItem from="1603348410823" duration="2589000" />
       <workItem from="1603518323641" duration="5452000" />
+      <workItem from="1603693900534" duration="5231000" />
+      <workItem from="1603777867523" duration="7106000" />
+      <workItem from="1603859999294" duration="4889000" />
+      <workItem from="1603952132388" duration="11516000" />
+      <workItem from="1604008745892" duration="3205000" />
+      <workItem from="1604044867416" duration="818000" />
     </task>
     <servers />
   </component>
@@ -315,11 +288,14 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="1702" y="751" key="#Custom_Plugin_Repositories/0.0.2560.1440/3840.678.1920.1080@0.0.2560.1440" timestamp="1603348097380" />
-    <state x="1365" y="499" width="1146" height="707" key="SettingsEditor" timestamp="1603526256885">
+    <state x="93" y="93" width="2375" height="1255" key="DiffContextDialog" timestamp="1603963130997">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state x="1365" y="499" width="1146" height="707" key="SettingsEditor/0.0.2560.1440/3840.678.1920.1080@0.0.2560.1440" timestamp="1603526256885" />
-    <state x="1638" y="599" width="981" height="707" key="SettingsEditor/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1594988802342" />
+    <state x="93" y="93" width="2375" height="1255" key="DiffContextDialog/0.0.2560.1440/3840.678.1920.1080@0.0.2560.1440" timestamp="1603963130997" />
+    <state x="1365" y="499" width="1146" height="707" key="SettingsEditor" timestamp="1603960465892">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="1365" y="499" width="1146" height="707" key="SettingsEditor/0.0.2560.1440/3840.678.1920.1080@0.0.2560.1440" timestamp="1603960465892" />
     <state x="93" y="93" width="2886" height="1542" key="VCS.FileHistoryDialog" timestamp="1596949894187">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
@@ -328,6 +304,10 @@
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
     <state x="93" y="93" width="2886" height="1542" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.3072.1728/3840.805.1920.1080@0.0.3072.1728" timestamp="1596436246779" />
+    <state width="600" height="428" key="javadoc.popup" timestamp="1603782334189">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="600" height="428" key="javadoc.popup/0.0.2560.1440/3840.678.1920.1080@0.0.2560.1440" timestamp="1603782334189" />
     <state x="1193" y="413" key="run.anything.popup" timestamp="1596435527376">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
